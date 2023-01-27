@@ -1,6 +1,7 @@
 require('molter.set')
 require('molter.keymaps')
 require('molter.packer')
+require('molter.bang')
 
 -- Autocommands
 local molter = vim.api.nvim_create_augroup('MOLTER', { clear = true })
