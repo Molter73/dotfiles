@@ -68,4 +68,7 @@ return require('packer').startup(function(use)
             require('which-key').setup()
         end
     }
+
+    -- kitty config syntax highlighting
+    use { 'fladson/vim-kitty' }
 end)
