@@ -109,7 +109,6 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 # alias
 alias beggar="VAGRANT_CWD=${HOME}/vagrant/ vagrant"
 alias krox="kubectl -n stackrox"
-alias gerrit='ssh -p 29418 code.engineering.redhat.com gerrit'
 alias dcu='docker context use'
 
 # infractl stuff

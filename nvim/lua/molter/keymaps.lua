@@ -25,7 +25,7 @@ vim.keymap.set('n', '<Leader>jc', jq.minify_json, { noremap = true, desc = 'Mini
 vim.keymap.set('n', '<Leader>jj', '<cmd>set filetype=json<CR>', { noremap = true, desc = 'Set filetype to JSON' })
 
 -- Simplified window navigation
-vim.keymap.set('n', '<S-C-h>', '<C-w>h', { noremap = true, desc = 'Jump to left window' })
-vim.keymap.set('n', '<S-C-j>', '<C-w>j', { noremap = true, desc = 'Jump to upper window' })
-vim.keymap.set('n', '<S-C-k>', '<C-w>k', { noremap = true, desc = 'Jump to lower window' })
-vim.keymap.set('n', '<S-C-l>', '<C-w>l', { noremap = true, desc = 'Jump to right window' })
+vim.keymap.set('n', '<A-h>', '<C-w>h', { noremap = true, desc = 'Jump to left window' })
+vim.keymap.set('n', '<A-j>', '<C-w>j', { noremap = true, desc = 'Jump to upper window' })
+vim.keymap.set('n', '<A-k>', '<C-w>k', { noremap = true, desc = 'Jump to lower window' })
+vim.keymap.set('n', '<A-l>', '<C-w>l', { noremap = true, desc = 'Jump to right window' })
