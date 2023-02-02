@@ -15,7 +15,13 @@ return require('packer').startup(function(use)
     use { 'hrsh7th/cmp-nvim-lsp' }
 
     -- Snippet completion source for nvim-cmp
-    use { 'hrsh7th/cmp-vsnip' }
+    use({
+        "L3MON4D3/LuaSnip",
+        -- follow latest release.
+        tag = "v<CurrentMajor>.*",
+        -- install jsregexp (optional!:).
+        run = "make install_jsregexp"
+    })
 
     -- Other usefull completion sources
     use { 'hrsh7th/cmp-path' }
@@ -25,9 +31,6 @@ return require('packer').startup(function(use)
 
     -- To enable more of the features of rust-analyzer, such as inlay hints and more!
     use { 'simrat39/rust-tools.nvim' }
-
-    -- Snippet engine
-    use { 'hrsh7th/vim-vsnip' }
 
     -- Lualine
     use { 'nvim-lualine/lualine.nvim' }

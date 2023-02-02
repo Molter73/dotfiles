@@ -81,7 +81,15 @@ require('rust-tools').setup({
     },
 })
 
-nvim_lsp.yamlls.setup({})
+nvim_lsp.yamlls.setup({
+    settings = {
+        yaml = {
+            schemas = {
+                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
+            }
+        }
+    }
+})
 
 -- clangd setup
 local root_pattern = nvim_lsp.util.root_pattern('.git')
@@ -166,7 +174,7 @@ cmp.setup({
     -- Enable LSP snippets
     snippet = {
         expand = function(args)
-            vim.fn['vsnip#anonymous'](args.body)
+            require 'luasnip'.lsp_expand(args.body)
         end,
     },
     mapping = {
@@ -186,6 +194,7 @@ cmp.setup({
     },
     -- Installed sources
     sources = {
+        { name = 'luasnip' },
         { name = 'nvim_lsp' },
         { name = 'path' },
         { name = 'buffer' },

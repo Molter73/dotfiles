@@ -29,3 +29,11 @@ vim.keymap.set('n', '<A-h>', '<C-w>h', { noremap = true, desc = 'Jump to left wi
 vim.keymap.set('n', '<A-j>', '<C-w>j', { noremap = true, desc = 'Jump to upper window' })
 vim.keymap.set('n', '<A-k>', '<C-w>k', { noremap = true, desc = 'Jump to lower window' })
 vim.keymap.set('n', '<A-l>', '<C-w>l', { noremap = true, desc = 'Jump to right window' })
+
+-- Integrated terminal stuff
+vim.keymap.set('n', '<Leader><Leader>t', ':vsplit term://zsh<CR>', {
+    noremap = true,
+    silent = true,
+    desc = 'Launch a terminal',
+})
+vim.keymap.set('t', ',tq', '<C-\\><C-n>', { noremap = true, desc = 'Escape the terminal', })
