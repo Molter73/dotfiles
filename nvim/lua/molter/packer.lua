@@ -18,7 +18,7 @@ return require('packer').startup(function(use)
     use({
         "L3MON4D3/LuaSnip",
         -- follow latest release.
-        tag = "v<CurrentMajor>.*",
+        tag = "v1.*",
         -- install jsregexp (optional!:).
         run = "make install_jsregexp"
     })
@@ -55,9 +55,6 @@ return require('packer').startup(function(use)
     -- treesitter
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use { 'nvim-treesitter/nvim-treesitter-context' }
-
-    -- undotree
-    use { 'mbbill/undotree' }
 
     -- fidget
     use { 'j-hui/fidget.nvim',
