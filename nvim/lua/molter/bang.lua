@@ -1,5 +1,3 @@
-local shebang = '#!/usr/bin/env'
-
 local starts_with = function(str, prefix)
     local prefix_len = #prefix
 
@@ -10,35 +8,60 @@ local starts_with = function(str, prefix)
     return string.sub(str, 0, prefix_len) == prefix
 end
 
-local make_executable = function()
-    local file_path = vim.fn.expand('%:p')
+local make_executable = function(args)
+    local file_path = args.file or vim.fn.expand('%:p')
 
     return vim.fn.jobstart({ 'chmod', '+x', file_path }) > 0
 end
 
-vim.api.nvim_create_user_command('Bang', function(_)
-    if vim.bo.ft == '' then
-        vim.bo.ft = 'sh'
+local get_filetype = function(ft)
+    if ft == nil or #ft >= 2 then
+        return nil
+    elseif #ft == 1 then
+        return ft[1]
     end
 
-    if vim.bo.ft ~= 'sh' then
-        print('Not running Bash - filetype:', vim.bo.ft)
+    if vim.bo.ft == '' then
+        return 'sh'
+    end
+    return vim.bo.ft
+end
+
+vim.api.nvim_create_user_command('Bang', function(params)
+    local filetype = get_filetype(params.fargs)
+    if filetype == nil then
+        print('Invalid arguments:', filetype)
+        return
+    end
+
+    local supported_languages = {
+        sh = 'bash',
+        python = 'python3',
+    }
+
+    if supported_languages[filetype] == nil then
+        print('Not running Bang - filetype:', vim.bo.ft)
         return
     end
 
     local first_line = vim.api.nvim_buf_get_lines(0, 0, 1, false)
+    local shebang = '#!/usr/bin/env'
 
     if first_line == nil or starts_with(first_line[1], shebang) then
         return
     end
 
-    vim.api.nvim_buf_set_lines(0, 0, 0, false, { shebang .. ' bash', '' })
+    local replacement = { shebang .. ' ' .. supported_languages[filetype], '' }
+    vim.api.nvim_buf_set_lines(0, 0, 0, false, replacement)
+
+    -- Ensure filetype is properly set
+    vim.bo.ft = filetype
 
     vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
         callback = make_executable,
         once = true,
         desc = 'Make file executable after saving',
     })
-end, { desc = 'Add shebang to current buffer' })
+end, { nargs = '?', desc = 'Add shebang to current buffer' })
 
 vim.api.nvim_create_user_command('BangMakeExec', make_executable, { desc = 'Make current file executable' })
