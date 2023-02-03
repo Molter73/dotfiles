@@ -37,3 +37,8 @@ vim.keymap.set('n', '<Leader><Leader>t', ':vsplit term://zsh<CR>', {
     desc = 'Launch a terminal',
 })
 vim.keymap.set('t', ',tq', '<C-\\><C-n>', { noremap = true, desc = 'Escape the terminal', })
+
+-- BANG!
+vim.keymap.set('n', '<Leader>bb', '<cmd>Bang sh<CR>', { noremap = true, desc = 'Set current file as executable bash', })
+vim.keymap.set('n', '<Leader>bp', '<cmd>Bang python<CR>',
+    { noremap = true, desc = 'Set current file as executable Python', })

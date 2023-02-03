@@ -1,3 +1,8 @@
+local supported_languages = {
+    sh = 'bash',
+    python = 'python3',
+}
+
 local starts_with = function(str, prefix)
     local prefix_len = #prefix
 
@@ -34,13 +39,8 @@ vim.api.nvim_create_user_command('Bang', function(params)
         return
     end
 
-    local supported_languages = {
-        sh = 'bash',
-        python = 'python3',
-    }
-
     if supported_languages[filetype] == nil then
-        print('Not running Bang - filetype:', vim.bo.ft)
+        print('Not running Bang - filetype:', filetype)
         return
     end
 
