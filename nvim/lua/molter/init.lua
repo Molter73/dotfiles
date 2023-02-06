@@ -1,6 +1,5 @@
 require('molter.set')
 require('molter.keymaps')
-require('molter.packer')
 require('molter.bang')
 
 -- Autocommands

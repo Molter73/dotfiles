@@ -34,7 +34,8 @@ vim.opt.listchars = {
 }
 vim.opt.updatetime = 200
 vim.opt.hls = false
-vim.g.mapleader = ' '
 vim.opt.background = 'dark'
 vim.opt.termguicolors = true
 vim.opt.spell = true
+
+vim.cmd.colorscheme('catppuccin')
