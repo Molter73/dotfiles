@@ -13,6 +13,8 @@ local relative_path = function()
     end
 end
 
+local lazy_status = require('lazy.status')
+
 return {
     {
         'nvim-lualine/lualine.nvim',
@@ -29,7 +31,12 @@ return {
             sections = {
                 lualine_a = { 'mode' },
                 lualine_b = { 'branch', 'diff', 'diagnostics' },
-                lualine_c = {},
+                lualine_c = {
+                    {
+                        lazy_status.updates,
+                        cond = lazy_status.has_updates,
+                    },
+                },
                 lualine_x = { 'encoding', 'fileformat', 'filetype' },
                 lualine_y = { 'progress' },
                 lualine_z = { 'location' }
