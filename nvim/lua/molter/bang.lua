@@ -20,16 +20,17 @@ local make_executable = function(args)
 end
 
 local get_filetype = function(ft)
+    if vim.bo.ft ~= '' then
+        return vim.bo.ft
+    end
+
     if ft == nil or #ft >= 2 then
         return nil
     elseif #ft == 1 then
         return ft[1]
     end
 
-    if vim.bo.ft == '' then
-        return 'sh'
-    end
-    return vim.bo.ft
+    return 'sh'
 end
 
 vim.api.nvim_create_user_command('Bang', function(params)
