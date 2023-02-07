@@ -5,6 +5,10 @@ return {
     -- nvim LSP
     {
         'neovim/nvim-lspconfig',
+        dependencies = {
+            'hrsh7th/cmp-nvim-lsp',
+        },
+        event = 'BufReadPre',
         config = function()
             for _, server in pairs(servers) do
                 server()
@@ -44,7 +48,7 @@ return {
                     -- Add tab support
                     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
                     ['<Tab>'] = cmp.mapping.select_next_item(),
-                    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-d>'] = cmp.mapping.scroll_docs( -4),
                     ['<C-f>'] = cmp.mapping.scroll_docs(4),
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-e>'] = cmp.mapping.close(),
@@ -65,14 +69,19 @@ return {
     },
 
     -- Completion framework
-    'hrsh7th/nvim-cmp',
-
-    -- LSP completion source for nvim-cmp
-    'hrsh7th/cmp-nvim-lsp',
+    {
+        'hrsh7th/nvim-cmp',
+        event = 'InsertEnter',
+        dependencies = {
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-buffer',
+        },
+    },
 
     -- Snippet completion source for nvim-cmp
     {
         "L3MON4D3/LuaSnip",
+        event = 'InsertEnter',
         -- follow latest release.
         version = "v1.*",
         -- install jsregexp (optional!:).
@@ -80,8 +89,6 @@ return {
     },
 
     -- Other full completion sources
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-buffer',
 
     -- See hrsh7th's other plugins for more completion sources!
 
@@ -121,6 +128,7 @@ return {
     },
     {
         'jose-elias-alvarez/null-ls.nvim',
+        event = 'BufReadPre',
         dependencies = {
             'nvim-lua/plenary.nvim',
         },

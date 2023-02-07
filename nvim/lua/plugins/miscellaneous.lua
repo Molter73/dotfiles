@@ -6,13 +6,14 @@ return {
     },
     {
         'j-hui/fidget.nvim',
+        event = 'VeryLazy',
         config = function()
             require('fidget').setup({})
         end,
-        event = 'LspAttach',
     },
     {
         'folke/which-key.nvim',
+        event = 'VeryLazy',
         config = function()
             require('which-key').setup({})
         end

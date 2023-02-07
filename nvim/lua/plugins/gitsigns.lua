@@ -3,7 +3,6 @@ local opts = {
     current_line_blame_opts = {
         delay = 200
     },
-
     on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
 
@@ -46,6 +45,6 @@ return {
     {
         'lewis6991/gitsigns.nvim',
         opts = opts,
-        event = 'BufReadPost',
+        event = 'BufReadPre',
     },
 }
