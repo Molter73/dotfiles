@@ -61,7 +61,7 @@ return {
                     { name = 'buffer' },
                 },
             })
-        end
+        end,
     },
 
     -- Completion framework
@@ -88,6 +88,7 @@ return {
     -- To enable more of the features of rust-analyzer, such as inlay hints and more!
     {
         'simrat39/rust-tools.nvim',
+        ft = 'rust',
         opts = {
             tools = { -- rust-tools options
                 autoSetHints = true,

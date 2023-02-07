@@ -34,8 +34,8 @@ vim.opt.listchars = {
 }
 vim.opt.updatetime = 200
 vim.opt.hls = false
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 vim.opt.background = 'dark'
 vim.opt.termguicolors = true
 vim.opt.spell = true
-
-vim.cmd.colorscheme('catppuccin')
