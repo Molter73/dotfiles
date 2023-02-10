@@ -32,7 +32,8 @@ local format_buf = function(buf, extra_args)
         return
     end
 
-    if string.sub(output[1], 1, 1) ~= "{" then
+    local first_char = string.sub(output[1], 1, 1)
+    if first_char ~= "{" and first_char ~= "[" then
         print("Failed to format buffer")
         return
     end
