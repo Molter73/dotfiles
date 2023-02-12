@@ -3,7 +3,7 @@ local M = {}
 local utils = require('plugins.lsp.utils')
 
 M.sumneko = function()
-    require('lspconfig').sumneko_lua.setup {
+    require('lspconfig').lua_ls.setup {
         on_attach = utils.on_attach,
         settings = {
             Lua = {
@@ -38,7 +38,6 @@ M.yamlls = function()
             }
         }
     })
-
 end
 
 M.clangd = function()

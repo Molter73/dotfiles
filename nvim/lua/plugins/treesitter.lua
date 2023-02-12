@@ -15,6 +15,7 @@ return {
                 'haskell',
                 'help',
                 'html',
+                'java',
                 'json',
                 'lua',
                 'make',
