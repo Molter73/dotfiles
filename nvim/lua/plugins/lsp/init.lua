@@ -8,7 +8,7 @@ return {
         dependencies = {
             'hrsh7th/cmp-nvim-lsp',
         },
-        event = 'BufReadPre',
+        event = { 'BufReadPre', 'BufNewFile' },
         config = function()
             for _, server in pairs(servers) do
                 server()
