@@ -8,11 +8,11 @@ return {
             ensure_installed = {
                 'bash',
                 'c',
-                'cpp',
                 'cmake',
+                'cpp',
+                'css',
                 'dockerfile',
                 'go',
-                'haskell',
                 'help',
                 'html',
                 'java',
