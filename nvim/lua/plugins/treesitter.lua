@@ -23,6 +23,7 @@ return {
                 'regex',
                 'rust',
                 'toml',
+                'vim',
                 'yaml',
             },
 
