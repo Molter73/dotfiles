@@ -45,7 +45,6 @@ return {
         'catppuccin/nvim',
         name = 'catppuccin',
         opts = opts,
-        tag = 'v1.0.0',
         lazy = false,
         config = function()
             vim.cmd.colorscheme('catppuccin')

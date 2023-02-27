@@ -28,7 +28,13 @@ local opts = {
     sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
-        lualine_c = { 'filename' },
+        lualine_c = {
+            {
+                require("lazy.status").updates,
+                cond = require("lazy.status").has_updates,
+                color = { fg = "#ff9e64" },
+            },{ 'filename'}
+        },
         lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
         lualine_z = { 'location' }

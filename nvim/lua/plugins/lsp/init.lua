@@ -72,6 +72,7 @@ return {
     {
         'hrsh7th/nvim-cmp',
         event = 'InsertEnter',
+        branch = 'main',
         dependencies = {
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-buffer',
@@ -82,8 +83,6 @@ return {
     {
         "L3MON4D3/LuaSnip",
         event = 'InsertEnter',
-        -- follow latest release.
-        version = "v1.*",
         -- install jsregexp (optional!:).
         build = "make install_jsregexp"
     },
