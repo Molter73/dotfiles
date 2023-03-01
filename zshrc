@@ -111,6 +111,7 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 alias beggar="VAGRANT_CWD=${HOME}/vagrant/ vagrant"
 alias krox="kubectl -n stackrox"
 alias dcu='docker context use'
+alias ssh-kitten='kitty +kitten ssh'
 
 # infractl stuff
 if [[ -f "${HOME}/.infra" ]]; then

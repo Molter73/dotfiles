@@ -5,6 +5,7 @@ return {
     -- nvim LSP
     {
         'neovim/nvim-lspconfig',
+        branch = 'master',
         dependencies = {
             'hrsh7th/cmp-nvim-lsp',
         },
