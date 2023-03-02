@@ -39,3 +39,5 @@ vim.opt.smartcase = true
 vim.opt.background = 'dark'
 vim.opt.termguicolors = true
 vim.opt.spell = true
+
+vim.cmd.colorscheme('catppuccin')
