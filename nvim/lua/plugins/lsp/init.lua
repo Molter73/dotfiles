@@ -26,6 +26,11 @@ return {
                         buffer = 0,
                         callback = function()
                             vim.lsp.buf.format({
+                                formatting_options = {
+                                    trimTrailingWhitespace = true,
+                                    insertFinalNewline = true,
+                                    trimFinalNewlines = true,
+                                },
                                 async = false,
                             })
                         end

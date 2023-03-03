@@ -12,6 +12,16 @@ M.on_attach = function(_, bufnr)
         vim.keymap.set(mode, lhs, rhs, full_opts)
     end
 
+    local format = function()
+        vim.lsp.buf.format({
+            formatting_options = {
+                trimTrailingWhitespace = true,
+                insertFinalNewline = true,
+                trimFinalNewlines = true,
+            },
+        })
+    end
+
     set_keymap('n', 'K', vim.lsp.buf.hover, 'Hover information', opts)
     set_keymap('n', 'gD', vim.lsp.buf.declaration, 'Go to declaration', opts)
     set_keymap('n', 'gd', vim.lsp.buf.definition, 'Go to definition', opts)
@@ -21,7 +31,7 @@ M.on_attach = function(_, bufnr)
     set_keymap('n', '<Leader>D', vim.lsp.buf.type_definition, 'Go to type definition', opts)
     set_keymap('n', '<Leader>rn', vim.lsp.buf.rename, 'Rename symbol under cursor', opts)
     set_keymap('n', '<Leader>ca', vim.lsp.buf.code_action, 'Code Action', opts)
-    set_keymap('n', '<Leader>fr', vim.lsp.buf.format, 'Format buffer', opts)
+    set_keymap('n', '<Leader>fr', format, 'Format buffer', opts)
 end
 
 
