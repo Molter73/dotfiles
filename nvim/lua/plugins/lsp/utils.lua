@@ -5,16 +5,23 @@ M.on_attach = function(_, bufnr)
 
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', '<Leader>gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('n', '<Leader>D', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', '<Leader>fr', vim.lsp.buf.format, opts)
+    local set_keymap = function(mode, lhs, rhs, desc, opts)
+        local full_opts = opts
+        full_opts['desc'] = desc
+
+        vim.keymap.set(mode, lhs, rhs, full_opts)
+    end
+
+    set_keymap('n', 'K', vim.lsp.buf.hover, 'Hover information', opts)
+    set_keymap('n', 'gD', vim.lsp.buf.declaration, 'Go to declaration', opts)
+    set_keymap('n', 'gd', vim.lsp.buf.definition, 'Go to definition', opts)
+    set_keymap('n', 'gr', vim.lsp.buf.references, 'Go to reference', opts)
+    set_keymap('n', '<Leader>gi', vim.lsp.buf.implementation, 'Go to implementation', opts)
+    set_keymap('n', '<C-k>', vim.lsp.buf.signature_help, 'Signature help', opts)
+    set_keymap('n', '<Leader>D', vim.lsp.buf.type_definition, 'Go to type definition', opts)
+    set_keymap('n', '<Leader>rn', vim.lsp.buf.rename, 'Rename symbol under cursor', opts)
+    set_keymap('n', '<Leader>ca', vim.lsp.buf.code_action, 'Code Action', opts)
+    set_keymap('n', '<Leader>fr', vim.lsp.buf.format, 'Format buffer', opts)
 end
 
 
