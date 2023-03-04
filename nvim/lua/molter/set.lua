@@ -19,7 +19,6 @@ vim.opt.cc = '80' -- Show at 80 column a border for good code style
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.expandtab = true -- Tabs are now 4 space wide
-vim.opt.scrolloff = 20
 vim.opt.signcolumn = 'yes'
 vim.opt.relativenumber = true
 vim.opt.ttyfast = true -- Speed up scrolling in Vim
@@ -39,5 +38,20 @@ vim.opt.smartcase = true
 vim.opt.background = 'dark'
 vim.opt.termguicolors = true
 vim.opt.spell = true
+
+-- Auto adjust scrolloff based on how tall the window is
+local scrolloff = function()
+    local height = vim.api.nvim_win_get_height(0)
+
+    return math.floor(height * 0.30)
+end
+vim.opt.scrolloff = scrolloff()
+
+local set_group = vim.api.nvim_create_augroup('SET_GROUP', { clear = true })
+vim.api.nvim_create_autocmd({ 'WinEnter', 'VimResized' }, {
+    group = set_group,
+    callback = function() vim.opt.scrolloff = scrolloff() end,
+    desc = 'Adjust scrolloff based on lines on screen',
+})
 
 vim.cmd.colorscheme('catppuccin')

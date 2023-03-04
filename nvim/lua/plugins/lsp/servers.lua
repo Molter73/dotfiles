@@ -2,7 +2,7 @@ local M = {}
 
 local utils = require('plugins.lsp.utils')
 
-M.sumneko = function()
+M.lua_ls = function()
     require('lspconfig').lua_ls.setup {
         on_attach = utils.on_attach,
         settings = {
