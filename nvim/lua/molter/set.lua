@@ -4,18 +4,18 @@ vim.opt.clipboard = 'unnamedplus'
 -- Modifies the auto-complete menu to behave more like an IDE.
 vim.opt.completeopt = 'noinsert,menuone,noselect'
 vim.opt.shortmess:append('c')
-vim.opt.cursorline = true -- Highlights the current line in the editor
-vim.opt.hidden = true -- Hide unused buffers
-vim.opt.autoindent = true -- Indent a new line
-vim.opt.autoread = true -- Read buffers modified outside of Neovim
+vim.opt.cursorline = true    -- Highlights the current line in the editor
+vim.opt.hidden = true        -- Hide unused buffers
+vim.opt.autoindent = true    -- Indent a new line
+vim.opt.autoread = true      -- Read buffers modified outside of Neovim
 vim.opt.inccommand = 'split' -- Show replacements in a split screen
-vim.opt.mouse = 'a' -- Allow to use the mouse in the editor
-vim.opt.number = true -- Shows the line numbers
-vim.opt.splitbelow = true -- Change the split screen behavior
+vim.opt.mouse = 'a'          -- Allow to use the mouse in the editor
+vim.opt.number = true        -- Shows the line numbers
+vim.opt.splitbelow = true    -- Change the split screen behavior
 vim.opt.splitright = true
-vim.opt.title = true -- Show file title
-vim.opt.wildmenu = true -- Show a more advance menu
-vim.opt.cc = '80' -- Show at 80 column a border for good code style
+vim.opt.title = true         -- Show file title
+vim.opt.wildmenu = true      -- Show a more advance menu
+vim.opt.cc = '80'            -- Show at 80 column a border for good code style
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.expandtab = true -- Tabs are now 4 space wide
@@ -45,13 +45,10 @@ local scrolloff = function()
 
     return math.floor(height * 0.30)
 end
-vim.opt.scrolloff = scrolloff()
 
-local set_group = vim.api.nvim_create_augroup('SET_GROUP', { clear = true })
-vim.api.nvim_create_autocmd({ 'WinEnter', 'VimResized' }, {
-    group = set_group,
-    callback = function() vim.opt.scrolloff = scrolloff() end,
-    desc = 'Adjust scrolloff based on lines on screen',
-})
+vim.opt.scrolloff = scrolloff()
+vim.keymap.set('n', '<Leader>so', function()
+    vim.opt.scrolloff = scrolloff()
+end, { noremap = true, desc = 'Recalculate scrolloff' })
 
 vim.cmd.colorscheme('catppuccin')
