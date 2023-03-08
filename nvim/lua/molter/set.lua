@@ -39,6 +39,10 @@ vim.opt.background = 'dark'
 vim.opt.termguicolors = true
 vim.opt.spell = true
 
+-- netrw configuration
+vim.g.netrw_banner = false
+vim.g.netrw_liststyle = 3
+
 -- Auto adjust scrolloff based on how tall the window is
 local scrolloff = function()
     local height = vim.api.nvim_win_get_height(0)
