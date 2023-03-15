@@ -41,7 +41,6 @@ vim.opt.spell = true
 
 -- netrw configuration
 vim.g.netrw_banner = false
-vim.g.netrw_liststyle = 3
 
 -- Auto adjust scrolloff based on how tall the window is
 local scrolloff = function()
