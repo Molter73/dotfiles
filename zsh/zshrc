@@ -150,3 +150,8 @@ if [[ -f "${HOME}/.minikube-completion" ]]; then
 fi
 
 [ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env" # ghcup-env
+
+[ -f "${HOME}/.fzf.zsh" ] && source "${HOME}/.fzf.zsh"
+
+# custom fzf based commands
+[ -f "${HOME}/.my-fzf.zsh" ] && source "${HOME}/.my-fzf.zsh"
