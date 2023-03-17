@@ -39,3 +39,11 @@ bssh() {
     #List all vagrant boxes available in the system including its status, and try to access the selected one via ssh
     kitty +kitten ssh $(jq '.machines[] | {name, vagrantfile_path, state}' < "${HOME}/.vagrant.d/data/machine-index/index" | jq '.name + "," + .state  + "," + .vagrantfile_path' | sed 's/^"\(.*\)"$/\1/' | column -s, -t | sort -rk 2 | fzf | awk '{print $1}')
 }
+
+# fco - checkout git branch
+fco() {
+  local branches branch
+  branches=$(git --no-pager branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
