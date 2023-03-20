@@ -6,7 +6,7 @@ export FZF_DEFAULT_OPTS=" \
 
 # Change to a repo from anywhere
 repos() {
-    DIR="$(fd . "${GOPATH}/src/" --type d --max-depth 3 --min-depth 3 | fzf)"
+    DIR="$(fd . "${GOPATH}/src/" --type d --max-depth 3 --min-depth 3 | fzf -q "$1")"
     cd "${DIR}"
 }
 
@@ -32,6 +32,10 @@ crf() {
     cid=$(docker ps -a | sed 1d | fzf -q "$1" | awk '{print $1}')
 
     [ -n "$cid" ] && docker rm -f "$cid"
+}
+
+crmi() {
+    docker images | sed 1d | fzf -q "$1" -m | awk '{print $3}' | xargs -r docker rmi
 }
 
 # SSH into vagrant VM
