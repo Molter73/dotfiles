@@ -33,7 +33,7 @@ local opts = {
                 require("lazy.status").updates,
                 cond = require("lazy.status").has_updates,
                 color = { fg = "#ff9e64" },
-            },{ 'filename'}
+            }, { 'filename' }
         },
         lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
