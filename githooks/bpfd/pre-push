@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+kubectl rollout status deploy/bpfd-builder > /dev/null
+kubectl exec deploy/bpfd-builder -- cargo test
