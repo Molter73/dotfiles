@@ -2,6 +2,6 @@
 
 set -euo pipefail
 
-kubectl rollout status deploy/bpfd-builder > /dev/null
-kubectl exec deploy/bpfd-builder -- cargo +nightly fmt --check
-kubectl exec deploy/bpfd-builder -- cargo +nightly clippy
+podman container exists "bpfd-builder" >/dev/null
+podman exec bpfd-builder cargo +nightly fmt --check
+podman exec bpfd-builder cargo +nightly clippy
