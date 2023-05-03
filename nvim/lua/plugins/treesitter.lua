@@ -12,7 +12,6 @@ return {
                 'css',
                 'dockerfile',
                 'go',
-                'help',
                 'html',
                 'java',
                 'json',
@@ -23,13 +22,12 @@ return {
                 'rust',
                 'toml',
                 'vim',
+                'vimdoc',
                 'yaml',
             },
-
             highlight = {
                 enable = true,
             },
-
             indent = {
                 enable = true,
             },

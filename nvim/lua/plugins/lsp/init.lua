@@ -54,7 +54,7 @@ return {
                     -- Add tab support
                     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
                     ['<Tab>'] = cmp.mapping.select_next_item(),
-                    ['<C-d>'] = cmp.mapping.scroll_docs( -4),
+                    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-f>'] = cmp.mapping.scroll_docs(4),
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-e>'] = cmp.mapping.close(),
@@ -102,7 +102,8 @@ return {
         'simrat39/rust-tools.nvim',
         ft = 'rust',
         opts = {
-            tools = { -- rust-tools options
+            tools = {
+                -- rust-tools options
                 autoSetHints = true,
                 inlay_hints = {
                     show_parameter_hints = false,
@@ -110,7 +111,6 @@ return {
                     other_hints_prefix = "",
                 },
             },
-
             -- all the opts to send to nvim-lspconfig
             -- these override the defaults set by rust-tools.nvim
             -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
