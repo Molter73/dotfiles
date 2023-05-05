@@ -2,7 +2,6 @@ name: Update neovim dependencies
 on:
   schedule:
     - cron: '0 0 * * 0'
-  pull_request:
 
 jobs:
   update-nvim:
@@ -14,7 +13,6 @@ jobs:
         run: |
           mkdir -p "${HOME}/.config"
           ln -s "${{ github.workspace }}/nvim" "${HOME}/.config/nvim"
-          ls -la "${HOME}/.config"
 
       - name: Update neovim plugins
         run: |
