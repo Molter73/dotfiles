@@ -13,8 +13,6 @@ local relative_path = function()
     end
 end
 
-local lazy_status = require('lazy.status')
-
 local opts = {
     options = {
         icons_enabled = false,
@@ -29,11 +27,7 @@ local opts = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
         lualine_c = {
-            {
-                require("lazy.status").updates,
-                cond = require("lazy.status").has_updates,
-                color = { fg = "#ff9e64" },
-            }, { 'filename' }
+            { 'filename' }
         },
         lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
