@@ -1,0 +1,22 @@
+name: Update neovim dependencies
+on:
+  schedule:
+    - cron: '0 0 * * 0'
+  pull_request:
+
+jobs:
+  update-nvim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install neovim
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y neovim
+
+      - name: Update neovim plugins
+        env:
+          XDG_CONFIG_HOME: ${{ github.workspace }}
+        run: |
+          nvim --headless +"Lazy sync" +qa
+          git status
