@@ -30,27 +30,17 @@ local opts = {
 }
 
 local keys = function()
+    local builtins = require('telescope.builtin')
+
     return {
-        { '<Leader>ff', require('telescope.builtin').find_files,  noremap = true, desc = '[F]ind [F]iles' },
-        { '<Leader>fg', require('telescope.builtin').live_grep,   noremap = true, desc = 'Live grep' },
-        { '<Leader>fb', require('telescope.builtin').buffers,     noremap = true, desc = '[F]ind [B]uffer' },
-        { '<Leader>fs', require('telescope.builtin').grep_string, noremap = true, desc = '[F]ind [S]tring' },
-        {
-            '<Leader>fh',
-            require('telescope.builtin').help_tags,
-            noremap = true,
-            desc =
-            '[F]ind [H]elp tags'
-        },
-        {
-            '<Leader>fd',
-            require('telescope.builtin').diagnostics,
-            noremap = true,
-            desc =
-            '[F]ind [D]iagnostics'
-        },
-        { '<Leader>fk', require('telescope.builtin').keymaps,                   noremap = true, desc = '[F]ind [K]eymaps' },
-        { '<Leader>fl', require('telescope.builtin').current_buffer_fuzzy_find, noremap = true, desc = '[F]ind [L]ocal' },
+        { '<Leader>ff', builtins.find_files,                noremap = true, desc = '[F]ind [F]iles' },
+        { '<Leader>fg', builtins.live_grep,                 noremap = true, desc = 'Live grep' },
+        { '<Leader>fb', builtins.buffers,                   noremap = true, desc = '[F]ind [B]uffer' },
+        { '<Leader>fs', builtins.grep_string,               noremap = true, desc = '[F]ind [S]tring' },
+        { '<Leader>fh', builtins.help_tags,                 noremap = true, desc = '[F]ind [H]elp tags' },
+        { '<Leader>fd', builtins.diagnostics,               noremap = true, desc = '[F]ind [D]iagnostics' },
+        { '<Leader>fk', builtins.keymaps,                   noremap = true, desc = '[F]ind [K]eymaps' },
+        { '<Leader>fl', builtins.current_buffer_fuzzy_find, noremap = true, desc = '[F]ind [L]ocal' },
     }
 end
 
@@ -68,6 +58,5 @@ return {
         },
         opts = opts,
         keys = keys,
-        cmd = 'Telescope',
     },
 }
