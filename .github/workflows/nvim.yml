@@ -9,11 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: Setup nvim configuration directory
+        run: |
+          mkdir -p "${HOME}/.config"
+          ln -s "${{ github.workspace }}/nvim" "${HOME}/.config/nvim"
+          ls -la "${HOME}/.config"
+
       - name: Update neovim plugins
-        env:
-          XDG_CONFIG_HOME: ${{ github.workspace }}
         run: |
           eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           brew install neovim
-          nvim --headless +"Lazy sync" +qa
+          nvim --headless "+Lazy! sync" +qa
           git status
