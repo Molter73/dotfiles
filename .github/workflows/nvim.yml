@@ -1,0 +1,36 @@
+name: Update neovim dependencies
+on:
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  update-nvim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup nvim configuration directory
+        run: |
+          mkdir -p "${HOME}/.config"
+          ln -s "${{ github.workspace }}/nvim" "${HOME}/.config/nvim"
+
+      - name: Update neovim plugins
+        run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew install neovim
+          nvim --headless "+Lazy! sync" +qa
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v5
+        id: cpr
+        with:
+          token: '${{ secrets.GH_PAT }}'
+          commit-message: Update NeoVim plugins
+          branch: update-plugins
+          base: main
+          signoff: false
+          delete-branch: true
+          title: Update NeoVim plugins
+          body: |
+            Weekly update of NeoVim plugins.
+          draft: false
