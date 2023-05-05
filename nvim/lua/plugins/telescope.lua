@@ -30,17 +30,63 @@ local opts = {
 }
 
 local keys = function()
-    local builtins = require('telescope.builtin')
-
     return {
-        { '<Leader>ff', builtins.find_files,                noremap = true, desc = '[F]ind [F]iles' },
-        { '<Leader>fg', builtins.live_grep,                 noremap = true, desc = 'Live grep' },
-        { '<Leader>fb', builtins.buffers,                   noremap = true, desc = '[F]ind [B]uffer' },
-        { '<Leader>fs', builtins.grep_string,               noremap = true, desc = '[F]ind [S]tring' },
-        { '<Leader>fh', builtins.help_tags,                 noremap = true, desc = '[F]ind [H]elp tags' },
-        { '<Leader>fd', builtins.diagnostics,               noremap = true, desc = '[F]ind [D]iagnostics' },
-        { '<Leader>fk', builtins.keymaps,                   noremap = true, desc = '[F]ind [K]eymaps' },
-        { '<Leader>fl', builtins.current_buffer_fuzzy_find, noremap = true, desc = '[F]ind [L]ocal' },
+        {
+            '<Leader>ff',
+            function() require('telescope.builtin').find_files() end,
+            noremap = true,
+            desc =
+            '[F]ind [F]iles'
+        },
+        {
+            '<Leader>fg',
+            function() require('telescope.builtin').live_grep() end,
+            noremap = true,
+            desc =
+            'Live grep'
+        },
+        {
+            '<Leader>fb',
+            function() require('telescope.builtin').buffers() end,
+            noremap = true,
+            desc =
+            '[F]ind [B]uffer'
+        },
+        {
+            '<Leader>fs',
+            function() require('telescope.builtin').grep_string() end,
+            noremap = true,
+            desc =
+            '[F]ind [S]tring'
+        },
+        {
+            '<Leader>fh',
+            function() require('telescope.builtin').help_tags() end,
+            noremap = true,
+            desc =
+            '[F]ind [H]elp tags'
+        },
+        {
+            '<Leader>fd',
+            function() require('telescope.builtin').diagnostics() end,
+            noremap = true,
+            desc =
+            '[F]ind [D]iagnostics'
+        },
+        {
+            '<Leader>fk',
+            function() require('telescope.builtin').keymaps() end,
+            noremap = true,
+            desc =
+            '[F]ind [K]eymaps'
+        },
+        {
+            '<Leader>fl',
+            function() require('telescope.builtin').current_buffer_fuzzy_find() end,
+            noremap = true,
+            desc =
+            '[F]ind [L]ocal'
+        },
     }
 end
 
@@ -58,5 +104,6 @@ return {
         },
         opts = opts,
         keys = keys,
+        cmd = 'Telescope',
     },
 }
