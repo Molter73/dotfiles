@@ -29,6 +29,7 @@ jobs:
           token: '${{ secrets.GH_PAT }}'
           commit-message: Update NeoVim plugins
           branch: update-plugins
+          base: main
           signoff: false
           delete-branch: true
           title: Update NeoVim plugins
