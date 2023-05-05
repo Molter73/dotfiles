@@ -21,4 +21,17 @@ jobs:
           eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           brew install neovim
           nvim --headless "+Lazy! sync" +qa
-          git status
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v5
+        id: cpr
+        with:
+          token: '${{ secrets.GH_PAT }}'
+          commit-message: Update NeoVim plugins
+          branch: update-plugins
+          signoff: false
+          delete-branch: true
+          title: Update NeoVim plugins
+          body: |
+            Weekly update of NeoVim plugins.
+          draft: false
