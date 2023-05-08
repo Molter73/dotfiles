@@ -78,4 +78,19 @@ M.haskell = function()
     }
 end
 
+M.latex = function()
+    require('lspconfig').texlab.setup({
+        on_attach = utils.on_attach,
+        settings = {
+            texlab = {
+                chktex = {
+                    onEdit = true,
+                    onOpenAndSave = true,
+                },
+                auxDirectory = 'build',
+            },
+        },
+    })
+end
+
 return M

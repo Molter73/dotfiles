@@ -15,6 +15,7 @@ return {
                 'html',
                 'java',
                 'json',
+                'latex',
                 'lua',
                 'make',
                 'python',
