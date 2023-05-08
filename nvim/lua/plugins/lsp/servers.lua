@@ -56,6 +56,11 @@ end
 
 M.golang = function()
     require('lspconfig').gopls.setup({
+        settings = {
+            gopls = {
+                buildFlags = { "-tags=linux" },
+            },
+        },
         on_attach = utils.on_attach,
     })
 end
