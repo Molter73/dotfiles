@@ -24,12 +24,6 @@ vim.keymap.set('n', '<Leader>jq', jq.format_json, { noremap = true, desc = 'Form
 vim.keymap.set('n', '<Leader>jc', jq.minify_json, { noremap = true, desc = 'Minify JSON file' })
 vim.keymap.set('n', '<Leader>jj', '<cmd>set filetype=json<CR>', { noremap = true, desc = 'Set filetype to JSON' })
 
--- Simplified window navigation
-vim.keymap.set('n', '<A-h>', '<C-w>h', { noremap = true, desc = 'Jump to left window' })
-vim.keymap.set('n', '<A-j>', '<C-w>j', { noremap = true, desc = 'Jump to upper window' })
-vim.keymap.set('n', '<A-k>', '<C-w>k', { noremap = true, desc = 'Jump to lower window' })
-vim.keymap.set('n', '<A-l>', '<C-w>l', { noremap = true, desc = 'Jump to right window' })
-
 -- Integrated terminal stuff
 vim.keymap.set('n', '<Leader><Leader>t', ':vsplit term://zsh<CR>', {
     noremap = true,
@@ -42,3 +36,11 @@ vim.keymap.set('t', ',tq', '<C-\\><C-n>', { noremap = true, desc = 'Escape the t
 vim.keymap.set('n', '<Leader>bb', '<cmd>Bang sh<CR>', { noremap = true, desc = 'Set current file as executable bash', })
 vim.keymap.set('n', '<Leader>bp', '<cmd>Bang python<CR>',
     { noremap = true, desc = 'Set current file as executable Python', })
+
+-- Move lines around
+vim.keymap.set('n', '<A-j>', ':m+<CR>==', { noremap = true, desc = 'Move line down', })
+vim.keymap.set('n', '<A-k>', ':m-2<CR>==', { noremap = true, desc = 'Move line up', })
+vim.keymap.set('i', '<A-k>', '<Esc>:m-2<CR>==gi', { noremap = true, desc = 'Move line up', })
+vim.keymap.set('i', '<A-j>', '<Esc>:m+<CR>==gi', { noremap = true, desc = 'Move line down', })
+vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true, desc = 'Move selected lines down', })
+vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, desc = 'Move selected lines up', })
