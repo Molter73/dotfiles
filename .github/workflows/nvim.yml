@@ -17,6 +17,7 @@ jobs:
       - name: Update neovim plugins
         run: |
           eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew update
           brew install neovim
           nvim --headless "+Lazy! sync" +qa
 
