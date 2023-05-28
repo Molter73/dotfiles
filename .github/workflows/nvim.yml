@@ -2,6 +2,7 @@ name: Update neovim dependencies
 on:
   schedule:
     - cron: '0 0 * * 0'
+  pull_request:
 
 jobs:
   update-nvim:
@@ -17,6 +18,7 @@ jobs:
       - name: Update neovim plugins
         run: |
           eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew update
           brew install neovim
           nvim --headless "+Lazy! sync" +qa
 
