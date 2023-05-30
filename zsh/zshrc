@@ -155,3 +155,6 @@ fi
 
 # custom fzf based commands
 [ -f "${HOME}/.my-fzf.zsh" ] && source "${HOME}/.my-fzf.zsh"
+
+# Java Home
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_351.jdk/Contents/Home"
