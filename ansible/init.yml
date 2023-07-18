@@ -1,0 +1,31 @@
+---
+- name: Initialize remote server
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Add authorized key
+      ansible.posix.authorized_key:
+        user: "{{ lookup('env', 'USER') }}"
+        state: present
+        key: "{{ lookup('file', lookup('env', 'HOME') + '/.ssh/fedora-remote.pub') }}"
+
+    - name: Add authorized key for root user
+      ansible.posix.authorized_key:
+        user: root
+        state: present
+        exclusive: true
+        key: "{{ lookup('file', lookup('env', 'HOME') + '/.ssh/fedora-remote.pub') }}"
+
+    - name: Configure SSH daemon
+      copy:
+        dest: /etc/ssh/sshd_config.d/100-login.conf
+        owner: root
+        group: root
+        mode: '600'
+        content: |
+          PasswordAuthentication yes
+          PermitRootLogin prohibit-password
+        validate: sshd -t -f %s
+      notify:
+        - Restart sshd

@@ -1,0 +1,54 @@
+---
+- name: Basic provisioning
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Setup kubernetes repo
+      copy:
+        dest: /etc/yum.repos.d/kubernetes.repo
+        content: |
+          [kubernetes]
+          name=Kubernetes
+          baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-$basearch
+          enabled=1
+          gpgcheck=1
+          gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+
+    - name: Install utilities
+      dnf:
+        name:
+          - golang
+          - jq
+          - kernel-devel
+          - kubectl
+          - make
+          - nfs-utils
+          - podman
+          - podman-docker
+          - container-selinux
+          - wget
+        state: latest
+
+    - name: Update system
+      dnf:
+        name: "*"
+        state: latest
+
+    - name: Silence podman warning on docker emulation
+      file:
+        path: /etc/containers/nodocker
+        state: touch
+        mode: u=rw,g=r,o=r
+
+    - name: Enable podman API
+      systemd:
+        name: podman.socket
+        enabled: true
+        state: started
+
+    - name: Disable podman relabeling of mounts
+      lineinfile:
+        path: /usr/share/containers/containers.conf
+        regexp: '^# label ='
+        line: label = false
