@@ -151,12 +151,6 @@ return {
                     -- formatters
                     null_ls.builtins.formatting.autopep8,
                     null_ls.builtins.formatting.shfmt,
-                    null_ls.builtins.formatting.google_java_format.with {
-                        condition = function(_)
-                            local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-                            return project_name == 'mastermind'
-                        end,
-                    }
                 }
             }
         end
