@@ -130,19 +130,19 @@ export PATH=$PATH:$GOPATH/bin
 source "$HOME/go/src/github.com/stackrox/workflow/env.sh"
 
 # CodeReady containers
-export PATH="$PATH:/Users/mmoltras/.crc/bin/oc"
+export PATH="$PATH:${HOME}/.crc/bin/oc"
 
 # k3s cluster
-export KUBECONFIG="/Users/mmoltras/.kube/k3s.yaml"
+export KUBECONFIG="${HOME}/.kube/k3s.yaml"
 export KUBE_EDITOR="nvim"
 
 # Python binaries
-export PATH="$PATH:/Users/mmoltras/Library/Python/3.9/bin/"
+export PATH="$PATH:${HOME}/Library/Python/3.9/bin/"
 
 autoload -U compinit; compinit
 
 # My binaries before anything else
-export PATH="/Users/mmoltras/.bin:$PATH"
+export PATH="${HOME}/.bin:$PATH"
 
 # minikube completion
 if [[ -f "${HOME}/.minikube-completion" ]]; then
