@@ -10,8 +10,6 @@ $directory\
 $git_branch\
 $git_commit\
 $git_state\
-$git_metrics\
-$git_status\
 $container\
 $character"""
 
@@ -27,9 +25,6 @@ success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
-
-[git_metrics]
-disabled = false
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"

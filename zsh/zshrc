@@ -20,6 +20,9 @@ zstyle ':completion:*' special-dirs true
 # Share history
 setopt share_history
 
+# Comments on interactive shell
+setopt interactivecomments
+
 # alias
 alias beggar="VAGRANT_CWD=${HOME}/vagrant/ vagrant"
 alias k=kubectl
