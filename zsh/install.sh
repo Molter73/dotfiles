@@ -55,6 +55,12 @@ if [[ ! -d "${PLUGINS_DIR}/fzf" ]]; then
 	ln -s "${SCRIPTPATH}/plugins/fzf.zsh" "${PLUGINS_DIR}/fzf/fzf.zsh"
 fi
 
+# Install some useful podman scripting
+if [[ ! -e "${PLUGINS_DIR}/podman" ]]; then
+	mkdir "${PLUGINS_DIR}/podman"
+	ln -s "${SCRIPTPATH}/plugins/podman.zsh" "${PLUGINS_DIR}/podman/podman.zsh"
+fi
+
 # Install the .zshrc file
 if [[ ! -e "${HOME}/.zshrc" ]]; then
 	ln -s "${SCRIPTPATH}/zshrc" "${HOME}/.zshrc"

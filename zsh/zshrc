@@ -74,7 +74,9 @@ fi
 
 [ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env" # ghcup-env
 
+# FZF completion for multiple platforms
 [ -f "${HOME}/.fzf.zsh" ] && source "${HOME}/.fzf.zsh"
+[ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
 
 # Java Home
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_351.jdk/Contents/Home"

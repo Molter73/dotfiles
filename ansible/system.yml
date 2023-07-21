@@ -25,13 +25,16 @@
           - jq
           - kernel-devel
           - kubectl
+          - clang
           - llvm
           - make
           - nfs-utils
+          - perl
           - podman
           - podman-docker
           - container-selinux
           - wget
+          - yarn
           - zsh
           - fd-find
           - ripgrep

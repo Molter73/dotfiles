@@ -19,3 +19,9 @@
         src: "{{ ansible_env.HOME + '/go/src/github.com/molter73/dotfiles/starship.toml' }}"
         dest: "{{ ansible_env.HOME + '/.config/starship.toml' }}"
         state: link
+
+    - name: Link neovim configuration
+      file:
+        src: "{{ ansible_env.HOME + '/go/src/github.com/molter73/dotfiles/nvim' }}"
+        dest: "{{ ansible_env.HOME + '/.config/nvim' }}"
+        state: link
