@@ -1,0 +1,35 @@
+---
+- name: Syncing of files to remote
+  hosts: all
+
+  tasks:
+    - name: Create github.com directory
+      file:
+        path: "{{ lookup('env', 'HOME') + '/go/src/github.com' }}"
+        state: directory
+        mode: '0755'
+
+    - name: Sync personal repos
+      ansible.posix.synchronize:
+        dest: "{{ lookup('env', 'HOME') + '/go/src/github.com/' }}"
+        src: "{{ lookup('env', 'HOME') + '/go/src/github.com/molter73' }}"
+        delete: true
+
+    - name: Sync StackRox repos
+      ansible.posix.synchronize:
+        dest: "{{ lookup('env', 'HOME') + '/go/src/github.com/' }}"
+        src: "{{ lookup('env', 'HOME') + '/go/src/github.com/stackrox' }}"
+        delete: true
+
+    - name: Sync bpfd repos
+      ansible.posix.synchronize:
+        dest: "{{ lookup('env', 'HOME') + '/go/src/github.com/' }}"
+        src: "{{ lookup('env', 'HOME') + '/go/src/github.com/bpfd-dev' }}"
+        delete: true
+
+    - name: Sync Falco repos
+      ansible.posix.synchronize:
+        dest: "{{ lookup('env', 'HOME') + '/go/src/github.com/' }}"
+        src: "{{ lookup('env', 'HOME') + '/go/src/github.com/falcosecurity' }}"
+        delete: true
+
