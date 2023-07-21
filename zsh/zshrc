@@ -80,7 +80,9 @@ PLUGINS_DIR="${ZSH}/plugins"
 THEMES_DIR="${ZSH}/themes"
 
 # Agnoster theme
-source "${THEMES_DIR}/agnoster.zsh-theme"
+# source "${THEMES_DIR}/agnoster.zsh-theme"
+
+eval "$(starship init zsh)"
 
 # Plugins
 for plugin in "${PLUGINS_DIR}"/*/*.zsh; do
