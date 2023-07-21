@@ -15,6 +15,10 @@ bashcompinit
 
 # Highlight selection with tab completion
 zstyle ':completion:*' menu select
+zstyle ':completion:*' special-dirs true
+
+# Share history
+setopt share_history
 
 # alias
 alias beggar="VAGRANT_CWD=${HOME}/vagrant/ vagrant"
@@ -22,6 +26,7 @@ alias k=kubectl
 alias krox="kubectl -n stackrox"
 alias dcu='docker context use'
 alias ssh-kitten='kitty +kitten ssh'
+alias ls='ls --color=auto'
 
 # stackrox stuff
 if [[ -f "${HOME}/.infra" ]]; then
