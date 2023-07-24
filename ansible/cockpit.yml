@@ -1,0 +1,40 @@
+---
+# Collector uses port 9090, so we need to configure cockpit to listen elsewhere.
+- name: Configure cockpit
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Create cockpit.socket configuration directory
+      file:
+        path: /etc/systemd/system/cockpit.socket.d
+        state: directory
+
+    - name: Change cockpit socket listening port
+      copy:
+        dest: /etc/systemd/system/cockpit.socket.d/listen.conf
+        content: |
+          [Socket]
+          ListenStream=
+          ListenStream=6543
+
+    - name: Allow port binding via SELinux
+      community.general.seport:
+        ports: 6543
+        proto: tcp
+        setype: websm_port_t
+        state: present
+
+    - name: Configure firewalld
+      ansible.posix.firewalld:
+        port: 6543/tcp
+        permanent: true
+        immediate: true
+        state: enabled
+
+    - name: Restart cockpit
+      ansible.builtin.systemd:
+        name: cockpit
+        daemon_reload: true
+        enabled: true
+        state: restarted

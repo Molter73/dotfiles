@@ -34,7 +34,7 @@
           - podman-docker
           - container-selinux
           - wget
-          - yarn
+          - yarnpkg
           - zsh
           - fd-find
           - ripgrep
