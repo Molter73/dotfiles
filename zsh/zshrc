@@ -30,6 +30,7 @@ alias krox="kubectl -n stackrox"
 alias dcu='docker context use'
 alias ssh-kitten='kitty +kitten ssh'
 alias ls='ls --color=auto'
+alias egrep='grep -E'   # Silence egrep deprecation message
 
 # stackrox stuff
 if [[ -f "${HOME}/.infra" ]]; then
