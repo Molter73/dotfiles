@@ -13,15 +13,37 @@ compinit
 autoload bashcompinit
 bashcompinit
 
+# options
+setopt share_history        # Share history between shells
+setopt interactivecomments  # Comments on interactive shell
+#   Changing directories
+setopt auto_cd              # Execute cd if command doesn't exist but is a dir
+setopt auto_pushd           # cd pushed old directory onto the directory stack
+setopt pushd_ignore_dups
+setopt pushdminus
+#   Completion
+setopt always_to_end
+setopt auto_menu
+setopt complete_in_word
+
 # Highlight selection with tab completion
 zstyle ':completion:*' menu select
 zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' list-colors ''
 
-# Share history
-setopt share_history
+# History file configuration
+[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+[ "$HISTSIZE" -lt 50000 ] && HISTSIZE=50000
+[ "$SAVEHIST" -lt 10000 ] && SAVEHIST=10000
 
-# Comments on interactive shell
-setopt interactivecomments
+# History command configuration
+setopt extended_history       # record timestamp of command in HISTFILE
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify            # show command with history expansion to user before running it
+setopt share_history          # share command history data
+
 
 # alias
 alias beggar="VAGRANT_CWD=${HOME}/vagrant/ vagrant"
