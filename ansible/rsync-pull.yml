@@ -1,0 +1,34 @@
+---
+- name: Syncing of files to remote
+  hosts: all
+
+  tasks:
+    - name: Sync personal repos
+      ansible.posix.synchronize:
+        src: "{{ ansible_env.HOME + '/go/src/github.com/molter73' }}"
+        dest: "{{ lookup('env', 'HOME') + '/go/src/github.com/' }}"
+        mode: pull
+
+    - name: Sync StackRox repos
+      ansible.posix.synchronize:
+        src: "{{ ansible_env.HOME + '/go/src/github.com/stackrox' }}"
+        dest: "{{ lookup('env', 'HOME') + '/go/src/github.com/' }}"
+        mode: pull
+
+    - name: Sync bpfd repos
+      ansible.posix.synchronize:
+        src: "{{ ansible_env.HOME + '/go/src/github.com/bpfd-dev' }}"
+        dest: "{{ lookup('env', 'HOME') + '/go/src/github.com/' }}"
+        mode: pull
+
+    - name: Sync Falco repos
+      ansible.posix.synchronize:
+        src: "{{ ansible_env.HOME + '/go/src/github.com/falcosecurity' }}"
+        dest: "{{ lookup('env', 'HOME') + '/go/src/github.com/' }}"
+        mode: pull
+
+    - name: Upload libbpf repos
+      ansible.posix.synchronize:
+        src: "{{ ansible_env.HOME + '/go/src/github.com/libbpf' }}"
+        dest: "{{ lookup('env', 'HOME') + '/go/src/github.com/' }}"
+        mode: pull
