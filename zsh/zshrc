@@ -1,10 +1,5 @@
 #!/usr/bin/env zsh
 
-export ZSH="${HOME}/.config/zsh"
-
-export EDITOR='nvim'
-export VISUAL="$EDITOR"
-
 # Enable zsh auto-completion
 autoload -Uz compinit
 compinit
@@ -63,32 +58,10 @@ if [[ -f "${HOME}/go/src/github.com/stackrox/workflow/env.sh" ]]; then
     source "${HOME}/go/src/github.com/stackrox/workflow/env.sh"
 fi
 
-export PATH="$PATH:${HOME}/go/src/github.com/stackrox/workflow/bin"
-
-# Use buildkit with docker
-export DOCKER_BUILDKIT=1
-
-# go variables
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-
-# CodeReady containers
-export PATH="$PATH:${HOME}/.crc/bin/oc"
-
-# k3s cluster
-export KUBECONFIG="${HOME}/.kube/k3s.yaml"
-export KUBE_EDITOR="nvim"
-
 # kubectl completion
 if [ $commands[kubectl] ]; then
     source <(kubectl completion zsh)
 fi
-
-# Python binaries
-export PATH="$PATH:${HOME}/Library/Python/3.9/bin/"
-
-# My binaries before anything else
-export PATH="${HOME}/.bin:$PATH"
 
 # minikube completion
 if [[ -f "${HOME}/.minikube-completion" ]]; then
@@ -100,9 +73,6 @@ fi
 # FZF completion for multiple platforms
 [ -f "${HOME}/.fzf.zsh" ] && source "${HOME}/.fzf.zsh"
 [ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
-
-# Java Home
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_351.jdk/Contents/Home"
 
 PLUGINS_DIR="${ZSH}/plugins"
 THEMES_DIR="${ZSH}/themes"

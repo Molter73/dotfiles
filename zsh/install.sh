@@ -65,3 +65,8 @@ fi
 if [[ ! -e "${HOME}/.zshrc" ]]; then
 	ln -s "${SCRIPTPATH}/zshrc" "${HOME}/.zshrc"
 fi
+
+# Install the .zshenv file
+if [[ ! -e "${HOME}/.zshenv" ]]; then
+	ln -s "${SCRIPTPATH}/zshenv" "${HOME}/.zshenv"
+fi
