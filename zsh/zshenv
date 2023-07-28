@@ -18,16 +18,5 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_351.jdk/Contents/Ho
 export KUBECONFIG="${HOME}/.kube/k3s.yaml"
 export KUBE_EDITOR="nvim"
 
-# Path adjustments
-#   Stackrox workflow scripts
-export PATH="$PATH:${HOME}/go/src/github.com/stackrox/workflow/bin"
-#   Go binaries
-export PATH=$PATH:$GOPATH/bin
-#   CodeReady containers
-export PATH="$PATH:${HOME}/.crc/bin/oc"
-#   Python binaries
-export PATH="$PATH:${HOME}/Library/Python/3.9/bin/"
-#   My binaries before anything else
-export PATH="${HOME}/.bin:$PATH"
-
-[[ -e "${HOME}/.cargo/env" ]] && . "${HOME}/.cargo/env"
+# OSCI stuff
+export CONTAINER_ENGINE=podman
