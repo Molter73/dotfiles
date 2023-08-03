@@ -14,27 +14,37 @@
         dest: "{{ ansible_env.HOME + '/go/src/github.com/' }}"
         src: "{{ lookup('env', 'HOME') + '/go/src/github.com/molter73' }}"
         delete: true
+      tags:
+      - personal
 
     - name: Sync StackRox repos
       ansible.posix.synchronize:
         dest: "{{ ansible_env.HOME + '/go/src/github.com/' }}"
         src: "{{ lookup('env', 'HOME') + '/go/src/github.com/stackrox' }}"
         delete: true
+      tags:
+      - stackrox
 
     - name: Sync bpfd repos
       ansible.posix.synchronize:
         dest: "{{ ansible_env.HOME + '/go/src/github.com/' }}"
         src: "{{ lookup('env', 'HOME') + '/go/src/github.com/bpfd-dev' }}"
         delete: true
+      tags:
+      - bpfd
 
     - name: Sync Falco repos
       ansible.posix.synchronize:
         dest: "{{ ansible_env.HOME + '/go/src/github.com/' }}"
         src: "{{ lookup('env', 'HOME') + '/go/src/github.com/falcosecurity' }}"
         delete: true
+      tags:
+      - falco
 
     - name: Upload libbpf repos
       ansible.posix.synchronize:
         dest: "{{ ansible_env.HOME + '/go/src/github.com/' }}"
         src: "{{ lookup('env', 'HOME') + '/go/src/github.com/libbpf' }}"
         delete: true
+      tags:
+      - bpfd
