@@ -8,9 +8,9 @@ M.setup = function()
     vim.api.nvim_create_user_command('Rsync', function(params)
         local command = params.fargs[1]
         if command == 'up' then
-            setup_autocommand()
+            M.setup_autocommand()
         elseif command == 'down' then
-            clear_autocommand()
+            M.clear_autocommand()
         end
     end, {
         nargs = 1,
@@ -27,7 +27,7 @@ M.status = function()
     return ''
 end
 
-function setup_autocommand()
+M.setup_autocommand = function()
     local rsync = vim.api.nvim_create_augroup('RSYNC', { clear = true })
     local cmd_check = "[ -d " .. vim.fn.getcwd() .. " ]"
 
@@ -61,7 +61,7 @@ function setup_autocommand()
     })
 end
 
-function clear_autocommand()
+M.clear_autocommand = function()
     if M.autocmd_id ~= -1 then
         vim.api.nvim_del_autocmd(M.autocmd_id)
         M.autocmd_id = -1
