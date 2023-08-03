@@ -28,6 +28,7 @@
           - clang
           - llvm
           - make
+          - neovim
           - nfs-utils
           - perl
           - podman
@@ -45,6 +46,9 @@
       dnf:
         name: "*"
         state: latest
+        update_cache: true
+      tags:
+      - update
 
     - name: Silence podman warning on docker emulation
       become: true
