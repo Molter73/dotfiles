@@ -25,6 +25,9 @@ setopt complete_in_word
 zstyle ':completion:*' menu select
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|=*' 'l:|=* r:|=*'
+
+WORDCHARS=''
 
 # emacs keybindings
 bindkey -e

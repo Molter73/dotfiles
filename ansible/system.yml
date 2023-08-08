@@ -39,6 +39,7 @@
           - zsh
           - fd-find
           - ripgrep
+          - protobuf-devel
         state: latest
 
     - name: Update system
