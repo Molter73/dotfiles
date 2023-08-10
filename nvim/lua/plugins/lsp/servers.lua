@@ -99,4 +99,8 @@ M.latex = function()
     })
 end
 
+M.ansible = function()
+    require('lspconfig').ansiblels.setup({})
+end
+
 return M

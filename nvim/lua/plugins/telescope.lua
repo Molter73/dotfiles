@@ -87,6 +87,13 @@ local keys = function()
             desc =
             '[F]ind [L]ocal'
         },
+        {
+            '<Leader>ft',
+            function() require('telescope.builtin').resume() end,
+            noremap = true,
+            desc =
+            'Resume Telescope search'
+        },
     }
 end
 
