@@ -109,13 +109,6 @@ M.ansible = function()
                     buffer = bufnr,
                     desc = 'Hover information'
                 })
-            vim.keymap.set('n', '<Leader>K', vim.lsp.buf.signature_help,
-                {
-                    noremap = true,
-                    silent = true,
-                    buffer = bufnr,
-                    desc = 'Signature help'
-                })
         end
     })
 end
