@@ -100,7 +100,24 @@ M.latex = function()
 end
 
 M.ansible = function()
-    require('lspconfig').ansiblels.setup({})
+    require('lspconfig').ansiblels.setup({
+        on_attach = function(_, bufnr)
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover,
+                {
+                    noremap = true,
+                    silent = true,
+                    buffer = bufnr,
+                    desc = 'Hover information'
+                })
+            vim.keymap.set('n', '<Leader>K', vim.lsp.buf.signature_help,
+                {
+                    noremap = true,
+                    silent = true,
+                    buffer = bufnr,
+                    desc = 'Signature help'
+                })
+        end
+    })
 end
 
 return M
