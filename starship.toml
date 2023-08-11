@@ -10,6 +10,8 @@ $directory\
 $git_branch\
 $git_commit\
 $git_state\
+$git_metrics\
+$git_status\
 $container\
 $character"""
 
@@ -28,6 +30,9 @@ format = "[$ssh_symbol]($style) "
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
+
+[git_metrics]
+disabled = false
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
