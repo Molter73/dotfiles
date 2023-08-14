@@ -13,7 +13,9 @@ local relative_path = function()
     end
 end
 
-local rsync = require('molter.rsync')
+local rsync_status = function()
+    return require('molter.rsync').status()
+end
 
 local opts = {
     options = {
@@ -26,7 +28,7 @@ local opts = {
         globalstatus = false,
     },
     sections = {
-        lualine_a = { 'mode', rsync.status },
+        lualine_a = { 'mode', rsync_status },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
         lualine_c = {
             { 'filename' }

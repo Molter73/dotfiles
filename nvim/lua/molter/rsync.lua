@@ -28,12 +28,12 @@ M.status = function()
 end
 
 M.setup_autocommand = function()
-    local rsync = vim.api.nvim_create_augroup('RSYNC', { clear = true })
-    local cmd_check = "[ -d " .. vim.fn.getcwd() .. " ]"
-
     if M.autocmd_id ~= -1 then
         return
     end
+
+    local rsync = vim.api.nvim_create_augroup('RSYNC', { clear = true })
+    local cmd_check = "[ -d " .. vim.fn.getcwd() .. " ]"
 
     local dir_check = vim.fn.jobstart({ 'ssh', 'remote', cmd_check })
     if dir_check <= 0 then
