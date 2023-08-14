@@ -36,8 +36,15 @@ end
 
 
 M.project_to_container = function()
-    local nvim_lsp = require 'lspconfig'
+    local nvim_lsp = require('lspconfig')
     local root_pattern = nvim_lsp.util.root_pattern('.git')
+
+    local cwd = root_pattern(vim.fn.getcwd())
+
+    -- If cwd is a repo, it takes precedence as the container name.
+    if cwd ~= '' then
+        return vim.fn.fnamemodify(cwd, ':t')
+    end
 
     -- Turn the name of the current file into the name of an expected container, assuming that
     -- the container running/building this file is named the same as the basename of the project
