@@ -61,6 +61,7 @@ export PATH="${HOME}/.bin:$PATH"
 # alias
 alias beggar="VAGRANT_CWD=${HOME}/vagrant/ vagrant"
 alias k=kubectl
+alias kw=kind-wrapper.sh
 alias krox="kubectl -n stackrox"
 alias dcu='docker context use'
 alias ssh-kitten='kitty +kitten ssh'
