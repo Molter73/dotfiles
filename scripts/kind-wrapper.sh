@@ -11,7 +11,7 @@ function get_cluster_port() {
 function cluster_exists() {
 	clusters="$(kind get clusters)"
 
-	echo "$clusters" | grep -q "molter-control-plane"
+	echo "$clusters" | grep -q "molter"
 }
 
 function create_service_account() {

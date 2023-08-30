@@ -43,7 +43,15 @@ end
 
 M.clangd = function()
     require('lspconfig').clangd.setup({
-        on_attach = utils.on_attach,
+        on_attach = function(_, bufnr)
+            utils.on_attach(_, bufnr)
+            vim.keymap.set('n', 'gh', '<cmd>ClangdSwitchSourceHeader<CR>', {
+                noremap = true,
+                silent = true,
+                buffer = bufnr,
+                desc = "Switch between header and source files",
+            })
+        end,
         cmd = {
             "cclangd",
             utils.project_to_container(),
