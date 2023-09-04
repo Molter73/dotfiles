@@ -33,10 +33,23 @@ local keys = function()
     return {
         {
             '<Leader>ff',
-            function() require('telescope.builtin').find_files() end,
+            function()
+                require('telescope.builtin').git_files({
+                    show_untracked = true,
+                })
+            end,
             noremap = true,
             desc =
             '[F]ind [F]iles'
+        },
+        {
+            '<Leader>fa',
+            function()
+                require('telescope.builtin').find_files()
+            end,
+            noremap = true,
+            desc =
+            '[F]ind [A]ll',
         },
         {
             '<Leader>fg',

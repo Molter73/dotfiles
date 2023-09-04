@@ -49,3 +49,9 @@ vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, desc = 'Move 
 local rsync = require('molter.rsync')
 vim.keymap.set('n', '<Leader>rr', rsync.setup_autocommand, { noremap = true, desc = 'Start rsync', })
 vim.keymap.set('n', '<Leader>rs', rsync.clear_autocommand, { noremap = true, desc = 'Stop rsync', })
+
+-- Quick navigate windows
+vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true, desc = 'Move to buffer to the left' })
+vim.keymap.set('n', '<C-j>', '<C-w>j', { noremap = true, desc = 'Move to buffer underneatch' })
+vim.keymap.set('n', '<C-k>', '<C-w>k', { noremap = true, desc = 'Move to buffer above' })
+vim.keymap.set('n', '<C-l>', '<C-w>l', { noremap = true, desc = 'Move to buffer to the right' })
