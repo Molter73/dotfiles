@@ -5,13 +5,14 @@ set -euo pipefail
 CONTROL_SOCKET="${HOME}/.config/kind/kind.sock"
 
 function get_cluster_port() {
-	podman inspect --format='{{(index (index .NetworkSettings.Ports "6443/tcp") 0).HostPort}}' molter-control-plane
+	podman inspect --format='{{(index (index .NetworkSettings.Ports "6443/tcp") 0).HostPort}}' "$1-control-plane"
 }
 
 function cluster_exists() {
+	cluster_name="$1"
 	clusters="$(kind get clusters)"
 
-	echo "$clusters" | grep -q "molter"
+	echo "$clusters" | grep -q "${cluster_name}"
 }
 
 function create_service_account() {
@@ -50,18 +51,49 @@ function add_metrics_server() {
 		-p '[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'
 }
 
+function setup_ingress() {
+	kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+	sleep 1
+
+	echo "Waiting for ingress controller to start up"
+	# Wait for ingress to become available
+	kubectl wait --namespace ingress-nginx \
+		--for=condition=ready pod \
+		--selector=app.kubernetes.io/component=controller \
+		--timeout=300s
+}
+
 function create_cluster() {
+	cluster_name="$1"
 	clusters="$(kind get clusters)"
 
-	if cluster_exists; then
+	if cluster_exists "${cluster_name}"; then
 		echo >&2 "Cluster already exists"
 		exit 1
 	fi
 
-	kind create cluster --name molter
+	cat <<EOF | kind create cluster --name "${cluster_name}" --config=-
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "ingress-ready=true"
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 5000
+    protocol: TCP
+  - containerPort: 443
+    hostPort: 5443
+    protocol: TCP
+EOF
 
 	# Setup ssh tunneling for accessing the cluster from localhost
-	cluster_port="$(get_cluster_port)"
+	cluster_port="$(get_cluster_port "${cluster_name}")"
 	ssh -fNTMS "${CONTROL_SOCKET}" -L "$cluster_port:127.0.0.1:$cluster_port" remote
 
 	add_metrics_server
@@ -71,24 +103,27 @@ function create_cluster() {
 
 	create_service_account
 
+	setup_ingress
+
 	echo "KinD cluster created and ready to go!"
 	echo "Running 'kubectl proxy' will expose the dashboard at:"
 	echo "	http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/"
 }
 
 function delete_cluster() {
-	if ! cluster_exists; then
+	cluster_name="$1"
+	if ! cluster_exists "${cluster_name}"; then
 		echo "Cluster is not created, nothing to be done"
 		exit
 	fi
 
-	kind delete cluster --name molter
+	kind delete cluster --name "${cluster_name}"
 
 	ssh -S "${CONTROL_SOCKET}" -O exit remote
 }
 
 function cluster_status() {
-	if cluster_exists; then
+	if cluster_exists "$1"; then
 		echo "Cluster is already created"
 	else
 		echo "Cluster is not created"
@@ -100,16 +135,18 @@ function get_token() {
 }
 
 METHOD="${1:-}"
+shift
+CLUSTER_NAME="${1:-kind}"
 
 case "${METHOD}" in
 "create")
-	create_cluster
+	create_cluster "$CLUSTER_NAME"
 	;;
 "delete")
-	delete_cluster
+	delete_cluster "${CLUSTER_NAME}"
 	;;
 "status")
-	cluster_status
+	cluster_status "${CLUSTER_NAME}"
 	;;
 "get_token")
 	get_token
