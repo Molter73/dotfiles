@@ -4,9 +4,22 @@ export FZF_DEFAULT_OPTS=" \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
 --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
-# Change to a repo from anywhere
-repos() {
-    DIR="$(fd . "${GOPATH}/src/" --type d --max-depth 3 --min-depth 3 | fzf -q "$1")"
+_pick_dir() {
+    fd . "${GOPATH}/src/" --type d --max-depth 3 --min-depth 3 | fzf -q "$1"
+}
+
+_fd_repos() {
+    DIR="$(_pick_dir "$1")"
+
+    if [[ -z $DIR ]]; then
+        return 0
+    fi
+
+    cd "$DIR"
+}
+
+_tmux_repos() {
+    DIR="$(_pick_dir "$1")"
 
     if [[ -z $DIR ]]; then
         return 0
@@ -29,6 +42,15 @@ repos() {
         tmux attach -t $selected_name
     else
         tmux switch-client -t $selected_name
+    fi
+}
+
+# Change to a repo from anywhere
+repos() {
+    if command -v tmux &> /dev/null; then
+        _tmux_repos "$1"
+    else
+        _fd_repos "$1"
     fi
 }
 
