@@ -39,8 +39,7 @@ local keys = function()
                 })
             end,
             noremap = true,
-            desc =
-            '[F]ind [F]iles'
+            desc = '[F]ind [F]iles',
         },
         {
             '<Leader>fa',
@@ -48,67 +47,61 @@ local keys = function()
                 require('telescope.builtin').find_files()
             end,
             noremap = true,
-            desc =
-            '[F]ind [A]ll',
+            desc = '[F]ind [A]ll',
         },
         {
             '<Leader>fg',
             function() require('telescope.builtin').live_grep() end,
             noremap = true,
-            desc =
-            'Live grep'
+            desc = 'Live grep',
         },
         {
             '<Leader>fb',
             function() require('telescope.builtin').buffers() end,
             noremap = true,
-            desc =
-            '[F]ind [B]uffer'
+            desc = '[F]ind [B]uffer',
         },
         {
             '<Leader>fs',
             function() require('telescope.builtin').grep_string() end,
             noremap = true,
-            desc =
-            '[F]ind [S]tring'
+            desc = '[F]ind [S]tring',
         },
         {
             '<Leader>fh',
             function() require('telescope.builtin').help_tags() end,
             noremap = true,
-            desc =
-            '[F]ind [H]elp tags'
+            desc = '[F]ind [H]elp tags',
         },
         {
             '<Leader>fd',
             function() require('telescope.builtin').diagnostics() end,
             noremap = true,
-            desc =
-            '[F]ind [D]iagnostics'
+            desc = '[F]ind [D]iagnostics',
         },
         {
             '<Leader>fk',
             function() require('telescope.builtin').keymaps() end,
             noremap = true,
-            desc =
-            '[F]ind [K]eymaps'
+            desc = '[F]ind [K]eymaps',
         },
         {
             '<Leader>fl',
             function() require('telescope.builtin').current_buffer_fuzzy_find() end,
             noremap = true,
-            desc =
-            '[F]ind [L]ocal'
+            desc = '[F]ind [L]ocal',
         },
         {
             '<Leader>ft',
             function() require('telescope.builtin').resume() end,
             noremap = true,
-            desc =
-            'Resume Telescope search'
+            desc = 'Resume Telescope search',
         },
     }
 end
+
+local build =
+'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
 
 return {
     {
@@ -118,8 +111,7 @@ return {
             'nvim-lua/plenary.nvim',
             {
                 'nvim-telescope/telescope-fzf-native.nvim',
-                build =
-                'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+                build = build,
             },
         },
         opts = opts,

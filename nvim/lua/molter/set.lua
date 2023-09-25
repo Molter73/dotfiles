@@ -55,5 +55,6 @@ vim.keymap.set('n', '<Leader>so', function()
 end, { noremap = true, desc = 'Recalculate scrolloff' })
 
 vim.opt.swapfile = false
+vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkoff400-blinkon400'
 
 vim.cmd.colorscheme('catppuccin')
