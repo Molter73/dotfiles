@@ -4,6 +4,7 @@ local config = wezterm.config_builder()
 config.color_scheme = 'Catppuccin Mocha'
 config.enable_tab_bar = false
 config.audible_bell = 'Disabled'
+config.check_for_updates = false
 
 -- Font configuration
 config.font = wezterm.font({
