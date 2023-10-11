@@ -4,6 +4,18 @@ set -euo pipefail
 
 CONTROL_SOCKET="${HOME}/.config/kind/kind.sock"
 
+function usage() {
+	echo "$0 <METHOD> <CLUSTER>"
+	echo ""
+	echo "METHOD - One of the following:"
+	echo "  create	Create a kind cluster"
+	echo "  delete	Delete a kind cluster"
+	echo "  status	Check if the cluster has already been created"
+	echo "  get_token	Get a token for authenticating to the k8s dashboard"
+	echo ""
+	echo "CLUSTER - The name of the cluster to interact with (default: kind)"
+}
+
 function get_cluster_port() {
 	podman inspect --format='{{(index (index .NetworkSettings.Ports "6443/tcp") 0).HostPort}}' "$1-control-plane"
 }
@@ -134,6 +146,12 @@ function get_token() {
 	kubectl -n kubernetes-dashboard create token admin-user
 }
 
+if (($# == 0)); then
+	echo >&2 "At least one parameter must be supplied"
+	usage
+	exit 1
+fi
+
 METHOD="${1:-}"
 shift
 CLUSTER_NAME="${1:-kind}"
@@ -150,6 +168,10 @@ case "${METHOD}" in
 	;;
 "get_token")
 	get_token
+	;;
+"-h" | "--help")
+	usage
+	exit 0
 	;;
 *)
 	echo >&2 "Unknow option '${METHOD}'"
