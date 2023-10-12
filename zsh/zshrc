@@ -95,8 +95,21 @@ fi
 PLUGINS_DIR="${ZSH}/plugins"
 THEMES_DIR="${ZSH}/themes"
 
-# Agnoster theme
-# source "${THEMES_DIR}/agnoster.zsh-theme"
+# autoloading of python environments
+function cd() {
+	builtin cd "$@"
+
+	if [[ -z "${VIRTUAL_ENV}" ]]; then
+		if [[ -d ./venv ]]; then
+			source ./venv/bin/activate
+		fi
+	else
+		parentdir="$(dirname "$VIRTUAL_ENV")"
+		if [[ "$PWD"/ != "$parentdir"/* ]]; then
+			deactivate
+		fi
+	fi
+}
 
 eval "$(starship init zsh)"
 

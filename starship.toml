@@ -7,6 +7,7 @@ add_newline = false
 format = """
 $hostname\
 $directory\
+$python\
 $git_branch\
 $git_commit\
 $git_state\
@@ -26,6 +27,12 @@ success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set
 
 [hostname]
 format = "[$ssh_symbol]($style) "
+
+[python]
+#format = "[${symbol} ${virtualenv}]($style)"
+python_binary = ['./venv/bin/python', 'python', 'python3', 'python2']
+detect_extensions = []
+detect_files = []
 
 # Disable the package module, hiding it from the prompt completely
 [package]
