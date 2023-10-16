@@ -11,8 +11,8 @@ BIN_DIR="${HOME}/.bin"
 
 mkdir -p "${BIN_DIR}"
 
-if [[ ! -e "${BIN_DIR}/cclangd" ]]; then
-    ln -s "${SCRIPTPATH}/cclangd.sh" "${BIN_DIR}/cclangd"
+if [[ ! -e "${BIN_DIR}/containerized-ls" ]]; then
+    ln -s "${SCRIPTPATH}/containerized-ls.sh" "${BIN_DIR}/containerized-ls"
 fi
 
 if [[ ! -e "${BIN_DIR}/kw" ]]; then

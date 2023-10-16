@@ -53,8 +53,11 @@ M.clangd = function()
             })
         end,
         cmd = {
-            "cclangd",
+            "containerized-ls",
             utils.project_to_container(),
+            "clangd",
+            "--background-index",
+            "--clang-tidy",
         },
     })
 end
