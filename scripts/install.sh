@@ -18,3 +18,7 @@ fi
 if [[ ! -e "${BIN_DIR}/kw" ]]; then
     ln -s "${SCRIPTPATH}/kind-wrapper.sh" "${BIN_DIR}/kw"
 fi
+
+if [[ ! -e "${BIN_DIR}/repos" ]]; then
+    ln -s "${SCRIPTPATH}/repos.sh" "${BIN_DIR}/repos"
+fi
