@@ -45,3 +45,25 @@ fco() {
   branch=$(echo "$branches" | fzf +m) &&
   git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
+
+_pick_dir() {
+    fd . "${GOPATH}/src/" --type d --max-depth 3 --min-depth 3 | fzf -q "$1"
+}
+
+_fd_repos() {
+    DIR="$(_pick_dir "$1")"
+
+    if [[ -z $DIR ]]; then
+        return 0
+    fi
+
+    cd "$DIR" || return 1
+}
+
+repos() {
+    if command -v tmux &> /dev/null && command -v tmux_repos &> /dev/null ; then
+        tmux_repos "$1"
+    else
+        _fd_repos "$1"
+    fi
+}

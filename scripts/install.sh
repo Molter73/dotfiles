@@ -3,8 +3,8 @@
 set -euox pipefail
 
 SCRIPTPATH="$(
-	cd -- "$(dirname "$0")" >/dev/null 2>&1
-	pwd -P
+    cd -- "$(dirname "$0")" >/dev/null 2>&1
+    pwd -P
 )"
 
 BIN_DIR="${HOME}/.bin"
@@ -19,6 +19,6 @@ if [[ ! -e "${BIN_DIR}/kw" ]]; then
     ln -s "${SCRIPTPATH}/kind-wrapper.sh" "${BIN_DIR}/kw"
 fi
 
-if [[ ! -e "${BIN_DIR}/repos" ]]; then
-    ln -s "${SCRIPTPATH}/repos.sh" "${BIN_DIR}/repos"
+if [[ ! -e "${BIN_DIR}/tmux_repos" ]]; then
+    ln -s "${SCRIPTPATH}/tmux_repos.sh" "${BIN_DIR}/tmux_repos"
 fi

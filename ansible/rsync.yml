@@ -16,6 +16,7 @@
         delete: true
         rsync_opts:
           - '--exclude=target/'
+          - '--exclude=venv/'
       tags:
         - personal
 
