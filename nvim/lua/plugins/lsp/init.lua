@@ -19,7 +19,13 @@ return {
             local lspau = vim.api.nvim_create_augroup("LSP", { clear = true })
             vim.api.nvim_create_autocmd('FileType', {
                 group = lspau,
-                pattern = { 'lua', 'rust', 'go', 'haskell' },
+                pattern = {
+                    'lua',
+                    'rust',
+                    'go',
+                    'haskell',
+                    'html',
+                },
                 callback = function()
                     vim.api.nvim_create_autocmd('BufWritePre', {
                         group = lspau,

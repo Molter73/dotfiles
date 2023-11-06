@@ -124,4 +124,15 @@ M.ansible = function()
     })
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+M.html = function()
+    require('lspconfig').html.setup({
+        on_attach = utils.on_attach,
+        capabilities = capabilities,
+
+    })
+end
+
 return M
