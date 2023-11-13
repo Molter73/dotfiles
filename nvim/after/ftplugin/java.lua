@@ -22,7 +22,13 @@ end
 
 local settings = {
     java = {
-        format = {}
+        format = {},
+        runtimes = {
+            {
+                name = "JavaSE-1.8",
+                path = "/Library/Java/JavaVirtualMachines/jdk1.8.0_351.jdk",
+            },
+        },
     }
 }
 

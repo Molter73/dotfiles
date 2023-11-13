@@ -61,5 +61,6 @@ vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkoff400-bli
 vim.g.loaded_node_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
 
 vim.cmd.colorscheme('catppuccin')

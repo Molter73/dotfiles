@@ -11,9 +11,6 @@ export DOCKER_BUILDKIT=1
 # go variables
 export GOPATH=$HOME/go
 
-# Java Home
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_351.jdk/Contents/Home"
-
 # k3s cluster
 export KUBECONFIG="${HOME}/.config/kube.yml"
 export KUBE_EDITOR="nvim"
