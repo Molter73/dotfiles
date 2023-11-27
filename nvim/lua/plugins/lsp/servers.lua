@@ -126,13 +126,17 @@ end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+local vscode_ls_config = {
+    on_attach = utils.on_attach,
+    capabilities = capabilities,
+}
 
 M.html = function()
-    require('lspconfig').html.setup({
-        on_attach = utils.on_attach,
-        capabilities = capabilities,
+    require('lspconfig').html.setup(vscode_ls_config)
+end
 
-    })
+M.css = function()
+    require('lspconfig').cssls.setup(vscode_ls_config)
 end
 
 return M
