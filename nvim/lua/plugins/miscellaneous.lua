@@ -19,10 +19,6 @@ return {
         end
     },
     {
-        'fladson/vim-kitty',
-        ft = 'kitty',
-    },
-    {
         'christoomey/vim-tmux-navigator',
     },
     {

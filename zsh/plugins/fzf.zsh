@@ -32,12 +32,6 @@ crmi() {
     docker images | sed 1d | fzf -q "$1" -m | awk '{print $3}' | xargs -r docker rmi
 }
 
-# SSH into vagrant VM
-bssh() {
-    #List all vagrant boxes available in the system including its status, and try to access the selected one via ssh
-    kitty +kitten ssh $(jq '.machines[] | {name, vagrantfile_path, state}' < "${HOME}/.vagrant.d/data/machine-index/index" | jq '.name + "," + .state  + "," + .vagrantfile_path' | sed 's/^"\(.*\)"$/\1/' | column -s, -t | sort -rk 2 | fzf | awk '{print $1}')
-}
-
 # fco - checkout git branch
 fco() {
   local branches branch

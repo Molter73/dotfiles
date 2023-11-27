@@ -63,7 +63,6 @@ alias beggar="VAGRANT_CWD=${HOME}/vagrant/ vagrant"
 alias k=kubectl
 alias krox="kubectl -n stackrox"
 alias dcu='docker context use'
-alias ssh-kitten='kitty +kitten ssh'
 alias ls='ls --color=auto'
 alias egrep='grep -E'   # Silence egrep deprecation message
 
