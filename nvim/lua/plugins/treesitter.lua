@@ -23,6 +23,7 @@ return {
                 'php',
                 'regex',
                 'rust',
+                'sql',
                 'toml',
                 'vim',
                 'vimdoc',
