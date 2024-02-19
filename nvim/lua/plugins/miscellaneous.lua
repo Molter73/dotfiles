@@ -22,13 +22,6 @@ return {
         'christoomey/vim-tmux-navigator',
     },
     {
-        "m4xshen/hardtime.nvim",
-        dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-        opts = {
-            restriction_mode = "hint",
-        }
-    },
-    {
         "kdheepak/lazygit.nvim",
         -- optional for floating window border decoration
         dependencies = {
