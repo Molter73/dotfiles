@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+source "${GOPATH}/src/github.com/molter73/dotfiles/scripts/container-registry.sh"
+
 CONTROL_SOCKET="${HOME}/.config/kind/kind.sock"
 
 function usage() {
@@ -75,6 +77,38 @@ function setup_ingress() {
         --timeout=300s
 }
 
+function add_local_registry() {
+    if ! registry_exists "${REGISTRY_NAME}"; then
+        return
+    fi
+
+    REGISTRY_DIR="/etc/containerd/certs.d/localhost:${REGISTRY_PORT}"
+    for node in $(kind get nodes); do
+        podman exec "${node}" mkdir -p "${REGISTRY_DIR}"
+        cat << EOF | podman exec -i "${node}" cp /dev/stdin "${REGISTRY_DIR}/hosts.toml"
+[host."http://${REGISTRY_NAME}:5000"]
+EOF
+    done
+
+    # Connect the registry to the cluster network if not already connected
+    # This allows kind to bootstrap the network but ensures they're on the same network
+    if [ "$(podman inspect -f='{{json .NetworkSettings.Networks.kind}}' "${REGISTRY_NAME}")" = 'null' ]; then
+        podman network connect "kind" "${REGISTRY_NAME}"
+    fi
+
+    cat << EOF | kubectl apply -f -
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: local-registry-hosting
+    namespace: kube-public
+data:
+    localRegistryHosting.v1: |
+        host: "localhost:${REGISTRY_PORT}"
+        help: "https://kind.sigs.k8s.io/docs/user/local-registry/"
+EOF
+}
+
 function create_cluster() {
     cluster_name="$1"
     clusters="$(kind get clusters)"
@@ -87,6 +121,10 @@ function create_cluster() {
     cat << EOF | kind create cluster --name "${cluster_name}" --config=-
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
+containerdConfigPatches:
+- |
+  [plugins."io.containerd.grpc.v1.cri".registry]
+    config_path = "/etc/containerd/certs.d"
 nodes:
 - role: control-plane
   kubeadmConfigPatches:
@@ -108,6 +146,7 @@ EOF
     cluster_port="$(get_cluster_port "${cluster_name}")"
     ssh -fNTMS "${CONTROL_SOCKET}" -L "$cluster_port:127.0.0.1:$cluster_port" remote
 
+    add_local_registry
     add_metrics_server
 
     # Deploy the k8s dashboard
@@ -146,6 +185,13 @@ function get_token() {
     kubectl -n kubernetes-dashboard create token admin-user
 }
 
+function cluster_reconnect() {
+    cluster_name="$1"
+    cluster_port="$(get_cluster_port "${cluster_name}")"
+
+    reconnect "${CONTROL_SOCKET}" "${cluster_port}"
+}
+
 if (($# == 0)); then
     echo >&2 "At least one parameter must be supplied"
     usage
@@ -169,6 +215,8 @@ case "${METHOD}" in
     "get_token")
         get_token
         ;;
+    "reconnect")
+        cluster_reconnect "${CLUSTER_NAME}"
     "-h" | "--help")
         usage
         exit 0

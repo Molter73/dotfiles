@@ -19,6 +19,10 @@ if [[ ! -e "${BIN_DIR}/kw" ]]; then
     ln -s "${SCRIPTPATH}/kind-wrapper.sh" "${BIN_DIR}/kw"
 fi
 
+if [[ ! -e "${BIN_DIR}/regctl" ]]; then
+    ln -s "${SCRIPTPATH}/regctl.sh" "${BIN_DIR}/regctl"
+fi
+
 if [[ ! -e "${BIN_DIR}/tmux_repos" ]]; then
     ln -s "${SCRIPTPATH}/tmux_repos.sh" "${BIN_DIR}/tmux_repos"
 fi
