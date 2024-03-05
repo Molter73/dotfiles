@@ -217,6 +217,7 @@ case "${METHOD}" in
         ;;
     "reconnect")
         cluster_reconnect "${CLUSTER_NAME}"
+        ;;
     "-h" | "--help")
         usage
         exit 0
