@@ -26,6 +26,7 @@
           - kernel-devel
           - kubectl
           - clang
+          - glibc-devel.i686
           - llvm
           - make
           - neovim

@@ -22,6 +22,7 @@ return {
                 'python',
                 'php',
                 'regex',
+                'ruby', -- For Vagrantfile
                 'rust',
                 'sql',
                 'toml',
