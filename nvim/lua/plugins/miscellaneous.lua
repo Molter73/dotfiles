@@ -21,19 +21,4 @@ return {
     {
         'christoomey/vim-tmux-navigator',
     },
-    {
-        "kdheepak/lazygit.nvim",
-        -- optional for floating window border decoration
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        keys = {
-            {
-                '<Leader>gg',
-                function() require('lazygit').lazygit() end,
-                noremap = true,
-                desc = 'Run lazygit',
-            },
-        }
-    },
 }
