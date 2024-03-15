@@ -19,6 +19,7 @@ return {
                 'latex',
                 'lua',
                 'make',
+                'proto',
                 'python',
                 'php',
                 'regex',

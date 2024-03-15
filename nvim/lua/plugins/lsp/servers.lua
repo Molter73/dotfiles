@@ -52,6 +52,7 @@ M.clangd = function()
                 desc = "Switch between header and source files",
             })
         end,
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
         cmd = {
             "containerized-ls",
             utils.project_to_container(),
