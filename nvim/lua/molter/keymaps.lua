@@ -9,8 +9,10 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz', { noremap = true })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { noremap = true })
 
 -- Navigate quickfixes
-vim.keymap.set('n', ']q', '<cmd>cn<CR>', { noremap = true, desc = 'Next quickfix' })
-vim.keymap.set('n', '[q', '<cmd>cp<CR>', { noremap = true, desc = 'Previous quickfix' })
+vim.keymap.set('n', ']q', '<cmd>cn<CR>zz', { noremap = true, desc = 'Next quickfix' })
+vim.keymap.set('n', '[q', '<cmd>cp<CR>zz', { noremap = true, desc = 'Previous quickfix' })
+vim.keymap.set('n', '<Leader>cc', '<cmd>cclose<CR>', { noremap = true, desc = 'Close quickfix list' })
+vim.keymap.set('n', '<Leader>co', '<cmd>copen<CR>', { noremap = true, desc = 'Open quickfix list' })
 
 -- pop-up diagnostics
 vim.keymap.set('n', '<Leader>q', vim.diagnostic.open_float, { noremap = true, desc = 'Pop-up diagnostics' })
