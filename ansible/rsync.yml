@@ -17,6 +17,7 @@
         rsync_opts:
           - '--exclude=target/'
           - '--exclude=venv/'
+          - '--exclude=.cache/'
       tags:
         - personal
 
