@@ -32,6 +32,7 @@
           - '--exclude=THIRD_PARTY_NOTICES/'
           - '--exclude=container-logs/'
           - '--exclude=collector/container/bin/'
+          - '--exclude=.build-data/'
       tags:
         - stackrox
 
