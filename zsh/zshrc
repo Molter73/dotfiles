@@ -127,6 +127,3 @@ compinit
 # <<<<  Vagrant command completion (end)
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-# docker completion
-fpath=(${HOME}/.zsh/completion $fpath)

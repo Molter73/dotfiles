@@ -17,6 +17,7 @@ export KUBE_EDITOR="nvim"
 
 # OSCI stuff
 export CONTAINER_ENGINE=podman
+export CONTAINER_CONNECTION=dev
 
 # XDG config
 export XDG_CONFIG_HOME="${HOME}/.config"
