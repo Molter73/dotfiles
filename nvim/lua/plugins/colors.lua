@@ -15,6 +15,10 @@ local opts = {
             surface2 = '#686B80',
         },
     },
+    styles = { -- Handles the styles of general hi groups
+        comments = {},
+        conditionals = {},
+    },
     integrations = {
         cmp = true,
         telescope = true,
