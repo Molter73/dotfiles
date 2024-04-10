@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 # This script creates a persistent image registry to be used (mostly) with
-# kind. Because my podman environment is in a remote machine, it creates an
-# ssh tunnel to it, so it can be used transparently.
+# kind.
 
 set -euo pipefail
 
@@ -31,7 +30,6 @@ function create() {
         -v "${registry_name}-volume:/var/lib/registry:Z" \
         --network bridge \
         registry:2
-    ssh -fNTMS "${REGISTRY_CONTROL_SOCKET}" -L "$registry_port:127.0.0.1:$registry_port" remote
 }
 
 function delete() {
@@ -42,17 +40,4 @@ function delete() {
     fi
 
     podman rm -f "${registry_name}"
-    ssh -S "${REGISTRY_CONTROL_SOCKET}" -O exit remote
 }
-
-function reconnect() {
-    ssh_socket="$1"
-    port="$2"
-
-    if [[ -f "${ssh_socket}" ]]; then
-        ssh -S "${ssh_socket}" -O exit remote
-    fi
-
-    ssh -fNTMS "${ssh_socket}" -L "$port:127.0.0.1:$port" remote
-}
-

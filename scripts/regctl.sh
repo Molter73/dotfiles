@@ -18,9 +18,6 @@ case "${METHOD}" in
     "delete")
         delete "${REGISTRY_NAME}"
         ;;
-    "reconnect")
-        reconnect "${REGISTRY_CONTROL_SOCKET}" "${REGISTRY_PORT}"
-        ;;
     *)
         echo >&2 "Unknown option '${METHOD}'"
         exit 1

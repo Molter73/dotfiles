@@ -67,9 +67,10 @@ function add_metrics_server() {
 
 function setup_ingress() {
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
-    sleep 1
 
     echo "Waiting for ingress controller to start up"
+    sleep 15
+
     # Wait for ingress to become available
     kubectl wait --namespace ingress-nginx \
         --for=condition=ready pod \
@@ -142,10 +143,6 @@ nodes:
     protocol: TCP
 EOF
 
-    # Setup ssh tunneling for accessing the cluster from localhost
-    cluster_port="$(get_cluster_port "${cluster_name}")"
-    ssh -fNTMS "${CONTROL_SOCKET}" -L "$cluster_port:127.0.0.1:$cluster_port" remote
-
     add_local_registry
     add_metrics_server
 
@@ -169,8 +166,6 @@ function delete_cluster() {
     fi
 
     kind delete cluster --name "${cluster_name}"
-
-    ssh -S "${CONTROL_SOCKET}" -O exit remote
 }
 
 function cluster_status() {
@@ -183,13 +178,6 @@ function cluster_status() {
 
 function get_token() {
     kubectl -n kubernetes-dashboard create token admin-user
-}
-
-function cluster_reconnect() {
-    cluster_name="$1"
-    cluster_port="$(get_cluster_port "${cluster_name}")"
-
-    reconnect "${CONTROL_SOCKET}" "${cluster_port}"
 }
 
 if (($# == 0)); then
@@ -214,9 +202,6 @@ case "${METHOD}" in
         ;;
     "get_token")
         get_token
-        ;;
-    "reconnect")
-        cluster_reconnect "${CLUSTER_NAME}"
         ;;
     "-h" | "--help")
         usage
