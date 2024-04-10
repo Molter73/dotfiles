@@ -57,7 +57,10 @@ export PATH="$PATH:${HOME}/Library/Python/3.9/bin/"
 #   My binaries before anything else
 export PATH="${HOME}/.bin:$PATH"
 
-[[ -e "${HOME}/.cargo/env" ]] && . "${HOME}/.cargo/env"
+if command -v yarn >/dev/null; then
+    export PATH="$PATH:$(yarn global bin)"
+fi
+
 # alias
 alias beggar="VAGRANT_CWD=${HOME}/vagrant/ vagrant"
 alias k=kubectl
@@ -122,3 +125,8 @@ done
 fpath=(/opt/vagrant/embedded/gems/gems/vagrant-2.3.7/contrib/zsh $fpath)
 compinit
 # <<<<  Vagrant command completion (end)
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# docker completion
+fpath=(${HOME}/.zsh/completion $fpath)

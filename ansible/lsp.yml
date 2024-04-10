@@ -1,0 +1,49 @@
+---
+- name: Install latest version of all used lsps
+  hosts: all
+
+  tasks:
+    - name: Install LSPs from DNF
+      become: true
+      ansible.builtin.dnf:
+        name:
+        - clang-tools-extra
+        - golang-x-tools-gopls
+        state: latest
+
+    - name: Install LSPs from brew
+      community.general.homebrew:
+        name:
+        - lua-language-server
+        - texlab
+        state: present
+
+    - name: Install LSPs from pip
+      ansible.builtin.pip:
+        name:
+        - cmake-language-server
+        - jedi-language-server
+
+    - name: Install yamlls
+      community.general.yarn:
+        name: yaml-language-server
+        global: true
+        state: latest
+
+    - name: Install bashls
+      community.general.yarn:
+        name: bash-language-server
+        global: true
+        state: latest
+
+    - name: Install ansiblels
+      community.general.yarn:
+        name: ansible-language-server
+        global: true
+        state: latest
+
+    - name: Install vscode language servers
+      community.general.yarn:
+        name: vscode-langservers-extracted
+        global: true
+        state: latest

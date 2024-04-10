@@ -22,4 +22,9 @@ config.cursor_blink_ease_in = 'Constant'
 config.cursor_blink_ease_out = 'Constant'
 config.cursor_blink_rate = 400
 
+config.keys = {
+    -- Paste from system clipboard
+    { key = 'V', mods = 'CTRL', action = wezterm.action.PasteFrom 'Clipboard' },
+}
+
 return config

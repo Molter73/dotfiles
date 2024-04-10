@@ -23,3 +23,4 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 
 # ansible config
 export ANSIBLE_COW_SELECTION=dragon-and-cow
+. "$HOME/.cargo/env"
