@@ -2,7 +2,7 @@ return {
     firacode = {
         family = 'FiraCode Nerd Font Mono',
         weight = 'Medium',
-        size = 14,
+        size = 12,
         harfbuzz = {
             "cv02",
             "cv05",
@@ -25,7 +25,7 @@ return {
     monaspace = {
         family = 'Monaspace Neon',
         weight = 'DemiBold',
-        size = 14,
+        size = 12,
         harfbuzz = {
             'ss01',
             'ss02',
