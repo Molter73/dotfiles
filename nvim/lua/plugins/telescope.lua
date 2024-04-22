@@ -64,6 +64,7 @@ local keys = function()
         {
             '<Leader>fs',
             function() require('telescope.builtin').grep_string() end,
+            mode = { 'n', 'v', },
             noremap = true,
             desc = '[F]ind [S]tring',
         },

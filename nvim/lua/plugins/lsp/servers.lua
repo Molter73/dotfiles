@@ -121,7 +121,7 @@ M.ansible = function()
                     buffer = bufnr,
                     desc = 'Hover information'
                 })
-        end
+        end,
     })
 end
 

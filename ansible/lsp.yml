@@ -11,8 +11,10 @@
         - golang-x-tools-gopls
         - python3-flake8
         - python3-autopep8
+        - python3-ansible-lint
         - hadolint
         - shfmt
+        - shellcheck
         state: latest
 
     - name: Install LSPs from brew

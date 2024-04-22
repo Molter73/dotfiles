@@ -1,7 +1,6 @@
 require('molter.set')
 require('molter.keymaps')
 require('molter.bang')
-require('molter.rsync').setup()
 
 -- Autocommands
 local molter = vim.api.nvim_create_augroup('MOLTER', { clear = true })

@@ -141,6 +141,9 @@ nodes:
   - containerPort: 443
     hostPort: 5443
     protocol: TCP
+  extraMounts:
+  - hostPath: "${HOME}/go/src"
+    containerPath: "${HOME}/go/src"
 EOF
 
     add_local_registry
