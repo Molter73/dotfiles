@@ -1,5 +1,6 @@
 local wezterm = require('wezterm')
 local config = wezterm.config_builder()
+local actions = wezterm.action
 
 config.color_scheme = 'Catppuccin Mocha'
 config.enable_tab_bar = false
@@ -24,7 +25,13 @@ config.cursor_blink_rate = 400
 
 config.keys = {
     -- Paste from system clipboard
-    { key = 'V', mods = 'CTRL', action = wezterm.action.PasteFrom 'Clipboard' },
+    { key = 'V', mods = 'CTRL',       action = wezterm.action.PasteFrom 'Clipboard' },
+    -- Don't spawn windows on ctrl+N
+    { key = 'N', mods = 'CTRL',       action = actions.DisableDefaultAssignment },
+    { key = 'N', mods = 'SHIFT|CTRL', action = actions.DisableDefaultAssignment },
+    -- Don't close tabs on ctrl+W
+    { key = 'W', mods = 'CTRL',       action = actions.DisableDefaultAssignment },
+    { key = 'W', mods = 'SHIFT|CTRL', action = actions.DisableDefaultAssignment },
 }
 
 return config

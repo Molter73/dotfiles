@@ -29,6 +29,7 @@
         name:
         - cmake-language-server
         - jedi-language-server
+        state: latest
 
     - name: Install yamlls
       community.general.yarn:
