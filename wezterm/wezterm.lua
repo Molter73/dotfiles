@@ -23,6 +23,9 @@ config.cursor_blink_ease_in = 'Constant'
 config.cursor_blink_ease_out = 'Constant'
 config.cursor_blink_rate = 400
 
+-- Disable wayland, since it is giving me headaches
+config.enable_wayland = false
+
 config.keys = {
     -- Paste from system clipboard
     { key = 'V', mods = 'CTRL',       action = wezterm.action.PasteFrom 'Clipboard' },
