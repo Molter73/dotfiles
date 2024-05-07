@@ -8,7 +8,7 @@ config.audible_bell = 'Disabled'
 config.check_for_updates = false
 
 -- Font configuration
-local font = require('fonts').firacode
+local font = require('fonts').monaspace
 
 config.font = wezterm.font({
     family = font.family,
