@@ -3,6 +3,7 @@ return {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
         event = 'BufReadPost',
+        version = false,
         opts = {
             ensure_installed = {
                 'bash',
@@ -12,7 +13,7 @@ return {
                 'css',
                 'dockerfile',
                 'go',
-                --'html',
+                'html',
                 'java',
                 'javascript',
                 'json',
