@@ -140,4 +140,10 @@ M.css = function()
     require('lspconfig').cssls.setup(vscode_ls_config)
 end
 
+M.ocaml = function()
+    require('lspconfig').ocamllsp.setup({
+        on_attach = utils.on_attach,
+    })
+end
+
 return M

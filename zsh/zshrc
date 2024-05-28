@@ -111,3 +111,9 @@ compinit
 # <<<<  Vagrant command completion (end)
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+[[ ! -r /home/mmoltras/.opam/opam-init/init.zsh ]] || source /home/mmoltras/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
