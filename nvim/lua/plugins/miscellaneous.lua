@@ -21,9 +21,4 @@ return {
     {
         'christoomey/vim-tmux-navigator',
     },
-    {
-        "NStefan002/donut.nvim",
-        opts = { timeout = 60, },
-        lazy = false,
-    },
 }
