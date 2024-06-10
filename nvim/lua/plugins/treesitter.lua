@@ -12,6 +12,7 @@ return {
                 'cpp',
                 'css',
                 'dockerfile',
+                'doxygen',
                 'go',
                 'html',
                 'java',
