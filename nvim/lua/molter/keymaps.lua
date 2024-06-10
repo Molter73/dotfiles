@@ -42,7 +42,8 @@ vim.keymap.set('n', '<Leader>bp', '<cmd>Bang python<CR>',
 -- Move lines around
 vim.keymap.set('n', '<A-j>', ':m+<CR>==', { noremap = true, desc = 'Move line down', })
 vim.keymap.set('n', '<A-k>', ':m-2<CR>==', { noremap = true, desc = 'Move line up', })
-vim.keymap.set('i', '<A-k>', '<Esc>:m-2<CR>==gi', { noremap = true, desc = 'Move line up', })
-vim.keymap.set('i', '<A-j>', '<Esc>:m+<CR>==gi', { noremap = true, desc = 'Move line down', })
 vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true, desc = 'Move selected lines down', })
 vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, desc = 'Move selected lines up', })
+
+-- Open file under cursor in a vertical split
+vim.keymap.set('n', '<Leader>gf', '<CMD>vsp<CR>gf', { noremap = true, desc = 'Open file in vsplit', })
