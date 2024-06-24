@@ -2,6 +2,11 @@
 
 NAME=$1
 shift
+# falcosecurity/libs project will be handled by the falco devcontainer
+if [[ "$NAME" == "libs" ]]; then
+    NAME="falco"
+fi
+
 DEVCONTAINER="devcontainers-${NAME}-builder"
 
 # Verify that a container by this name actually exists, and is running
