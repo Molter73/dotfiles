@@ -22,7 +22,7 @@
         name:
         - lua-language-server
         - texlab
-        state: present
+        state: latest
 
     - name: Install LSPs from pip
       ansible.builtin.pip:
