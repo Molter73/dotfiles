@@ -36,7 +36,7 @@ crmi() {
 fco() {
   local branches branch
   branches=$(git --no-pager branch -vv) &&
-  branch=$(echo "$branches" | fzf +m) &&
+  branch=$(echo "$branches" | fzf +m -q "$1") &&
   git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 

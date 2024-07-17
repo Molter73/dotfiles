@@ -15,7 +15,9 @@ return {
         'folke/which-key.nvim',
         event = 'VeryLazy',
         config = function()
-            require('which-key').setup({})
+            require('which-key').setup({
+                preset = "helix",
+            })
         end
     },
     {
