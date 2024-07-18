@@ -3,7 +3,7 @@ local M = {}
 M.on_attach = function(_, bufnr)
     local opts = { noremap = true, silent = true, buffer = bufnr }
 
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
 
     local set_keymap = function(mode, lhs, rhs, desc, op)
         local full_opts = op
@@ -31,7 +31,7 @@ M.on_attach = function(_, bufnr)
     set_keymap('n', '<Leader>D', vim.lsp.buf.type_definition, 'Go to type definition', opts)
     set_keymap('n', '<Leader>rn', vim.lsp.buf.rename, 'Rename symbol under cursor', opts)
     set_keymap('n', '<Leader>ca', vim.lsp.buf.code_action, 'Code Action', opts)
-    set_keymap('n', '<Leader>fr', format, 'Format buffer', opts)
+    set_keymap({ 'n', 'v' }, '<Leader>fr', function() M.format(true) end, 'Format buffer', opts)
 end
 
 
