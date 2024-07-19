@@ -14,7 +14,7 @@ return {
             for _, server in pairs(servers) do
                 server()
             end
-            --
+
             -- LSP specific autocommands
             local lspau = vim.api.nvim_create_augroup("LSP", { clear = true })
             vim.api.nvim_create_autocmd('FileType', {
@@ -31,14 +31,7 @@ return {
                         group = lspau,
                         buffer = 0,
                         callback = function()
-                            vim.lsp.buf.format({
-                                formatting_options = {
-                                    trimTrailingWhitespace = true,
-                                    insertFinalNewline = true,
-                                    trimFinalNewlines = true,
-                                },
-                                async = false,
-                            })
+                            utils.format(false)
                         end
                     })
                 end,
