@@ -70,6 +70,10 @@ alias ls='ls --color=auto'
 alias egrep='grep -E'   # Silence egrep deprecation message
 alias cdtemp='cd $(mktemp -d)'
 
+# git worktree
+alias gwa="git worktree add"
+alias gwr="git worktree remove"
+
 # stackrox stuff
 if [[ -f "${HOME}/.infra" ]]; then
     source "${HOME}/.infra"
