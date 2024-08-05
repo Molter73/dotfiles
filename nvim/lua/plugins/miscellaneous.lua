@@ -12,15 +12,6 @@ return {
         end,
     },
     {
-        'folke/which-key.nvim',
-        event = 'VeryLazy',
-        config = function()
-            require('which-key').setup({
-                preset = "helix",
-            })
-        end
-    },
-    {
         'christoomey/vim-tmux-navigator',
     },
 }
