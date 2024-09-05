@@ -99,6 +99,9 @@ fi
 [ -f "${HOME}/.fzf.zsh" ] && source "${HOME}/.fzf.zsh"
 [ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
 
+# IBM Cloud completion
+[ -f /usr/local/ibmcloud/autocomplete/zsh_autocomplete ] && source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
+
 PLUGINS_DIR="${ZSH}/plugins"
 THEMES_DIR="${ZSH}/themes"
 
@@ -116,8 +119,10 @@ compinit
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-[[ ! -r /home/mmoltras/.opam/opam-init/init.zsh ]] || source /home/mmoltras/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
+[[ ! -r "${HOME}/.opam/opam-init/init.zsh" ]] || source "${HOME}/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null
 
+# Load vcpkg
+[[ -f "${HOME}/.local/bin/vcpkg-init" ]] && source "${HOME}/.local/bin/vcpkg-init"
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
