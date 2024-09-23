@@ -16,6 +16,8 @@
         - shfmt
         - shellcheck
         state: latest
+      tags:
+      - dnf
 
     - name: Install LSPs from brew
       community.general.homebrew:
@@ -23,6 +25,9 @@
         - lua-language-server
         - texlab
         state: latest
+        upgrade_all: true
+      tags:
+      - brew
 
     - name: Install LSPs from pip
       ansible.builtin.pip:
@@ -30,32 +35,44 @@
         - cmake-language-server
         - jedi-language-server
         state: latest
+      tags:
+      - pip
 
     - name: Install yamlls
-      community.general.yarn:
+      community.general.npm:
         name: yaml-language-server
         global: true
         state: latest
+      tags:
+      - npm
 
     - name: Install bashls
-      community.general.yarn:
+      community.general.npm:
         name: bash-language-server
         global: true
         state: latest
+      tags:
+      - npm
 
     - name: Install ansiblels
-      community.general.yarn:
-        name: ansible-language-server
+      community.general.npm:
+        name: '@ansible/ansible-language-server'
         global: true
         state: latest
+      tags:
+      - npm
 
     - name: Install vscode language servers
-      community.general.yarn:
+      community.general.npm:
         name: vscode-langservers-extracted
         global: true
         state: latest
+      tags:
+      - npm
 
     - name: Install actionlint
       ansible.builtin.command:
         cmd: go install github.com/rhysd/actionlint/cmd/actionlint@latest
         creates: "{{ lookup('env', 'GOPATH') }}/bin/actionlint"
+      tags:
+      - go

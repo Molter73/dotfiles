@@ -23,12 +23,6 @@ if [[ ! -d "${THEMES_DIR}" ]]; then
     mkdir -p "${THEMES_DIR}"
 fi
 
-# Agnoster theme
-if [[ ! -d "${THEMES_DIR}/agnoster" ]]; then
-    mkdir "${THEMES_DIR}/agnoster"
-    ln -s "${SCRIPTPATH}/themes/agnoster.zsh-theme" "${THEMES_DIR}/agnoster.zsh-theme"
-fi
-
 # command-not-found
 if [[ ! -d "${PLUGINS_DIR}/command-not-found" ]]; then
     git clone https://github.com/Tarrasch/zsh-command-not-found "${PLUGINS_DIR}/command-not-found"
