@@ -25,6 +25,8 @@ return {
                     'go',
                     'haskell',
                     'html',
+                    'c',
+                    'cpp',
                 },
                 callback = function()
                     vim.api.nvim_create_autocmd('BufWritePre', {
