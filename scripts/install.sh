@@ -26,3 +26,7 @@ fi
 if [[ ! -e "${BIN_DIR}/tmux_repos" ]]; then
     ln -s "${SCRIPTPATH}/tmux_repos.sh" "${BIN_DIR}/tmux_repos"
 fi
+
+if [[ ! -e "${BIN_DIR}/redeploy" ]]; then
+    ln -s "${SCRIPTPATH}/collector-redeploy.sh" "${BIN_DIR}/redeploy"
+fi
