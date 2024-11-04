@@ -13,6 +13,7 @@ return {
                 'css',
                 'dockerfile',
                 'doxygen',
+                'editorconfig',
                 'go',
                 'html',
                 'java',
