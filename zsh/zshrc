@@ -53,9 +53,7 @@ export PATH=$PATH:$GOPATH/bin
 #   CodeReady containers
 export PATH="$PATH:${HOME}/.crc/bin/oc"
 #   My binaries before anything else
-export PATH="${HOME}/.bin:$PATH"
-#   ~/.local/bin
-export PATH="$PATH:${HOME}/.local/bin"
+export PATH="${HOME}/.local/bin:$PATH"
 
 if command -v yarn >/dev/null; then
     export PATH="$PATH:$(yarn global bin)"

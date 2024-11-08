@@ -7,7 +7,7 @@ SCRIPTPATH="$(
     pwd -P
 )"
 
-BIN_DIR="${HOME}/.bin"
+BIN_DIR="${HOME}/.local/bin"
 
 mkdir -p "${BIN_DIR}"
 
