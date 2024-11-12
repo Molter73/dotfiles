@@ -33,7 +33,7 @@
       ansible.builtin.pip:
         name:
         - cmake-language-server
-        - jedi-language-server
+        - basedpyright
         state: latest
       tags:
       - pip

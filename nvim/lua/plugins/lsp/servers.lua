@@ -84,9 +84,17 @@ M.bashls = function()
     })
 end
 
-M.jedi = function()
-    require('lspconfig').jedi_language_server.setup({
-        on_attach = utils.on_attach,
+M.basedpyright = function()
+    require('lspconfig').basedpyright.setup({
+        on_attach = function(_, bufnr)
+            utils.on_attach(_, bufnr)
+            vim.keymap.set('n', '<Leader>fh', '<cmd>PyrightOrganizeImports<CR>', {
+                noremap = true,
+                silent = true,
+                buffer = bufnr,
+                desc = "Organize imports",
+            })
+        end
     })
 end
 
