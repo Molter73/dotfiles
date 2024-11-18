@@ -15,6 +15,7 @@ return {
                 'doxygen',
                 'editorconfig',
                 'go',
+                'graphql',
                 'html',
                 'java',
                 'javascript',
