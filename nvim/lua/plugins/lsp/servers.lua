@@ -154,4 +154,8 @@ M.ocaml = function()
     })
 end
 
+M.c3 = function()
+    require('lspconfig').c3_lsp.setup({})
+end
+
 return M

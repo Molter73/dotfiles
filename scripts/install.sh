@@ -8,6 +8,8 @@ SCRIPTPATH="$(
 )"
 
 BIN_DIR="${HOME}/.local/bin"
+DATA_DIR="${HOME}/.local/share"
+NVIM_QUERIES="${DATA_DIR}/nvim/site/queries/"
 
 mkdir -p "${BIN_DIR}"
 
@@ -29,4 +31,11 @@ fi
 
 if [[ ! -e "${BIN_DIR}/redeploy" ]]; then
     ln -s "${SCRIPTPATH}/collector-redeploy.sh" "${BIN_DIR}/redeploy"
+fi
+
+# Install NeoVim treesitter queries for c3
+if [[ ! -e "${NVIM_QUERIES}/c3/highlight.scm" ]]; then
+    mkdir -p "${NVIM_QUERIES}/c3/"
+    wget -O "${NVIM_QUERIES}/c3/highlights.scm" \
+        https://raw.githubusercontent.com/c3lang/tree-sitter-c3/refs/heads/main/queries/highlights.scm
 fi
