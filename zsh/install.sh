@@ -7,7 +7,7 @@ SCRIPTPATH="$(
     pwd -P
 )"
 
-CONFIG_DIR="${HOME}/.config/zsh"
+CONFIG_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/zsh"
 PLUGINS_DIR="${CONFIG_DIR}/plugins"
 THEMES_DIR="${CONFIG_DIR}/themes"
 

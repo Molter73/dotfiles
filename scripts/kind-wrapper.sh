@@ -4,8 +4,6 @@ set -euo pipefail
 
 source "${GOPATH}/src/github.com/molter73/dotfiles/scripts/container-registry.sh"
 
-CONTROL_SOCKET="${HOME}/.config/kind/kind.sock"
-
 function usage() {
     echo "$0 <METHOD> <CLUSTER>"
     echo ""

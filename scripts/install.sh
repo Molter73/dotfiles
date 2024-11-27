@@ -7,8 +7,8 @@ SCRIPTPATH="$(
     pwd -P
 )"
 
-BIN_DIR="${HOME}/.local/bin"
-DATA_DIR="${HOME}/.local/share"
+BIN_DIR="${XDG_BIN_HOME:-${HOME}/.local/bin}"
+DATA_DIR="${XDG_DATA_HOME:-${HOME}/.local/share}"
 NVIM_QUERIES="${DATA_DIR}/nvim/site/queries/"
 
 mkdir -p "${BIN_DIR}"

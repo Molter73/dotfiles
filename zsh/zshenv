@@ -1,6 +1,12 @@
 #!/usr/bin/env zsh
 
-export ZSH="${HOME}/.config/zsh"
+# XDG config
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_BIN_HOME="${HOME}/.local/bin"
+
+export ZSH="${XDG_CONFIG_HOME}/zsh"
 
 export EDITOR='nvim'
 export VISUAL="$EDITOR"
@@ -9,10 +15,10 @@ export VISUAL="$EDITOR"
 export DOCKER_BUILDKIT=1
 
 # go variables
-export GOPATH=$HOME/go
+export GOPATH="${HOME}/go"
 
 # k3s cluster
-export KUBECONFIG="${HOME}/.config/kube.yml"
+export KUBECONFIG="${XDG_CONFIG_HOME}/kube.yml"
 export KUBE_EDITOR="nvim"
 
 # OSCI stuff
@@ -20,12 +26,25 @@ export CONTAINER_ENGINE=podman
 export CONTAINER_CONNECTION=dev
 export DOCKER_HOST=unix:///var/run/docker.sock
 
-# XDG config
-export XDG_CONFIG_HOME="${HOME}/.config"
-
 # ansible config
 export ANSIBLE_COW_SELECTION=dragon-and-cow
+
 . "$HOME/.cargo/env"
 
 # collector builder
 export COLLECTOR_BUILDER_NAME=devcontainers-collector-builder
+
+# Path adjustments
+#   Stackrox workflow scripts
+export PATH="$PATH:${HOME}/go/src/github.com/stackrox/workflow/bin"
+#   Go binaries
+export PATH=$PATH:$GOPATH/bin
+#   CodeReady containers
+export PATH="$PATH:${HOME}/.crc/bin/oc"
+#   My binaries before anything else
+export PATH="${XDG_BIN_HOME}:$PATH"
+
+if command -v yarn >/dev/null; then
+    export PATH="$PATH:$(yarn global bin)"
+fi
+

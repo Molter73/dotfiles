@@ -5,7 +5,6 @@
 
 set -euo pipefail
 
-REGISTRY_CONTROL_SOCKET="${HOME}/.config/kind/registry.sock"
 REGISTRY_NAME="${REGISTRY_NAME:-kind-registry}"
 REGISTRY_PORT="${REGISTRY_PORT:-5001}"
 

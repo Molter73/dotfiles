@@ -45,20 +45,6 @@ setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 setopt share_history          # share command history data
 
-# Path adjustments
-#   Stackrox workflow scripts
-export PATH="$PATH:${HOME}/go/src/github.com/stackrox/workflow/bin"
-#   Go binaries
-export PATH=$PATH:$GOPATH/bin
-#   CodeReady containers
-export PATH="$PATH:${HOME}/.crc/bin/oc"
-#   My binaries before anything else
-export PATH="${HOME}/.local/bin:$PATH"
-
-if command -v yarn >/dev/null; then
-    export PATH="$PATH:$(yarn global bin)"
-fi
-
 # alias
 alias beggar="VAGRANT_CWD=${HOME}/vagrant/ vagrant"
 alias k=kubectl
