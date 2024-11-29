@@ -101,7 +101,7 @@ fpath=(/opt/vagrant/embedded/gems/gems/vagrant-2.3.7/contrib/zsh $fpath)
 compinit
 # <<<<  Vagrant command completion (end)
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+[ -e /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 [[ ! -r "${HOME}/.opam/opam-init/init.zsh" ]] || source "${HOME}/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null
 
@@ -109,4 +109,6 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 [[ -f "${HOME}/.local/bin/vcpkg-init" ]] && source "${HOME}/.local/bin/vcpkg-init"
 
 # Load Angular CLI autocompletion.
-source <(ng completion script)
+if command -v ng >/dev/null; then
+    source <(ng completion script)
+fi
