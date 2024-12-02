@@ -1,0 +1,18 @@
+---
+- name: Create jdtls directory
+  ansible.builtin.file:
+    path: "{{ jdtls_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Install jdtls
+  ansible.builtin.unarchive:
+    src: https://download.eclipse.org/jdtls/milestones/1.42.0/{{ lookup('url', 'https://download.eclipse.org/jdtls/milestones/1.42.0/latest.txt') }}
+    dest: "{{ jdtls_dir }}"
+    remote_src: true
+
+- name: Symlink the jdtls executable
+  ansible.builtin.file:
+    src: "{{ jdtls_dir }}/bin/jdtls"
+    dest: "{{ xdg_bin }}/jdtls"
+    state: link

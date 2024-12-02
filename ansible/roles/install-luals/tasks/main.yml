@@ -1,0 +1,19 @@
+---
+- name: Create LuaLS directory
+  ansible.builtin.file:
+    path: "{{ luals_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Install LuaLS
+  ansible.builtin.unarchive:
+    src: https://github.com/LuaLS/lua-language-server/releases/download/3.13.2/lua-language-server-3.13.2-linux-x64.tar.gz
+    dest: "{{ luals_dir }}"
+    remote_src: true
+
+- name: Symlink the LuaLS executable
+  ansible.builtin.file:
+    src: "{{ luals_dir}}/bin/lua-language-server"
+    dest: "{{ xdg_bin }}/lua-language-server"
+    state: link
+

@@ -1,0 +1,3 @@
+---
+lsp_dir: "{{ ansible_env.HOME + '/.local/lsp' }}"
+xdg_bin: "{{ ansible_env.HOME + '/.local/bin' }}"

@@ -36,7 +36,7 @@ local settings = {
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local jdtls_cache = vim.fn.stdpath('cache') .. '/jdtls'
 local workspace_dir = jdtls_cache .. '/workspace/' .. project_name
-local config_dir = os.getenv('HOMEBREW_CELLAR') .. '/jdtls/1.34.0/libexec/config_linux/'
+local config_dir = os.getenv('HOME') .. '/.local/lsp/jdtls/config_linux/'
 
 if string.find(vim.api.nvim_buf_get_name(0), 'mastermind') then
     settings.java.format = {
