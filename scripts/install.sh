@@ -33,6 +33,10 @@ if [[ ! -e "${BIN_DIR}/redeploy" ]]; then
     ln -s "${SCRIPTPATH}/collector-redeploy.sh" "${BIN_DIR}/redeploy"
 fi
 
+if [[ ! -e "${BIN_DIR}/wrun" ]]; then
+    ln -s "${SCRIPTPATH}/watch-run.sh" "${BIN_DIR}/wrun"
+fi
+
 # Install NeoVim treesitter queries for c3
 if [[ ! -e "${NVIM_QUERIES}/c3/highlight.scm" ]]; then
     mkdir -p "${NVIM_QUERIES}/c3/"
