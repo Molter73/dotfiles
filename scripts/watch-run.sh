@@ -13,6 +13,11 @@ function usage() {
     printf "\t\tPattern for files to be excluded from watch\n"
 }
 
+if ! command -v inotifywait >/dev/null; then
+    echo >&2 "inotifywait not found"
+    exit 1
+fi
+
 TEMP=$(getopt -o 'd:x:h' -l 'dir:,exclude:,help,' -n "$0" -- "$@")
 
 if [ $? -ne 0 ]; then
@@ -24,7 +29,7 @@ unset TEMP
 
 # Defaults
 DIR="$PWD"
-EXCLUDES=()
+EXCLUDES=""
 
 while true; do
     case "$1" in
@@ -34,7 +39,11 @@ while true; do
             ;;
 
         '-x' | '--exclude')
-            EXCLUDES+=(--exclude "$2")
+            if [[ -z "${EXCLUDES}" ]]; then
+                EXCLUDES="--exclude '$2'"
+            else
+                EXCLUDES="${EXCLUDES::-1}|$2'"
+            fi
             shift 2
             ;;
 
@@ -59,7 +68,7 @@ fi
 echo "Watching $DIR for changes..."
 
 while true; do
-    inotifywait -qq -e close_write -r "${EXCLUDES[@]}" "$DIR"
+    eval inotifywait -qq -e close_write -r "${EXCLUDES}" "$DIR"
     sleep 0.2
     "$@"
 done
