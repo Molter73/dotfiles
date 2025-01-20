@@ -60,6 +60,14 @@
       tags:
         - npm
 
+    - name: Install GH actions language server
+      community.general.npm:
+        name: gh-actions-language-server
+        global: true
+        state: latest
+      tags:
+        - npm
+
     - name: Install actionlint
       ansible.builtin.command:
         cmd: go install github.com/rhysd/actionlint/cmd/actionlint@latest

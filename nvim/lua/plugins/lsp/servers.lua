@@ -158,4 +158,8 @@ M.c3 = function()
     require('lspconfig').c3_lsp.setup({})
 end
 
+M.gh = function()
+    require('lspconfig').gh_actions_ls.setup({})
+end
+
 return M
