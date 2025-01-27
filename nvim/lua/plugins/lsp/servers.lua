@@ -159,7 +159,9 @@ M.c3 = function()
 end
 
 M.gh = function()
-    require('lspconfig').gh_actions_ls.setup({})
+    require('lspconfig').gh_actions_ls.setup({
+        filetypes = { 'yaml', 'yaml.github' },
+    })
 end
 
 return M
