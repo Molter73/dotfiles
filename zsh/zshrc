@@ -53,6 +53,7 @@ alias dcu='docker context use'
 alias ls='ls --color=auto'
 alias egrep='grep -E'   # Silence egrep deprecation message
 alias cdtemp='cd $(mktemp -d)'
+alias ctest='ctest --no-tests=error --output-on-failure'
 
 # git worktree
 alias gwa="git worktree add"
