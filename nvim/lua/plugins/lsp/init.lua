@@ -7,7 +7,7 @@ return {
         'neovim/nvim-lspconfig',
         branch = 'master',
         dependencies = {
-            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/nvim-cmp',
         },
         event = { 'BufReadPre', 'BufNewFile' },
         config = function()
@@ -83,6 +83,7 @@ return {
         dependencies = {
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-nvim-lsp',
         },
     },
 

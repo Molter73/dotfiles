@@ -22,7 +22,6 @@
     - name: Install LSPs from pip
       ansible.builtin.pip:
         name:
-          - cmake-language-server
           - basedpyright
         state: latest
       tags:
@@ -78,6 +77,12 @@
     - name: Install texlab
       ansible.builtin.command:
         cmd: cargo install --git https://github.com/latex-lsp/texlab --locked --tag v5.21.0
+      tags:
+        - cargo
+
+    - name: Install neocmake
+      ansible.builtin.command:
+        cmd: cargo install neocmakelsp
       tags:
         - cargo
 

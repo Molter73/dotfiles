@@ -2,6 +2,9 @@ local M = {}
 
 local utils = require('plugins.lsp.utils')
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 M.lua_ls = function()
     require('lspconfig').lua_ls.setup {
         on_attach = utils.on_attach,
@@ -64,7 +67,9 @@ M.clangd = function()
 end
 
 M.cmake = function()
-    require('lspconfig').cmake.setup({})
+    require('lspconfig').neocmake.setup({
+        capabilities = capabilities,
+    })
 end
 
 M.golang = function()
@@ -133,8 +138,6 @@ M.ansible = function()
     })
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 local vscode_ls_config = {
     on_attach = utils.on_attach,
     capabilities = capabilities,
