@@ -49,6 +49,6 @@ if command -v yarn >/dev/null; then
 fi
 
 # For devcontainers
-if [[ -d /opt/nvim-linux64/bin ]]; then
-    export PATH="$PATH:/opt/nvim-linux64/bin"
+if [[ -d /opt/nvim-linux-x86_64/bin ]]; then
+    export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 fi
