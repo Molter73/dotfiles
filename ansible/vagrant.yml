@@ -1,0 +1,22 @@
+---
+- name: Provision System
+  ansible.builtin.import_playbook: ../ansible/system.yml
+
+- name: Clone dotfiles repository
+  hosts: all
+  vars:
+    org: "{{ ansible_env.HOME + '/go/src/github.com/molter73' }}"
+  tasks:
+    - name: Create directory
+      ansible.builtin.file:
+        path: "{{ org }}"
+        state: directory
+        recurse: true
+
+    - name: Clone repo
+      ansible.builtin.git:
+        repo: 'https://github.com/molter73/dotfiles'
+        dest: "{{ org }}/dotfiles"
+
+- name: Provision dotfiles
+  ansible.builtin.import_playbook: ../ansible/dotfiles.yml

@@ -2,49 +2,7 @@
 - name: Install my dotfiles on remote user
   hosts: all
   vars:
-    repo: "{{ ansible_env.HOME + '/go/src/github.com/molter73/dotfiles' }}"
-    xdg_config: "{{ ansible_env.HOME + '/.config' }}"
-
-  tasks:
-    - name: Ensure .config directory exists
-      file:
-        path: "{{ xdg_config }}"
-        state: directory
-
-    - name: Install zsh configuration files
-      shell: "{{ repo + '/zsh/install.sh' }}"
-
-    - name: Install starship.rs
-      shell: cargo install starship
-
-    - name: Link starship configuration
-      file:
-        src: "{{ repo + '/starship.toml' }}"
-        dest: "{{ xdg_config + '/starship.toml' }}"
-        state: link
-
-    - name: Link neovim configuration
-      file:
-        src: "{{ repo + '/nvim' }}"
-        dest: "{{ xdg_config + '/nvim' }}"
-        state: link
-
-    - name: Ensure tmux configuration directory exists
-      file:
-        path: "{{ xdg_config + '/tmux' }}"
-        state: directory
-
-    - name: Link tmux configuration
-      file:
-        src: "{{ repo + '/tmux/tmux.conf' }}"
-        dest: "{{ xdg_config + '/tmux/tmux.conf' }}"
-        state: link
-
-    - name: Link wezterm configuration
-      file:
-        src: "{{ repo + '/wezterm' }}"
-        dest: "{{ xdg_config + '/wezterm' }}"
-        state: link
-
-    - name: Install script-kiddie stuff
-      shell: "{{ repo + '/scripts/install.sh' }}"
+    dotfiles_repo: "{{ ansible_env.HOME + '/go/src/github.com/molter73/dotfiles' }}"
+    dotfiles_xdg_config: "{{ ansible_env.HOME + '/.config' }}"
+  roles:
+    - dotfiles

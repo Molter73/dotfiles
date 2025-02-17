@@ -1,0 +1,45 @@
+- name: Ensure .config directory exists
+  ansible.builtin.file:
+    path: "{{ dotfiles_xdg_config }}"
+    state: directory
+
+- name: Install zsh configuration files
+  ansible.builtin.command: "{{ dotfiles_repo + '/zsh/install.sh' }}"
+
+- name: Install starship.rs
+  ansible.builtin.command: cargo install starship
+
+- name: Link starship configuration
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo + '/starship.toml' }}"
+    dest: "{{ dotfiles_xdg_config + '/starship.toml' }}"
+    state: link
+
+- name: Link neovim configuration
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo + '/nvim' }}"
+    dest: "{{ dotfiles_xdg_config + '/nvim' }}"
+    state: link
+
+- name: Install neovim plugins
+  ansible.builtin.command: nvim --headless "+Lazy! restore" +qa
+
+- name: Ensure tmux configuration directory exists
+  ansible.builtin.file:
+    path: "{{ dotfiles_xdg_config + '/tmux' }}"
+    state: directory
+
+- name: Link tmux configuration
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo + '/tmux/tmux.conf' }}"
+    dest: "{{ dotfiles_xdg_config + '/tmux/tmux.conf' }}"
+    state: link
+
+- name: Link wezterm configuration
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo + '/wezterm' }}"
+    dest: "{{ dotfiles_xdg_config + '/wezterm' }}"
+    state: link
+
+- name: Install script-kiddie stuff
+  ansible.builtin.command: "{{ dotfiles_repo + '/scripts/install.sh' }}"
