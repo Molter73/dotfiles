@@ -17,13 +17,17 @@ return {
                 'bash',
                 'c',
                 'cmake',
+                'comment',
                 'cpp',
                 'css',
                 'dockerfile',
                 'doxygen',
                 'editorconfig',
+                'git_rebase',
+                'gitignore',
                 'go',
                 'graphql',
+                'helm',
                 'html',
                 'java',
                 'javascript',
@@ -31,14 +35,18 @@ return {
                 'latex',
                 'lua',
                 'make',
+                'markdown',
+                'markdown_inline',
                 'ocaml',
+                'php',
+                'printf',
                 'proto',
                 'python',
-                'php',
                 'regex',
                 'ruby', -- For Vagrantfile
                 'rust',
                 'sql',
+                'tmux',
                 'toml',
                 'vim',
                 'vimdoc',
@@ -57,11 +65,15 @@ return {
             local parsers_config = require('nvim-treesitter.parsers').get_parser_configs()
             parsers_config.c3 = {
                 install_info = {
-                    url = "https://github.com/c3lang/tree-sitter-c3",
-                    files = { "src/parser.c", "src/scanner.c" },
-                    branch = "main",
+                    url = 'https://github.com/c3lang/tree-sitter-c3',
+                    files = { 'src/parser.c', 'src/scanner.c' },
+                    branch = 'main',
                 }
             }
+
+            -- Make printf characters stand out a bit more
+            local cat = require('catppuccin.palettes').get_palette('mocha')
+            vim.api.nvim_set_hl(0, '@character.printf', { fg = cat.peach })
         end,
     },
     {
