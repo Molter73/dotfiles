@@ -16,4 +16,3 @@
     src: "{{ luals_dir}}/bin/lua-language-server"
     dest: "{{ xdg_bin }}/lua-language-server"
     state: link
-

@@ -6,7 +6,7 @@ def synced_folder(config, src, dst)
     type: 'virtiofs'
 end
 
-Vagrant.configure("2") do |c|
+Vagrant.configure('2') do |c|
   c.vm.define 'fedora', primary: true do |fedora|
     fedora.vm.box = 'fedora/41-cloud-base'
     fedora.vm.hostname = 'fedora'
@@ -17,11 +17,12 @@ Vagrant.configure("2") do |c|
     fedora.vm.provider 'libvirt' do |libvirt|
       libvirt.cpus = 18
       libvirt.memory = 32768
-      libvirt.memorybacking :access, :mode => "shared"
+      libvirt.memorybacking :access, :mode => 'shared'
+      libvirt.machine_virtual_size = 50
     end
 
     fedora.vm.provision 'ansible' do |ansible|
-      ansible.playbook = '../ansible/vagrant.yml'
+      ansible.playbook = "#{__dir__}/../ansible/vagrant.yml"
     end
   end
 end

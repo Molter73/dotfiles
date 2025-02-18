@@ -1,9 +1,30 @@
 ---
+- name: Grow disk partition
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install growpart
+      ansible.builtin.dnf:
+        name:
+          - cloud-utils-growpart
+        state: latest
+
+    - name: Grow partition
+      ansible.builtin.command: growpart /dev/vda 4
+
+    - name: Resize filesystem
+      ansible.builtin.command: btrfs filesystem resize max /
+
 - name: Provision System
   ansible.builtin.import_playbook: ../ansible/system.yml
+  tags:
+    - system
 
 - name: Clone dotfiles repository
   hosts: all
+  tags:
+    - dotfiles
   vars:
     org: "{{ ansible_env.HOME + '/go/src/github.com/molter73' }}"
   tasks:
@@ -20,3 +41,21 @@
 
 - name: Provision dotfiles
   ansible.builtin.import_playbook: ../ansible/dotfiles.yml
+  tags:
+    - dotfiles
+
+- name: Install LSPs
+  ansible.builtin.import_playbook: ../ansible/lsp.yml
+  tags:
+    - lsp
+
+- name: Setup rootfull podman
+  ansible.builtin.import_playbook: ../ansible/rootfull-podman.yml
+
+- name: Install KinD
+  hosts: all
+  tags:
+    - kind
+  tasks:
+    - name: Install
+      ansible.builtin.command: go install sigs.k8s.io/kind@latest

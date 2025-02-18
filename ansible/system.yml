@@ -1,5 +1,77 @@
 ---
 - name: Basic provisioning
   hosts: all
-  roles:
-    - system
+
+  tasks:
+    - name: Get latest stable version of k8s
+      ansible.builtin.shell: curl -Ls https://dl.k8s.io/release/stable.txt | cut -d. -f1,2
+      register: k8s_version
+
+    - name: Setup kubernetes repo
+      become: true
+      ansible.builtin.copy:
+        dest: /etc/yum.repos.d/kubernetes.repo
+        mode: '644'
+        content: |
+          [kubernetes]
+          name=Kubernetes
+          baseurl=https://pkgs.k8s.io/core:/stable:/{{k8s_version.stdout}}/rpm/
+          enabled=1
+          gpgcheck=1
+          gpgkey=https://pkgs.k8s.io/core:/stable:/{{k8s_version.stdout}}/rpm/repodata/repomd.xml.key
+
+    - name: Install utilities
+      become: true
+      ansible.builtin.dnf:
+        name:
+          - cargo
+          - clang
+          - cmake
+          - container-selinux
+          - fd-find
+          - fzf
+          - glibc-devel.i686
+          - golang
+          - jq
+          - kernel-devel
+          - kubectl
+          - llvm
+          - make
+          - neovim
+          - nfs-utils
+          - nodejs
+          - perl
+          - podman
+          - podman-docker
+          - protobuf-devel
+          - python3-pip
+          - ripgrep
+          - rust
+          - wget
+          - zsh
+        state: latest
+
+    - name: Update system
+      become: true
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest
+        update_cache: true
+      tags:
+        - update
+
+    - name: Silence podman warning on docker emulation
+      become: true
+      ansible.builtin.file:
+        path: /etc/containers/nodocker
+        state: touch
+        mode: u=rw,g=r,o=r
+
+    - name: Use zsh as default shell
+      become: true
+      ansible.builtin.user:
+        name: "{{ ansible_env.USER }}"
+        shell: /bin/zsh
+
+    - name: Change npm install prefix
+      ansible.builtin.command: npm config set prefix {{ ansible_env.USER }}/.local
