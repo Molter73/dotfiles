@@ -47,3 +47,7 @@ vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, desc = 'Move 
 
 -- Open file under cursor in a vertical split
 vim.keymap.set('n', '<Leader>gf', '<CMD>vsp<CR>gf', { noremap = true, desc = 'Open file in vsplit', })
+
+-- Sort selection
+vim.keymap.set('v', '<Leader>ss', ":sort<CR>", { noremap = true, desc = 'Sort selection', })
+vim.keymap.set('v', '<Leader>si', ":sort i<CR>", { noremap = true, desc = 'Sort selection (case insensitive)', })
