@@ -3,6 +3,14 @@ local opts = {
         find_files = {
             hidden = true
         },
+        buffers = {
+            sort_mru = true,
+            mappings = {
+                i = {
+                    ['<C-s>'] = require('telescope.actions').delete_buffer,
+                },
+            },
+        },
     },
     defaults = {
         vimgrep_arguments = {
