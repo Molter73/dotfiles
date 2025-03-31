@@ -123,7 +123,9 @@ return {
                 build = build,
             },
         },
-        opts = opts,
+        config = function()
+            require('telescope').setup(opts)
+        end,
         keys = keys,
         cmd = 'Telescope',
     },
