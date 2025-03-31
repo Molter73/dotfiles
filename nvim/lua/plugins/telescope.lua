@@ -1,42 +1,3 @@
-local opts = {
-    pickers = {
-        find_files = {
-            hidden = true
-        },
-        buffers = {
-            sort_mru = true,
-            mappings = {
-                i = {
-                    ['<C-s>'] = require('telescope.actions').delete_buffer,
-                },
-            },
-        },
-    },
-    defaults = {
-        vimgrep_arguments = {
-            "rg",
-            "--color=never",
-            "--no-heading",
-            "--with-filename",
-            "--line-number",
-            "--column",
-            "--hidden",
-            "--smart-case"
-        },
-        file_ignore_patterns = {
-            "^.git/"
-        },
-    },
-    extensions = {
-        fzf = {
-            fuzzy = true,
-            override_generic_sorter = true,
-            override_file_sorter = true,
-            case_mode = "smart_case",
-        },
-    },
-}
-
 local keys = function()
     return {
         {
@@ -124,7 +85,44 @@ return {
             },
         },
         config = function()
-            require('telescope').setup(opts)
+            require('telescope').setup({
+                pickers = {
+                    find_files = {
+                        hidden = true
+                    },
+                    buffers = {
+                        sort_mru = true,
+                        mappings = {
+                            i = {
+                                ['<C-s>'] = require('telescope.actions').delete_buffer,
+                            },
+                        },
+                    },
+                },
+                defaults = {
+                    vimgrep_arguments = {
+                        "rg",
+                        "--color=never",
+                        "--no-heading",
+                        "--with-filename",
+                        "--line-number",
+                        "--column",
+                        "--hidden",
+                        "--smart-case"
+                    },
+                    file_ignore_patterns = {
+                        "^.git/"
+                    },
+                },
+                extensions = {
+                    fzf = {
+                        fuzzy = true,
+                        override_generic_sorter = true,
+                        override_file_sorter = true,
+                        case_mode = "smart_case",
+                    },
+                },
+            })
         end,
         keys = keys,
         cmd = 'Telescope',
