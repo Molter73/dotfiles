@@ -1,6 +1,65 @@
 local utils = require('plugins.lsp.utils')
 local servers = require('plugins.lsp.servers')
 
+local formatter = function(group)
+    vim.api.nvim_create_autocmd('FileType', {
+        group = group,
+        pattern = {
+            'lua',
+            'rust',
+            'haskell',
+            'html',
+            'c',
+            'cpp',
+        },
+        callback = function()
+            vim.api.nvim_create_autocmd('BufWritePre', {
+                group = group,
+                buffer = 0,
+                callback = function()
+                    utils.format(false)
+                end
+            })
+        end,
+    })
+end
+
+local go_formatter = function(group)
+    local callback = function()
+        local params = vim.lsp.util.make_range_params()
+        params.context = { only = { "source.organizeImports" } }
+        -- Taken from https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
+        --
+        -- buf_request_sync defaults to a 1000ms timeout. Depending on your
+        -- machine and codebase, you may want longer. Add an additional
+        -- argument after params if you find that you have to write the file
+        -- twice for changes to be saved.
+        -- E.g., vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
+        local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
+        for cid, res in pairs(result or {}) do
+            for _, r in pairs(res.result or {}) do
+                if r.edit then
+                    local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
+                    vim.lsp.util.apply_workspace_edit(r.edit, enc)
+                end
+            end
+        end
+        utils.format(false)
+    end
+
+    vim.api.nvim_create_autocmd('FileType', {
+        group = group,
+        pattern = { 'go' },
+        callback = function()
+            vim.api.nvim_create_autocmd('BufWritePre', {
+                group = group,
+                buffer = 0,
+                callback = callback,
+            })
+        end,
+    })
+end
+
 return {
     -- nvim LSP
     {
@@ -17,58 +76,8 @@ return {
 
             -- LSP specific autocommands
             local lspau = vim.api.nvim_create_augroup("LSP", { clear = true })
-            vim.api.nvim_create_autocmd('FileType', {
-                group = lspau,
-                pattern = {
-                    'lua',
-                    'rust',
-                    'haskell',
-                    'html',
-                    'c',
-                    'cpp',
-                },
-                callback = function()
-                    vim.api.nvim_create_autocmd('BufWritePre', {
-                        group = lspau,
-                        buffer = 0,
-                        callback = function()
-                            utils.format(false)
-                        end
-                    })
-                end,
-            })
-
-            vim.api.nvim_create_autocmd('FileType', {
-                group = lspau,
-                pattern = { 'go' },
-                callback = function()
-                    vim.api.nvim_create_autocmd('BufWritePre', {
-                        group = lspau,
-                        buffer = 0,
-                        callback = function()
-                            local params = vim.lsp.util.make_range_params()
-                            params.context = { only = { "source.organizeImports" } }
-                            -- Taken from https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
-                            --
-                            -- buf_request_sync defaults to a 1000ms timeout. Depending on your
-                            -- machine and codebase, you may want longer. Add an additional
-                            -- argument after params if you find that you have to write the file
-                            -- twice for changes to be saved.
-                            -- E.g., vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
-                            local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
-                            for cid, res in pairs(result or {}) do
-                                for _, r in pairs(res.result or {}) do
-                                    if r.edit then
-                                        local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
-                                        vim.lsp.util.apply_workspace_edit(r.edit, enc)
-                                    end
-                                end
-                            end
-                            utils.format(false)
-                        end
-                    })
-                end,
-            })
+            formatter(lspau)
+            go_formatter(lspau)
 
             -- Setup Completion
             -- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
@@ -83,9 +92,6 @@ return {
                 mapping = {
                     ['<C-p>'] = cmp.mapping.select_prev_item(),
                     ['<C-n>'] = cmp.mapping.select_next_item(),
-                    -- Add tab support
-                    -- ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-                    -- ['<Tab>'] = cmp.mapping.select_next_item(),
                     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-f>'] = cmp.mapping.scroll_docs(4),
                     ['<C-Space>'] = cmp.mapping.complete(),

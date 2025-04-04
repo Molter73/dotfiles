@@ -46,8 +46,9 @@ end
 
 M.clangd = function()
     require('lspconfig').clangd.setup({
-        on_attach = function(_, bufnr)
+        on_attach = function(client, bufnr)
             utils.on_attach(_, bufnr)
+            utils.handle_inlays(client, bufnr)
             vim.keymap.set('n', 'gh', '<cmd>ClangdSwitchSourceHeader<CR>', {
                 noremap = true,
                 silent = true,

@@ -76,6 +76,29 @@ M.format_modified = function(async)
     end
 end
 
+M.handle_inlays = function(client, bufnr)
+    if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(true)
+        local group = vim.api.nvim_create_augroup('INLAY', { clear = false })
+
+        vim.api.nvim_create_autocmd('InsertEnter', {
+            group = group,
+            buffer = 0,
+            callback = function()
+                vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
+            end
+        })
+
+        vim.api.nvim_create_autocmd('InsertLeave', {
+            group = group,
+            buffer = 0,
+            callback = function()
+                vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+            end
+        })
+    end
+end
+
 M.on_attach = function(_, bufnr)
     local opts = { noremap = true, silent = true, buffer = bufnr }
 
