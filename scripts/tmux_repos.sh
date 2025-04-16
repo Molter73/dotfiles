@@ -6,6 +6,15 @@ pick_dir() {
     fd . "${GOPATH}/src/" --type d --max-depth 3 --min-depth 3 | fzf -q "$1"
 }
 
+new_session() {
+    tmux new-session -ds "$1" -c "$2"
+    tmux send-keys -t "${1}:1" "nvim ." Enter
+    tmux new-window -dt "${1}" -c "${2}"
+    tmux split-window -dt "${1}:2" -h
+    tmux split-window -dt "${1}:2.1" -v
+    tmux send-key -t "${1}:2.1" "htop" Enter
+}
+
 DIR="$(pick_dir "${1:-}")"
 
 if [[ -z $DIR ]]; then
@@ -16,12 +25,13 @@ selected_name=$(basename "$DIR" | tr . _)
 tmux_running=$(pgrep tmux)
 
 if [[ -z $tmux_running ]]; then
-    tmux new-session -s "$selected_name" -c "$DIR"
+    new_session "$selected_name" "$DIR"
+    tmux attach -t "$selected_name"
     exit 0
 fi
 
 if ! tmux has-session -t="$selected_name" 2> /dev/null; then
-    tmux new-session -ds "$selected_name" -c "$DIR"
+    new_session "$selected_name" "$DIR"
 fi
 
 if [[ -z $TMUX ]]; then
