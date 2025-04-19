@@ -10,8 +10,8 @@ new_session() {
     tmux new-session -ds "$1" -c "$2"
     tmux send-keys -t "${1}:1" "nvim ." Enter
     tmux new-window -dt "${1}" -c "${2}"
-    tmux split-window -dt "${1}:2" -h
-    tmux split-window -dt "${1}:2.1" -v
+    tmux split-window -dt "${1}:2" -h -c "${2}"
+    tmux split-window -dt "${1}:2.1" -v -c "${2}"
     tmux send-key -t "${1}:2.1" "htop" Enter
 }
 
