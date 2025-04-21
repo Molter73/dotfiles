@@ -64,4 +64,12 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
 
+-- Global diagnostics configuration
+vim.diagnostic.config({
+    virtual_text = true,
+    float = {
+        source = true,
+    },
+})
+
 vim.cmd.colorscheme('catppuccin')
