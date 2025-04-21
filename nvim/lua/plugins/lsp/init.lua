@@ -171,29 +171,6 @@ return {
         },
     },
     {
-        'jose-elias-alvarez/null-ls.nvim',
-        event = { 'BufReadPre', 'BufNewFile' },
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-        },
-        opts = function()
-            local null_ls = require('null-ls')
-            return {
-                sources = {
-                    -- diagnostics
-                    null_ls.builtins.diagnostics.actionlint,
-                    null_ls.builtins.diagnostics.flake8,
-                    null_ls.builtins.diagnostics.hadolint,
-                    null_ls.builtins.diagnostics.zsh,
-
-                    -- formatters
-                    null_ls.builtins.formatting.autopep8,
-                    null_ls.builtins.formatting.shfmt,
-                }
-            }
-        end
-    },
-    {
         'mfussenegger/nvim-jdtls',
         ft = 'java',
     },

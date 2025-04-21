@@ -1,7 +1,7 @@
 -- Global Keymaps
 -- netrw
 vim.keymap.set('n', '<Leader>ej', '<cmd>Ex<CR>', { noremap = true, desc = 'Go to net-rw' })
-vim.keymap.set('n', '<Leader>ev', '<cmd>Vex!<CR>', { noremap = true, desc = 'Open net-rw in new vertical split' })
+vim.keymap.set('n', '<Leader>ev', '<cmd>Vex<CR>', { noremap = true, desc = 'Open net-rw in new vertical split' })
 vim.keymap.set('n', '<Leader>eh', '<cmd>Sex<CR>', { noremap = true, desc = 'Open net-rw in new horizontal split' })
 
 -- Page up and down with auto-center
