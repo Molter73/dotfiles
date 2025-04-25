@@ -33,6 +33,10 @@ if [[ ! -e "${BIN_DIR}/redeploy" ]]; then
     ln -s "${SCRIPTPATH}/collector-redeploy.sh" "${BIN_DIR}/redeploy"
 fi
 
+if [[ ! -e "${BIN_DIR}/cgdb" ]]; then
+    ln -s "${SCRIPTPATH}/collector-gdb.sh" "${BIN_DIR}/cgdb"
+fi
+
 if [[ ! -e "${BIN_DIR}/wrun" ]]; then
     ln -s "${SCRIPTPATH}/watch-run.sh" "${BIN_DIR}/wrun"
 fi
