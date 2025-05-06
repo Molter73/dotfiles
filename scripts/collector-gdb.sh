@@ -2,6 +2,9 @@
 
 set -emuo pipefail
 
+HOTRELOAD=0
+COLLECTOR_PATH="${GOPATH:-}/src/github.com/stackrox/collector"
+
 function usage() {
     cat << EOF
 $(basename "$0") [OPTIONS] -- <GDB_ARGUMENTS>
@@ -127,10 +130,18 @@ function handle_exit() {
     kill "${PORT_FORWARD:-}"
 }
 
+check_command jq
+check_command kubectl
+
 TEMP=$(getopt -o 'hrp:' -l 'help,hotreload,path:' -n "$0" -- "$@")
 
-HOTRELOAD=0
-COLLECTOR_PATH="${GOPATH:-}/src/github.com/stackrox/collector"
+# shellcheck disable=SC2181
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+
+eval set -- "$TEMP"
+unset TEMP
 
 while true; do
     case "${1:-}" in
@@ -159,17 +170,6 @@ while true; do
             ;;
     esac
 done
-
-# shellcheck disable=SC2181
-if [ $? -ne 0 ]; then
-    exit 1
-fi
-
-eval set -- "$TEMP"
-unset TEMP
-
-check_command jq
-check_command kubectl
 
 if ! krox get ds/collector &> /dev/null; then
     die "collector daemonset not found (did you forget to deploy stackrox?)"
