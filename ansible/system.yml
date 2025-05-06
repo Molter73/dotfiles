@@ -32,6 +32,7 @@
           - fzf
           - glibc-devel.i686
           - golang
+          - htop
           - jq
           - kernel-devel
           - kubectl
@@ -74,4 +75,4 @@
         shell: /bin/zsh
 
     - name: Change npm install prefix
-      ansible.builtin.command: npm config set prefix {{ ansible_env.USER }}/.local
+      ansible.builtin.command: npm config set prefix {{ ansible_env.HOME }}/.local

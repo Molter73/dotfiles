@@ -23,6 +23,14 @@
         mode: '0770'
         path: /run/podman
 
+    - name: Chown the podman socket
+      become: true
+      ansible.builtin.file:
+        group: podman
+        owner: root
+        mode: '0660'
+        path: /run/podman/podman.sock
+
     - name: Persist permission changes
       become: true
       ansible.builtin.copy:

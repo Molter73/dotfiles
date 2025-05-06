@@ -21,6 +21,11 @@
   tags:
     - system
 
+- name: Setup rootfull podman
+  ansible.builtin.import_playbook: ../ansible/rootfull-podman.yml
+  tags:
+    - system
+
 - name: Clone dotfiles repository
   hosts: all
   tags:
@@ -48,9 +53,6 @@
   ansible.builtin.import_playbook: ../ansible/lsp.yml
   tags:
     - lsp
-
-- name: Setup rootfull podman
-  ansible.builtin.import_playbook: ../ansible/rootfull-podman.yml
 
 - name: Install KinD
   hosts: all
