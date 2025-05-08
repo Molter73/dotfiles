@@ -41,5 +41,11 @@
     dest: "{{ dotfiles_xdg_config + '/wezterm' }}"
     state: link
 
+- name: Link gdb configuration
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo + '/gdb' }}"
+    dest: "{{ dotfiles_xdg_config + '/gdb' }}"
+    state: link
+
 - name: Install script-kiddie stuff
   ansible.builtin.command: "{{ dotfiles_repo + '/scripts/install.sh' }}"
