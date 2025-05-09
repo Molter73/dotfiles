@@ -2,16 +2,23 @@
 - name: Setup rootfull podman
   hosts: all
   tasks:
+    - name: Ensure podman service is up and running
+      become: true
+      ansible.builtin.systemd_service:
+        name: podman
+        enabled: true
+        state: started
+
     - name: Add podman group
       become: true
       ansible.builtin.group:
         name: podman
         state: present
 
-    - name: Add vagrant to podman group
+    - name: Add user to podman group
       become: true
       ansible.builtin.user:
-        name: vagrant
+        name: "{{ lookup('env', 'USER') }}"
         groups: podman
         append: true
 

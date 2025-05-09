@@ -26,8 +26,13 @@
 
 - name: Ensure tmux configuration directory exists
   ansible.builtin.file:
-    path: "{{ dotfiles_xdg_config + '/tmux' }}"
+    path: "{{ dotfiles_xdg_config + '/tmux/plugins' }}"
     state: directory
+
+- name: Clone TPM (TMUX Package Manager)
+  ansible.builtin.git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: "{{ dotfiles_xdg_config + '/tmux/plugins/tpm' }}"
 
 - name: Link tmux configuration
   ansible.builtin.file:
