@@ -1,5 +1,4 @@
 local utils = require('plugins.lsp.utils')
-local servers = require('plugins.lsp.servers')
 
 local formatter = function(group)
     vim.api.nvim_create_autocmd('FileType', {
@@ -7,7 +6,6 @@ local formatter = function(group)
         pattern = {
             'lua',
             'rust',
-            'haskell',
             'html',
             'c',
             'cpp',
@@ -60,6 +58,19 @@ local go_formatter = function(group)
     })
 end
 
+local base_lsp_config = function(name)
+    vim.lsp.config(name, {
+        on_attach = utils.on_attach,
+    })
+end
+
+local vscode_lsp_config = function(name)
+    vim.lsp.config(name, {
+        on_attach = utils.on_attach,
+        capabilities = utils.capabilities.snippetSupport,
+    })
+end
+
 return {
     -- nvim LSP
     {
@@ -70,9 +81,46 @@ return {
         },
         event = { 'BufReadPre', 'BufNewFile' },
         config = function()
-            for _, server in pairs(servers) do
-                server()
-            end
+            require('plugins.lsp.ansible')
+            require('plugins.lsp.clangd')
+            require('plugins.lsp.lua')
+            require('plugins.lsp.python')
+
+            -- LSPs with simple configurations
+            base_lsp_config('bashls')
+            base_lsp_config('gopls')
+            base_lsp_config('ocamllsp')
+            vscode_lsp_config('cssls')
+            vscode_lsp_config('html')
+
+            vim.lsp.config('neocmake', {
+                capabilities = utils.capabilities.snippetSupport,
+            })
+
+            vim.lsp.config('yamlls', {
+                settings = {
+                    yaml = {
+                        schemas = {
+                            ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
+                        }
+                    }
+                }
+            })
+
+            vim.lsp.config('gh_actions_ls', {
+                filetypes = { 'yaml', 'yaml.github' },
+            })
+
+            vim.lsp.enable({
+                'bashls',
+                'cssls',
+                'gh_actions_ls',
+                'gopls',
+                'html',
+                'neocmake',
+                'ocamllsp',
+                'yamlls',
+            })
 
             -- LSP specific autocommands
             local lspau = vim.api.nvim_create_augroup("LSP", { clear = true })

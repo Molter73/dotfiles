@@ -1,5 +1,11 @@
 local M = {}
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+M.capabilities = {}
+M.capabilities.snippetSupport = capabilities
+
 M.format = function(async, range)
     vim.lsp.buf.format({
         formatting_options = {
