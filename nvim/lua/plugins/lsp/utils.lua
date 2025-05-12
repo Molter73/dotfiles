@@ -89,7 +89,7 @@ M.handle_inlays = function(client, bufnr)
 
         vim.api.nvim_create_autocmd('InsertEnter', {
             group = group,
-            buffer = 0,
+            buffer = bufnr,
             callback = function()
                 vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
             end
@@ -97,7 +97,7 @@ M.handle_inlays = function(client, bufnr)
 
         vim.api.nvim_create_autocmd('InsertLeave', {
             group = group,
-            buffer = 0,
+            buffer = bufnr,
             callback = function()
                 vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
             end

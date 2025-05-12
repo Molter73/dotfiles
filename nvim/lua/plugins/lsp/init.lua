@@ -81,6 +81,7 @@ return {
             require('plugins.lsp.ansible')
             require('plugins.lsp.clangd')
             require('plugins.lsp.lua')
+            require('plugins.lsp.rust')
 
             -- LSPs with simple configurations
             lsp_config('basedpyright')
@@ -169,45 +170,6 @@ return {
         event = 'InsertEnter',
         -- install jsregexp (optional!:).
         build = "make install_jsregexp"
-    },
-
-    -- Other full completion sources
-
-    -- See hrsh7th's other plugins for more completion sources!
-
-    -- To enable more of the features of rust-analyzer, such as inlay hints and more!
-    {
-        'simrat39/rust-tools.nvim',
-        ft = 'rust',
-        opts = {
-            tools = {
-                -- rust-tools options
-                autoSetHints = true,
-                inlay_hints = {
-                    show_parameter_hints = false,
-                    parameter_hints_prefix = "",
-                    other_hints_prefix = "",
-                },
-            },
-            -- all the opts to send to nvim-lspconfig
-            -- these override the defaults set by rust-tools.nvim
-            -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
-            server = {
-                cmd = { 'rustup', 'run', 'stable', 'rust-analyzer', },
-                -- on_attach is a callback called when the language server attachs to the buffer
-                on_attach = utils.on_attach,
-                settings = {
-                    -- to enable rust-analyzer settings visit
-                    -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-                    ['rust-analyzer'] = {
-                        -- enable clippy on save
-                        checkOnSave = {
-                            command = 'clippy'
-                        },
-                    }
-                }
-            },
-        },
     },
     {
         'mfussenegger/nvim-jdtls',
