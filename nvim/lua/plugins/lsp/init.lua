@@ -62,6 +62,7 @@ local base_lsp_config = function(name)
     vim.lsp.config(name, {
         on_attach = utils.on_attach,
     })
+    vim.lsp.enable(name)
 end
 
 local vscode_lsp_config = function(name)
@@ -69,6 +70,7 @@ local vscode_lsp_config = function(name)
         on_attach = utils.on_attach,
         capabilities = utils.capabilities.snippetSupport,
     })
+    vim.lsp.enable(name)
 end
 
 return {
@@ -84,9 +86,9 @@ return {
             require('plugins.lsp.ansible')
             require('plugins.lsp.clangd')
             require('plugins.lsp.lua')
-            require('plugins.lsp.python')
 
             -- LSPs with simple configurations
+            base_lsp_config('basedpyright')
             base_lsp_config('bashls')
             base_lsp_config('gopls')
             base_lsp_config('ocamllsp')
@@ -112,13 +114,7 @@ return {
             })
 
             vim.lsp.enable({
-                'bashls',
-                'cssls',
                 'gh_actions_ls',
-                'gopls',
-                'html',
-                'neocmake',
-                'ocamllsp',
                 'yamlls',
             })
 
