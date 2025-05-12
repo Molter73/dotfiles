@@ -58,17 +58,12 @@ local go_formatter = function(group)
     })
 end
 
-local base_lsp_config = function(name)
-    vim.lsp.config(name, {
-        on_attach = utils.on_attach,
-    })
-    vim.lsp.enable(name)
-end
+local lsp_config = function(name, caps)
+    local capabilities = caps or vim.lsp.protocol.make_client_capabilities()
 
-local vscode_lsp_config = function(name)
     vim.lsp.config(name, {
         on_attach = utils.on_attach,
-        capabilities = utils.capabilities.snippetSupport,
+        capabilities = capabilities,
     })
     vim.lsp.enable(name)
 end
@@ -88,12 +83,12 @@ return {
             require('plugins.lsp.lua')
 
             -- LSPs with simple configurations
-            base_lsp_config('basedpyright')
-            base_lsp_config('bashls')
-            base_lsp_config('gopls')
-            base_lsp_config('ocamllsp')
-            vscode_lsp_config('cssls')
-            vscode_lsp_config('html')
+            lsp_config('basedpyright')
+            lsp_config('bashls')
+            lsp_config('cssls', utils.capabilities.snippetSupport)
+            lsp_config('gopls')
+            lsp_config('html', utils.capabilities.snippetSupport)
+            lsp_config('ocamllsp')
 
             vim.lsp.config('neocmake', {
                 capabilities = utils.capabilities.snippetSupport,
