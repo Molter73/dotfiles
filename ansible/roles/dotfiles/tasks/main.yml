@@ -52,5 +52,11 @@
     dest: "{{ dotfiles_xdg_config + '/gdb' }}"
     state: link
 
+- name: Link zellij configuration
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo + '/zellij' }}"
+    dest: "{{ dotfiles_xdg_config + '/zellij' }}"
+    state: link
+
 - name: Install script-kiddie stuff
   ansible.builtin.command: "{{ dotfiles_repo + '/scripts/install.sh' }}"

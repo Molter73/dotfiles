@@ -50,6 +50,7 @@
           - python3-pip
           - ripgrep
           - rust
+          - tmux
           - wget
           - zsh
         state: latest
@@ -78,3 +79,7 @@
 
     - name: Change npm install prefix
       ansible.builtin.command: npm config set prefix {{ ansible_env.HOME }}/.local
+
+    - name: Install zellij
+      ansible.builtin.command:
+        cmd: cargo install --locked zellij
