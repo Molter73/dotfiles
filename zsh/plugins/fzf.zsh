@@ -58,7 +58,7 @@ _fd_repos() {
 
 repos() {
     if command -v tmux &> /dev/null && command -v tmux_repos &> /dev/null; then
-        tmux_repos "$1"
+        zellij-repos "$1"
     else
         _fd_repos "$1"
     fi

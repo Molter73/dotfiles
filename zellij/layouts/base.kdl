@@ -1,0 +1,29 @@
+layout {
+    tab name="nvim" {
+        pane edit="."
+        pane size=1 borderless=true {
+            plugin location="tab-bar"
+        }
+        pane size=1 borderless=true {
+            plugin location="status-bar"
+        }
+    }
+
+    tab name="terminal" {
+        pane split_direction="vertical" {
+            pane
+            pane split_direction="horizontal"{
+                pane size="50%" {
+                    command "htop"
+                }
+                pane size="50%"
+            }
+        }
+        pane size=1 borderless=true {
+            plugin location="tab-bar"
+        }
+        pane size=1 borderless=true {
+            plugin location="status-bar"
+        }
+    }
+}
