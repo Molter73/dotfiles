@@ -24,10 +24,10 @@ return {
     },
     {
         'christoomey/vim-tmux-navigator',
-        enabled = false,
     },
     {
         "swaits/zellij-nav.nvim",
+        enabled = false,
         lazy = true,
         event = "VeryLazy",
         keys = {
@@ -40,6 +40,7 @@ return {
     },
     {
         "hiasr/vim-zellij-navigator.nvim",
+        enabled = false,
         config = function()
             require('vim-zellij-navigator').setup()
         end
