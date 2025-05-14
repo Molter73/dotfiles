@@ -29,6 +29,14 @@ if [[ ! -e "${BIN_DIR}/tmux_repos" ]]; then
     ln -s "${SCRIPTPATH}/tmux_repos.sh" "${BIN_DIR}/tmux_repos"
 fi
 
+if [[ ! -e "${BIN_DIR}/tmux-popup" ]]; then
+    ln -s "${SCRIPTPATH}/tmux-popup.sh" "${BIN_DIR}/tmux-popup"
+fi
+
+if [[ ! -e "${BIN_DIR}/tmux-sessions" ]]; then
+    ln -s "${SCRIPTPATH}/tmux-sessions.sh" "${BIN_DIR}/tmux-sessions"
+fi
+
 if [[ ! -e "${BIN_DIR}/redeploy" ]]; then
     ln -s "${SCRIPTPATH}/collector-redeploy.sh" "${BIN_DIR}/redeploy"
 fi

@@ -36,10 +36,10 @@ crmi() {
 
 # fco - checkout git branch
 fco() {
-  local branches branch
-  branches=$(git --no-pager branch -vv) &&
-  branch=$(echo "$branches" | fzf +m -q "$1") &&
-  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+    local branches branch
+    branches=$(git --no-pager branch -vv)
+    branch=$(echo "$branches" | fzf +m -q "$1")
+    git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 
 _pick_dir() {
@@ -58,7 +58,7 @@ _fd_repos() {
 
 repos() {
     if command -v tmux &> /dev/null && command -v tmux_repos &> /dev/null; then
-        zellij-repos "$1"
+        tmux_repos "$1"
     else
         _fd_repos "$1"
     fi
