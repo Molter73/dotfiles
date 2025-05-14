@@ -25,6 +25,7 @@
       ansible.builtin.dnf:
         name:
           - ansible-collection-community-general
+          - bat
           - cargo
           - clang
           - cmake

@@ -3,7 +3,19 @@
 set -o pipefail
 
 pick_dir() {
-    fd . "${GOPATH}/src/" --type d --max-depth 3 --min-depth 3 | fzf -q "$1"
+    fd . "${GOPATH}/src/" --type d --max-depth 3 --min-depth 3 \
+        | fzf \
+            --tmux "75%" \
+            --reverse \
+            --border=double \
+            --border-label=" repos " \
+            --border-label-pos=10 \
+            --preview="[ -f {}README.md ] && bat \
+                --color=always \
+                --wrap=never \
+                --style=numbers \
+                {}README.md || echo 'No README'" \
+            -q "$1"
 }
 
 new_session() {
@@ -16,7 +28,6 @@ new_session() {
 }
 
 DIR="$(pick_dir "${1:-}")"
-
 if [[ -z $DIR ]]; then
     exit 0
 fi
