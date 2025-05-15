@@ -102,11 +102,13 @@ return {
                             ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
                         }
                     }
-                }
+                },
+                init_options = { sessionToken = "" },
             })
 
             vim.lsp.config('gh_actions_ls', {
                 filetypes = { 'yaml', 'yaml.github' },
+                init_options = { sessionToken = "" },
             })
 
             vim.lsp.enable({
