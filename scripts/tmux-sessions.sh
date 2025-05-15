@@ -20,6 +20,12 @@ if [[ -z $TMUX ]]; then
     exit 1
 fi
 
+# If we are running in a popup window, we need to detach (hide it) first
+SESSION_NAME="$(tmux display-message -p -F "#{session_name}")"
+if [[ "${SESSION_NAME}" =~ -popup$ ]]; then
+    tmux detach-client
+fi
+
 SESSION="$(pick_session "${1:-}")"
 if [[ -z "${SESSION:-}" ]]; then
     exit 0

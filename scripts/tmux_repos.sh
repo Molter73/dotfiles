@@ -27,6 +27,14 @@ new_session() {
     tmux send-key -t "${1}:2.1" "htop" Enter
 }
 
+if [[ -n $TMUX ]]; then
+    # If we are running in a popup window, we need to detach (hide it) first
+    SESSION_NAME="$(tmux display-message -p -F "#{session_name}")"
+    if [[ "${SESSION_NAME}" =~ -popup$ ]]; then
+        tmux detach-client
+    fi
+fi
+
 DIR="$(pick_dir "${1:-}")"
 if [[ -z $DIR ]]; then
     exit 0
