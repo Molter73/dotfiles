@@ -16,6 +16,7 @@ return {
                 },
                 notification = {
                     window = {
+                        border = 'rounded',
                         winblend = 0,
                     },
                 },

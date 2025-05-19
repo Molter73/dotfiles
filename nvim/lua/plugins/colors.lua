@@ -20,12 +20,11 @@ local opts = {
         conditionals = {},
     },
     integrations = {
+        blink_cmp = true,
         cmp = true,
-        telescope = true,
-        gitsigns = true,
         fidget = true,
-        treesitter = true,
-        which_key = true,
+        fzf = true,
+        gitsigns = true,
         native_lsp = {
             enabled = true,
             virtual_text = {
@@ -40,7 +39,10 @@ local opts = {
                 warnings = { 'underline' },
                 information = { 'underline' },
             },
-        }
+        },
+        telescope = true,
+        treesitter = true,
+        which_key = true,
     }
 }
 

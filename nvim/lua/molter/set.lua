@@ -39,6 +39,7 @@ vim.opt.background = 'dark'
 vim.opt.termguicolors = true
 vim.opt.spell = true
 vim.opt.showmode = false
+vim.opt.winborder = 'rounded'
 
 -- netrw configuration
 vim.g.netrw_banner = false
