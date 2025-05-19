@@ -9,6 +9,10 @@ return {
                     cmd = 'git ls-files --exclude-standard --others --cached',
                 },
             },
+            winopts = {
+                height = 0.75,
+                width = 0.75,
+            },
         })
         require('fzf-lua').register_ui_select()
     end,
@@ -79,6 +83,18 @@ return {
             function() require('fzf-lua').resume() end,
             noremap = true,
             desc = 'Resume Telescope search',
+        },
+        {
+            '<Leader>fm',
+            function() require('fzf-lua').manpages() end,
+            noremap = true,
+            desc = 'Search manpages',
+        },
+        {
+            '<Leader>fp',
+            function() require('fzf-lua').spell_suggest() end,
+            noremap = true,
+            desc = 'Spelling sugestions',
         },
     },
 }

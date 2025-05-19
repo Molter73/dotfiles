@@ -36,8 +36,5 @@ return {
         },
         input = {},
         notifier = {},
-        picker = {
-            ui_select = true,
-        },
     },
 }
