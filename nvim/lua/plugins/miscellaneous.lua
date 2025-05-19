@@ -5,25 +5,6 @@ return {
         ft = 'markdown',
     },
     {
-        'j-hui/fidget.nvim',
-        event = 'VeryLazy',
-        config = function()
-            require('fidget').setup({
-                progress = {
-                    display = {
-                        progress_icon = { "bouncing_ball" },
-                    },
-                },
-                notification = {
-                    window = {
-                        border = 'rounded',
-                        winblend = 0,
-                    },
-                },
-            })
-        end,
-    },
-    {
         'christoomey/vim-tmux-navigator',
     },
     {

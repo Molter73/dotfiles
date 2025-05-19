@@ -2,13 +2,16 @@ return {
     "ibhagwan/fzf-lua",
     -- optional for icon support
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-        git = {
-            files = {
-                cmd = 'git ls-files --exclude-standard --others --cached',
+    config = function()
+        require('fzf-lua').setup({
+            git = {
+                files = {
+                    cmd = 'git ls-files --exclude-standard --others --cached',
+                },
             },
-        },
-    },
+        })
+        require('fzf-lua').register_ui_select()
+    end,
     keys = {
         {
             '<Leader>ff',
