@@ -110,6 +110,8 @@ compinit
 
 [[ ! -r "${HOME}/.opam/opam-init/init.zsh" ]] || source "${HOME}/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null
 
+[[ -f "${HOME}/.config/additional-env.sh" ]] && source "${HOME}/.config/additional-env.sh"
+
 # Load Angular CLI autocompletion.
 if command -v ng >/dev/null; then
     source <(ng completion script)
