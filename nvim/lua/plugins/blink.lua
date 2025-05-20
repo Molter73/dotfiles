@@ -4,6 +4,7 @@ return {
     dependencies = { 'rafamadriz/friendly-snippets' },
     version = '1.*',
     event = 'InsertEnter',
+    build = 'cargo build --release',
     opts = {
         keymap = {
             preset = 'enter',
