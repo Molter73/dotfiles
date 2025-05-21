@@ -45,6 +45,21 @@
         dest: /etc/tmpfiles.d/podman.conf
         mode: '644'
 
+    - name: Create systemd podman.socket override directory
+      become: true
+      ansible.builtin.file:
+        path: /etc/systemd/system/podman.socket.d
+        state: directory
+        mode: '0744'
+
+    - name: Override systemd configuration
+      become: true
+      ansible.builtin.copy:
+        content: |
+          [Socket]
+          SocketUser=root
+          SocketGroup=podman
+
     - name: Create podman context
       ansible.builtin.command: |
         podman system connection add -d dev unix:///run/podman/podman.sock
