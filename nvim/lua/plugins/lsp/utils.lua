@@ -127,7 +127,6 @@ M.on_attach = function(_, bufnr)
     set_keymap('n', '<Leader>rn', vim.lsp.buf.rename, 'Rename symbol under cursor', opts)
     set_keymap('n', '<Leader>ca', vim.lsp.buf.code_action, 'Code Action', opts)
     set_keymap({ 'n', 'v' }, '<Leader>fr', function() M.format(true) end, 'Format buffer', opts)
-    set_keymap('n', '<Leader>fm', function() M.format_modified(true) end, 'Format modified lines in buffer', opts)
 end
 
 
