@@ -59,6 +59,8 @@
           [Socket]
           SocketUser=root
           SocketGroup=podman
+        dest: /etc/systemd/system/podman.socket.d/override.conf
+        mode: '0644'
 
     - name: Create podman context
       ansible.builtin.command: |
