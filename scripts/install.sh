@@ -11,43 +11,31 @@ BIN_DIR="${XDG_BIN_HOME:-${HOME}/.local/bin}"
 DATA_DIR="${XDG_DATA_HOME:-${HOME}/.local/share}"
 NVIM_QUERIES="${DATA_DIR}/nvim/site/queries/"
 
+function create_symlink() {
+    # Extract link_name and target from arguments
+    local target="$1"
+    local link_name="${2:-}"
+
+    if [[ -z "$link_name" ]]; then
+        link_name="${target%.sh}"
+    fi
+
+    if [[ ! -e "${BIN_DIR}/${link_name}" ]]; then
+        ln -s "${SCRIPTPATH}/$target" "${BIN_DIR}/$link_name"
+    fi
+}
+
 mkdir -p "${BIN_DIR}"
 
-if [[ ! -e "${BIN_DIR}/containerized-ls" ]]; then
-    ln -s "${SCRIPTPATH}/containerized-ls.sh" "${BIN_DIR}/containerized-ls"
-fi
-
-if [[ ! -e "${BIN_DIR}/kw" ]]; then
-    ln -s "${SCRIPTPATH}/kind-wrapper.sh" "${BIN_DIR}/kw"
-fi
-
-if [[ ! -e "${BIN_DIR}/regctl" ]]; then
-    ln -s "${SCRIPTPATH}/regctl.sh" "${BIN_DIR}/regctl"
-fi
-
-if [[ ! -e "${BIN_DIR}/tmux_repos" ]]; then
-    ln -s "${SCRIPTPATH}/tmux_repos.sh" "${BIN_DIR}/tmux_repos"
-fi
-
-if [[ ! -e "${BIN_DIR}/tmux-popup" ]]; then
-    ln -s "${SCRIPTPATH}/tmux-popup.sh" "${BIN_DIR}/tmux-popup"
-fi
-
-if [[ ! -e "${BIN_DIR}/tmux-sessions" ]]; then
-    ln -s "${SCRIPTPATH}/tmux-sessions.sh" "${BIN_DIR}/tmux-sessions"
-fi
-
-if [[ ! -e "${BIN_DIR}/redeploy" ]]; then
-    ln -s "${SCRIPTPATH}/collector-redeploy.sh" "${BIN_DIR}/redeploy"
-fi
-
-if [[ ! -e "${BIN_DIR}/cgdb" ]]; then
-    ln -s "${SCRIPTPATH}/collector-gdb.sh" "${BIN_DIR}/cgdb"
-fi
-
-if [[ ! -e "${BIN_DIR}/wrun" ]]; then
-    ln -s "${SCRIPTPATH}/watch-run.sh" "${BIN_DIR}/wrun"
-fi
+create_symlink containerized-ls.sh
+create_symlink kind-wrapper.sh kw
+create_symlink regctl.sh
+create_symlink tmux_repos.sh
+create_symlink tmux-popup.sh
+create_symlink tmux-sessions.sh
+create_symlink collector-redeploy.sh redeploy
+create_symlink collector-gdb.sh cgdb
+create_symlink watch-run.sh wrun
 
 # Install NeoVim treesitter queries for c3
 if [[ ! -e "${NVIM_QUERIES}/c3/highlight.scm" ]]; then
