@@ -58,5 +58,29 @@
     dest: "{{ dotfiles_xdg_config + '/zellij' }}"
     state: link
 
+- name: Link sway configuration
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo + '/sway' }}"
+    dest: "{{ dotfiles_xdg_config + '/sway' }}"
+    state: link
+
+- name: Link mako configuration
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo + '/mako' }}"
+    dest: "{{ dotfiles_xdg_config + '/mako' }}"
+    state: link
+
+- name: Link rofi configuration
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo + '/rofi' }}"
+    dest: "{{ dotfiles_xdg_config + '/rofi' }}"
+    state: link
+
+- name: Link waybar configuration
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo + '/waybar' }}"
+    dest: "{{ dotfiles_xdg_config + '/waybar' }}"
+    state: link
+
 - name: Install script-kiddie stuff
   ansible.builtin.command: "{{ dotfiles_repo + '/scripts/install.sh' }}"

@@ -36,6 +36,7 @@ create_symlink tmux-sessions.sh
 create_symlink collector-redeploy.sh redeploy
 create_symlink collector-gdb.sh cgdb
 create_symlink watch-run.sh wrun
+create_symlink screenshot.sh
 
 # Install NeoVim treesitter queries for c3
 if [[ ! -e "${NVIM_QUERIES}/c3/highlight.scm" ]]; then

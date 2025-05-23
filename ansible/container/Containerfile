@@ -1,0 +1,17 @@
+FROM fedora:latest
+
+RUN dnf install -y git ansible && \
+    groupadd -g 1001 molter && \
+    useradd -u 1001 -g molter -m molter && \
+    echo "molter ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+USER molter
+
+COPY . /dotfiles
+
+WORKDIR /dotfiles/ansible
+
+RUN ansible-playbook -i local-inventory.yml system.yml
+RUN ansible-playbook -i local-inventory.yml dotfiles.yml
+RUN ansible-playbook -i local-inventory.yml lsp.yml
+RUN ansible-playbook -i local-inventory.yml rootfull-podman.yml

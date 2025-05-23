@@ -1,12 +1,13 @@
 local opts = {
     flavour = 'mocha',
     show_end_of_buffer = true,
+    transparent_background = true,
     compile = {
         enabled = true,
         path = vim.fn.stdpath('cache') .. '/catppuccin',
     },
     dim_inactive = {
-        enabled = true,
+        enabled = false,
         shade = 'dark',
         percentage = 0.40,
     },

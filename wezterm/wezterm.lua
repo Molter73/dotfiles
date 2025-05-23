@@ -6,6 +6,7 @@ config.color_scheme = 'Catppuccin Mocha'
 config.enable_tab_bar = false
 config.audible_bell = 'Disabled'
 config.check_for_updates = false
+config.window_background_opacity = 0.97
 
 -- Font configuration
 local font = require('fonts').firacode
@@ -23,8 +24,8 @@ config.cursor_blink_ease_in = 'Constant'
 config.cursor_blink_ease_out = 'Constant'
 config.cursor_blink_rate = 400
 
--- Disable wayland, since it is giving me headaches
-config.enable_wayland = false
+-- Launch the repos command
+config.default_prog = { 'zsh', '-c', 'tmux_repos' }
 
 config.keys = {
     -- Paste from system clipboard

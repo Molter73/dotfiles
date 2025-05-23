@@ -26,31 +26,40 @@
         name:
           - ansible-collection-community-general
           - bat
+          - blueman
           - clang
           - cmake
-          - cowsay
           - container-selinux
+          - cowsay
           - fd-find
           - fzf
           - glibc-devel.i686
           - golang
+          - grim
           - htop
           - jq
           - kernel-devel
           - kubectl
           - llvm
           - make
+          - mako
           - neovim
           - nfs-utils
           - nodejs
+          - pavucontrol
           - perl
           - podman
           - podman-docker
           - protobuf-devel
           - python3-pip
+          - ranger
           - ripgrep
+          - rofi-wayland
           - rustup
+          - slurp
+          - sway
           - tmux
+          - waybar
           - wget
           - zsh
         state: latest
