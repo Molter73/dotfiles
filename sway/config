@@ -26,6 +26,8 @@ exec swayidle -w \
          timeout 300 'swaylock -f' \
          before-sleep 'swaylock -f'
 
+seat * hide_cursor 3000
+
 include ~/.config/sway/input.conf
 include ~/.config/sway/output.conf
 include '~/.config/sway/catppuccin.conf'

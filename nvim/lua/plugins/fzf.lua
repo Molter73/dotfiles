@@ -13,6 +13,10 @@ return {
                 height = 0.75,
                 width = 0.75,
             },
+            grep = {
+                rg_opts =
+                "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --hidden --iglob '!.git/' -e"
+            },
         })
         require('fzf-lua').register_ui_select()
     end,
