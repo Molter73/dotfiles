@@ -13,6 +13,7 @@
         "bluetooth",
         "network",
         "tray",
+        "custom/updates",
         "custom/lock",
         "custom/power"
     ],
@@ -94,5 +95,12 @@
         "tooltip": false,
         "on-click": "sway exit &",
         "format": ""
-    }
+    },
+    "custom/updates": {
+        "format": "{text}",
+        "exec": "~/.local/bin/dnf-check-update",
+        "on-click": "~/.local/bin/dnf-check-update",
+        "return-type": "json",
+        "interval": 3600,
+    },
 }

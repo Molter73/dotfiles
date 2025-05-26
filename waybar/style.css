@@ -43,6 +43,7 @@
 #pulseaudio,
 #bluetooth,
 #network,
+#custom-updates,
 #custom-lock,
 #custom-power {
     background-color: @surface0;
@@ -124,6 +125,16 @@
     margin-right: 1rem;
     border-radius: 0px 1rem 1rem 0px;
     color: @red;
+}
+
+#custom-updates {
+    margin-right: 1rem;
+    border-radius: 1rem;
+}
+
+#custom-updates.critical {
+    background-color: @red;
+    color: @base;
 }
 
 #tray {
