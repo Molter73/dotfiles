@@ -31,6 +31,7 @@
           - cmake
           - container-selinux
           - cowsay
+          - fastfetch
           - fd-find
           - fzf
           - glibc-devel.i686
@@ -105,5 +106,22 @@
     - name: Install FiraCode Nerd Font
       ansible.builtin.unarchive:
         src: /tmp/FiraCode.tar.xz
-        dest: "{{ ansible_env.USER }}/.local/share/fonts"
+        dest: "{{ ansible_env.HOME }}/.local/share/fonts"
         remote_src: true
+
+    - name: Download Catppuccin cursors
+      ansible.builtin.get_url:
+        dest: /tmp
+        url: https://github.com/catppuccin/cursors/releases/latest/download/catppuccin-mocha-dark-cursors.zip
+        mode: '0644'
+
+    - name: Create icons directory
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.icons"
+        state: directory
+        mode: '0755'
+
+    - name: Install Catppuccin cursor
+      ansible.builtin.unarchive:
+        src: /tmp/catppuccin-mocha-dark-cursors.zip
+        dest: "{{ ansible_env.HOME }}/.icons"
