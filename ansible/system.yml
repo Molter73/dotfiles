@@ -125,3 +125,9 @@
       ansible.builtin.unarchive:
         src: /tmp/catppuccin-mocha-dark-cursors.zip
         dest: "{{ ansible_env.HOME }}/.icons"
+
+    - name: Make catppuccin the default cursor
+      ansible.builtin.file:
+        src: "{{ ansible_env.HOME }}/.icons/catppuccin-mocha-dark-cursors"
+        dest: "{{ ansible_env.HOME }}/.icons/default"
+        state: link
