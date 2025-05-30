@@ -32,8 +32,7 @@ export ANSIBLE_COW_SELECTION=dragon-and-cow
 # rustup shell setup
 # affix colons on either side of $PATH to simplify matching
 case ":${PATH}:" in
-    *:"${HOME}/.cargo/bin":*)
-        ;;
+    *:"${HOME}/.cargo/bin":*) ;;
     *)
         # Prepending path in case a system-installed rustc needs to be overridden
         export PATH="$HOME/.cargo/bin:$PATH"
@@ -53,7 +52,7 @@ export PATH="$PATH:${HOME}/.crc/bin/oc"
 #   My binaries before anything else
 export PATH="${XDG_BIN_HOME}:$PATH"
 
-if command -v yarn >/dev/null; then
+if command -v yarn > /dev/null; then
     export PATH="$PATH:$(yarn global bin)"
 fi
 
@@ -62,7 +61,7 @@ if [[ -d /opt/nvim-linux-x86_64/bin ]]; then
     export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 fi
 
-if command -v bat >/dev/null; then
+if command -v bat > /dev/null; then
     # Use bat for colorizing man pages
     export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
 fi

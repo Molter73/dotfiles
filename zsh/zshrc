@@ -113,6 +113,6 @@ compinit
 [ -f "${HOME}/.config/additional-env.sh" ] && source "${HOME}/.config/additional-env.sh"
 
 # Load Angular CLI autocompletion.
-if command -v ng >/dev/null; then
+if command -v ng > /dev/null; then
     source <(ng completion script)
 fi
