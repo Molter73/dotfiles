@@ -30,16 +30,10 @@ seat * hide_cursor 3000
 
 include ~/.config/sway/input.conf
 include ~/.config/sway/output.conf
-include '~/.config/sway/catppuccin.conf'
+include ~/.config/sway/catppuccin.conf
 include ~/.config/sway/appearance.conf
 include ~/.config/sway/keybinds.conf
-
-# Workspaces
-assign [app_id=".*wezterm.*"] "1"
-assign [instance=".*slack.*"] "2"
-assign [app_id=".*teams.*"] "2"
-assign [instance="spotify.*"] "2"
-assign [app_id=".*firefox.*"] "3"
+include ~/.config/sway/workspaces.conf
 
 # Startup items
 exec $term
