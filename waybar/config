@@ -2,14 +2,17 @@
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces"],
+    "modules-left": [
+        "sway/workspaces",
+        "clock#madrid",
+        "clock#utc",
+    ],
     "modules-center": ["custom/music"],
     "modules-right": [
         "pulseaudio",
         "backlight",
         "battery",
         "cpu",
-        "clock",
         "bluetooth",
         "network",
         "tray",
@@ -38,11 +41,17 @@
         "on-click": "playerctl play-pause",
         "max-length": 50
     },
-    "clock": {
+    "clock#madrid": {
         "timezone": "Europe/Madrid",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": " {:%d/%m/%Y}",
         "format": " {:%H:%M}"
+    },
+    "clock#utc": {
+        "timezone": "UTC",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": " {:%d/%m/%Y}",
+        "format": "󰥔 {:%H:%M}"
     },
     "cpu": {
         "interval": 1,

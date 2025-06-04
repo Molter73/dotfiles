@@ -53,6 +53,14 @@
 
 #clock {
     color: @blue;
+}
+
+#clock.madrid {
+    border-radius: 1rem 0px 0px 1rem;
+    margin-left: 1rem;
+}
+
+#clock.utc {
     border-radius: 0px 1rem 1rem 0px;
     margin-right: 1rem;
 }
@@ -69,6 +77,8 @@
 
 #cpu {
     color: @yellow;
+    border-radius: 0px 1rem 1rem 0px;
+    margin-right: 1rem;
 }
 
 #network {
