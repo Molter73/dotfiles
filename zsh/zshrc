@@ -118,4 +118,4 @@ if command -v ng > /dev/null; then
 fi
 
 # run fastfetch
-fastfetch
+[ -x fastfetch ] && fastfetch

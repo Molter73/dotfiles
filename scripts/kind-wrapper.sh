@@ -5,13 +5,23 @@ set -euo pipefail
 source "${GOPATH}/src/github.com/molter73/dotfiles/scripts/container-registry.sh"
 
 function usage() {
-    echo "$0 <METHOD> <CLUSTER>"
+    echo "$0 <OPTIONS> <METHOD> [CLUSTER]"
     echo ""
-    echo "METHOD - One of the following:"
-    echo "  create	Create a kind cluster"
-    echo "  delete	Delete a kind cluster"
-    echo "  status	Check if the cluster has already been created"
-    echo "  get_token	Get a token for authenticating to the k8s dashboard"
+    echo "OPTIONS"
+    echo "  -c, --connection"
+    echo "      The podman connection to be used for the cluster (default: root)."
+    echo "  -h, --help"
+    echo "      Show this message and exit."
+    echo ""
+    echo "METHOD"
+    echo "  create"
+    echo "      Create a kind cluster."
+    echo "  delete"
+    echo "      Delete a kind cluster"
+    echo "  status"
+    echo "      Check if the cluster has already been created"
+    echo "  get_token"
+    echo "      Get a token for authenticating to the k8s dashboard"
     echo ""
     echo "CLUSTER - The name of the cluster to interact with (default: kind)"
 }
@@ -181,6 +191,38 @@ function get_token() {
     kubectl -n kubernetes-dashboard create token admin-user
 }
 
+TEMP=$(getopt -o 'hc:' -l 'help,connection' -n "$0" -- "$@")
+
+# shellcheck disable=SC2181
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+
+eval set -- "$TEMP"
+unset TEMP
+
+# Container connection for podman to use
+export CONTAINER_CONNECTION=root
+
+while true; do
+    case "${1:-}" in
+        '-h' | '--help')
+            usage
+            exit 0
+            ;;
+
+        '-c' | '--connection')
+            CONTAINER_CONNECTION="$2"
+            shift 2
+            ;;
+
+        '--')
+            shift
+            break
+            ;;
+    esac
+done
+
 if (($# == 0)); then
     echo >&2 "At least one parameter must be supplied"
     usage
@@ -203,10 +245,6 @@ case "${METHOD}" in
         ;;
     "get_token")
         get_token
-        ;;
-    "-h" | "--help")
-        usage
-        exit 0
         ;;
     *)
         echo >&2 "Unknow option '${METHOD}'"

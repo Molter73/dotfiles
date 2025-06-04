@@ -23,8 +23,6 @@ export KUBE_EDITOR="nvim"
 
 # OSCI stuff
 export CONTAINER_ENGINE=podman
-export CONTAINER_CONNECTION=dev
-export DOCKER_HOST=unix:///var/run/docker.sock
 
 # ansible config
 export ANSIBLE_COW_SELECTION=dragon-and-cow
