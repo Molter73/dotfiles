@@ -16,6 +16,8 @@ return {
             ['<C-j>'] = { '<Cmd>TmuxNavigateDown<Cr>' },
             ['<C-k>'] = { '<Cmd>TmuxNavigateUp<Cr>' },
             ['<C-l>'] = { '<Cmd>TmuxNavigateRight<Cr>' },
+            ['<C-u>'] = { 'actions.preview_scroll_up' },
+            ['<C-d>'] = { 'actions.preview_scroll_down' },
             ['<C-v>'] = { 'actions.select', opts = { vertical = true } },
         },
         float = {

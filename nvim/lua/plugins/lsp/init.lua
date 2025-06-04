@@ -81,7 +81,6 @@ return {
             require('plugins.lsp.rust')
 
             -- LSPs with simple configurations
-            lsp_config('basedpyright')
             lsp_config('bashls')
             lsp_config('cssls', utils.capabilities.snippetSupport)
             lsp_config('gopls')
@@ -108,7 +107,17 @@ return {
                 init_options = { sessionToken = "" },
             })
 
+            vim.lsp.config('basedpyright', {
+                on_attach = utils.on_attach,
+                cmd = {
+                    'uvx',
+                    '--from', 'basedpyright',
+                    'basedpyright-langserver', '--stdio'
+                },
+            })
+
             vim.lsp.enable({
+                'basedpyright',
                 'gh_actions_ls',
                 'yamlls',
             })

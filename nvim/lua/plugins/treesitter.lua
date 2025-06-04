@@ -32,6 +32,7 @@ return {
                 'java',
                 'javascript',
                 'json',
+                'just',
                 'latex',
                 'lua',
                 'make',

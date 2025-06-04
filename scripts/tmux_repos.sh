@@ -10,6 +10,8 @@ pick_dir() {
             --border=double \
             --border-label=" repos " \
             --border-label-pos=10 \
+            --bind 'ctrl-d:preview-half-page-down' \
+            --bind 'ctrl-u:preview-half-page-up' \
             --preview="[ -f {}README.md ] && bat \
                 --color=always \
                 --wrap=never \

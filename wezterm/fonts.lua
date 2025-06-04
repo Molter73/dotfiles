@@ -1,6 +1,6 @@
 return {
     firacode = {
-        family = 'FiraCode Nerd Font Mono',
+        family = 'FiraCode Nerd Font',
         weight = 'Medium',
         size = 12,
         harfbuzz = {

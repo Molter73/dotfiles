@@ -18,6 +18,15 @@ return {
                 rg_opts =
                 "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --hidden --iglob '!.git/' -e"
             },
+            keymap = {
+                builtin = {
+                    ['<C-d>'] = 'preview-half-page-down',
+                    ['<C-u>'] = 'preview-half-page-up',
+                },
+                fzf = {
+                    ['ctrl-q'] = 'select-all+accept',
+                },
+            },
         })
         require('fzf-lua').register_ui_select()
     end,
