@@ -1,0 +1,14 @@
+- name: Install sway and friends
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - blueman
+      - grim
+      - mako
+      - pavucontrol
+      - ranger
+      - rofi-wayland
+      - slurp
+      - sway
+      - waybar
+    state: latest

@@ -1,0 +1,23 @@
+- name: Get latest stable version of k8s
+  ansible.builtin.shell: curl -Ls https://dl.k8s.io/release/stable.txt | cut -d. -f1,2
+  register: k8s_version
+
+- name: Setup kubernetes repo
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/yum.repos.d/kubernetes.repo
+    mode: '644'
+    content: |
+      [kubernetes]
+      name=Kubernetes
+      baseurl=https://pkgs.k8s.io/core:/stable:/{{ k8s_version.stdout }}/rpm/
+      enabled=1
+      gpgcheck=1
+      gpgkey=https://pkgs.k8s.io/core:/stable:/{{ k8s_version.stdout }}/rpm/repodata/repomd.xml.key
+
+- name: Install kubectl
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - kubectl
+    state: latest

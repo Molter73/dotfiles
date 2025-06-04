@@ -1,0 +1,61 @@
+- name: Add podman group
+  become: true
+  ansible.builtin.group:
+    name: podman
+    state: present
+
+- name: Add user to podman group
+  become: true
+  ansible.builtin.user:
+    name: "{{ lookup('env', 'USER') }}"
+    groups: podman
+    append: true
+
+- name: Change permissions to podman socket
+  become: true
+  ansible.builtin.copy:
+    content: D! /run/podman 0770 root podman
+    dest: /etc/tmpfiles.d/podman.conf
+    mode: '644'
+
+- name: Create systemd podman.socket override directory
+  become: true
+  ansible.builtin.file:
+    path: /etc/systemd/system/podman.socket.d
+    state: directory
+    mode: '0744'
+
+- name: Override systemd configuration
+  become: true
+  ansible.builtin.copy:
+    content: |
+      [Socket]
+      SocketUser=root
+      SocketGroup=podman
+    dest: /etc/systemd/system/podman.socket.d/override.conf
+    mode: '0644'
+
+- name: Ensure podman service is up and running
+  become: true
+  ansible.builtin.systemd_service:
+    name: podman
+    enabled: true
+    state: started
+
+- name: Create podman context
+  ansible.builtin.command: |
+    podman system connection add root unix:///run/podman/podman.sock
+
+- name: Enable podman API
+  become: true
+  ansible.builtin.systemd_service:
+    name: podman.socket
+    enabled: true
+    state: started
+
+- name: Disable podman relabeling of mounts
+  become: true
+  ansible.builtin.lineinfile:
+    path: /usr/share/containers/containers.conf
+    regexp: '^# label ='
+    line: label = false

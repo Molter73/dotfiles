@@ -1,0 +1,13 @@
+---
+- name: Provision workstation
+  hosts: all
+
+  roles:
+    - utilities
+    - kubectl
+    - sway
+    - catppuccin
+    - firacode
+    - dotfiles
+    - lsp
+    - rootfull-podman

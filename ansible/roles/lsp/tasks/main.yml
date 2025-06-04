@@ -1,0 +1,91 @@
+- name: Install LSPs from DNF
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - clang-tools-extra
+      - golang-x-tools-gopls
+      - python3-flake8
+      - python3-autopep8
+      - python3-ansible-lint
+      - hadolint
+      - shfmt
+      - shellcheck
+    state: latest
+  tags:
+    - dnf
+
+- name: Install yamlls
+  community.general.npm:
+    name: yaml-language-server
+    global: true
+    state: latest
+  tags:
+    - npm
+
+- name: Install bashls
+  community.general.npm:
+    name: bash-language-server
+    global: true
+    state: latest
+  tags:
+    - npm
+
+- name: Install ansiblels
+  community.general.npm:
+    name: '@ansible/ansible-language-server'
+    global: true
+    state: latest
+  tags:
+    - npm
+
+- name: Install vscode language servers
+  community.general.npm:
+    name: vscode-langservers-extracted
+    global: true
+    state: latest
+  tags:
+    - npm
+
+- name: Install GH actions language server
+  community.general.npm:
+    name: gh-actions-language-server
+    global: true
+    state: latest
+  tags:
+    - npm
+
+- name: Install actionlint
+  ansible.builtin.command:
+    cmd: go install github.com/rhysd/actionlint/cmd/actionlint@latest
+    creates: "{{ lookup('env', 'GOPATH') }}/bin/actionlint"
+  tags:
+    - go
+
+- name: Install texlab
+  ansible.builtin.command:
+    cmd: cargo install --git https://github.com/latex-lsp/texlab --locked --tag v5.21.0
+  tags:
+    - cargo
+
+- name: Install neocmake
+  ansible.builtin.command:
+    cmd: cargo install neocmakelsp
+  tags:
+    - cargo
+
+- name: Install jdtls
+  ansible.builtin.include_role:
+    name: install-jdtls
+  vars:
+    jdtls_dir: "{{ lsp_dir + '/jdtls' }}"
+  tags:
+    - jdtls
+
+- name: Install LuaLS
+  ansible.builtin.include_role:
+    name: install-luals
+  vars:
+    luals_dir: "{{ lsp_dir + '/luals' }}"
+  tags:
+    - luals
+
