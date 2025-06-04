@@ -3,8 +3,10 @@
 set -o pipefail
 
 pick_dir() {
-    fd . "${GOPATH}/src/" --type d --max-depth 3 --min-depth 3 \
-        | fzf \
+    {
+        echo "#scratch"
+        fd . "${GOPATH}/src/" --type d --max-depth 3 --min-depth 3
+    } | fzf \
             --tmux "75%" \
             --reverse \
             --border=double \
@@ -44,6 +46,10 @@ fi
 
 selected_name=$(basename "$DIR" | tr . _)
 tmux_running=$(pgrep tmux)
+
+if [[ "$selected_name" == "#scratch" ]]; then
+    DIR="$(mktemp  -d)"
+fi
 
 if [[ -z $tmux_running ]]; then
     new_session "$selected_name" "$DIR"
