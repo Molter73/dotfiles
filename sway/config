@@ -23,8 +23,9 @@ set $screenclip "~/.local/bin/screenshot -c"
 
 # idle configuration
 exec swayidle -w \
-         timeout 300 'swaylock -f' \
+         timeout 900 'swaylock -f' \
          before-sleep 'swaylock -f'
+for_window [app_id="org.mozilla.firefox" title="Meet - .*-.*-.*"] inhibit_idle visible
 
 seat * hide_cursor 3000
 

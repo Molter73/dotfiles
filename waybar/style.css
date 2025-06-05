@@ -34,41 +34,52 @@
     border-radius: 1rem;
 }
 
-#custom-music,
-#tray,
-#backlight,
 #clock,
+#custom-music,
+#pulseaudio,
+#backlight,
 #battery,
 #cpu,
-#pulseaudio,
 #bluetooth,
 #network,
+#tray,
 #custom-updates,
 #custom-lock,
 #custom-power {
     background-color: @surface0;
     padding: 0.5rem 1rem;
-    margin: 5px 0;
+    margin: 5px 0px;
+}
+
+#clock.madrid,
+#bluetooth,
+#pulseaudio,
+#custom-lock {
+    border-radius: 1rem 0px 0px 1rem;
+    margin-left: 0.5rem;
+}
+
+#clock.utc,
+#cpu,
+#network,
+#custom-power {
+    border-radius: 0px 1rem 1rem 0px;
+    margin-right: 0.5rem;
+}
+
+#custom-updates,
+#tray {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    border-radius: 1rem;
 }
 
 #clock {
     color: @blue;
 }
 
-#clock.madrid {
-    border-radius: 1rem 0px 0px 1rem;
-    margin-left: 1rem;
-}
-
-#clock.utc {
-    border-radius: 0px 1rem 1rem 0px;
-    margin-right: 1rem;
-}
-
 #bluetooth {
     color: @overlay1;
-    border-radius: 1rem 0px 0px 1rem;
-    margin-left: 1rem;
 }
 
 #bluetooth.connected {
@@ -77,14 +88,10 @@
 
 #cpu {
     color: @yellow;
-    border-radius: 0px 1rem 1rem 0px;
-    margin-right: 1rem;
 }
 
 #network {
     color: @overlay1;
-    border-radius: 0px 1rem 1rem 0px;
-    margin-right: 1rem;
 }
 
 #network.linked {
@@ -117,8 +124,6 @@
 
 #pulseaudio {
     color: @maroon;
-    border-radius: 1rem 0px 0px 1rem;
-    margin-left: 1rem;
 }
 
 #custom-music {
@@ -127,27 +132,14 @@
 }
 
 #custom-lock {
-    border-radius: 1rem 0px 0px 1rem;
     color: @lavender;
 }
 
 #custom-power {
-    margin-right: 1rem;
-    border-radius: 0px 1rem 1rem 0px;
     color: @red;
-}
-
-#custom-updates {
-    margin-right: 1rem;
-    border-radius: 1rem;
 }
 
 #custom-updates.critical {
     background-color: @red;
     color: @base;
-}
-
-#tray {
-    margin-right: 1rem;
-    border-radius: 1rem;
 }
