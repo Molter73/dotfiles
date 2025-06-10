@@ -38,6 +38,7 @@ create_symlink collector-gdb.sh cgdb
 create_symlink watch-run.sh wrun
 create_symlink screenshot.sh
 create_symlink dnf-check-update.sh
+create_symlink player-status.sh
 
 # Install NeoVim treesitter queries for c3
 if [[ ! -e "${NVIM_QUERIES}/c3/highlight.scm" ]]; then
