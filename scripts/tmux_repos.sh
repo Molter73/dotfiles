@@ -28,7 +28,7 @@ new_session() {
     tmux new-window -dt "${1}" -c "${2}"
     tmux split-window -dt "${1}:2" -h -c "${2}"
     tmux split-window -dt "${1}:2.1" -v -c "${2}"
-    tmux send-key -t "${1}:2.1" "htop" Enter
+    tmux send-key -t "${1}:2.1" "btop" Enter
 }
 
 if [[ -n $TMUX ]]; then
