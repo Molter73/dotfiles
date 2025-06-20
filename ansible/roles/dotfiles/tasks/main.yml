@@ -82,11 +82,5 @@
     dest: "{{ dotfiles_xdg_config + '/waybar' }}"
     state: link
 
-- name: Link fastfetch configuration
-  ansible.builtin.file:
-    src: "{{ dotfiles_repo + '/fastfetch' }}"
-    dest: "{{ dotfiles_xdg_config + '/fastfetch' }}"
-    state: link
-
 - name: Install script-kiddie stuff
   ansible.builtin.command: "{{ dotfiles_repo + '/scripts/install.sh' }}"

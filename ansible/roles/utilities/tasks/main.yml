@@ -8,7 +8,6 @@
       - cmake
       - container-selinux
       - cowsay
-      - fastfetch
       - fd-find
       - fzf
       - glibc-devel.i686
