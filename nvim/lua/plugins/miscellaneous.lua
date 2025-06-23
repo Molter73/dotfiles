@@ -27,4 +27,8 @@ return {
             require('vim-zellij-navigator').setup()
         end
     },
+    {
+        'elkowar/yuck.vim',
+        enabled = false,
+    },
 }
