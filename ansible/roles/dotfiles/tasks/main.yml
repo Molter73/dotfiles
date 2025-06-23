@@ -64,10 +64,10 @@
     dest: "{{ dotfiles_xdg_config + '/sway' }}"
     state: link
 
-- name: Link mako configuration
+- name: Link swaync configuration
   ansible.builtin.file:
-    src: "{{ dotfiles_repo + '/mako' }}"
-    dest: "{{ dotfiles_xdg_config + '/mako' }}"
+    src: "{{ dotfiles_repo + '/swaync' }}"
+    dest: "{{ dotfiles_xdg_config + '/swaync' }}"
     state: link
 
 - name: Link rofi configuration

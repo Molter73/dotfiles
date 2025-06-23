@@ -25,7 +25,6 @@ set $screenclip "~/.local/bin/screenshot -c"
 exec swayidle -w \
          timeout 900 'swaylock -f' \
          before-sleep 'swaylock -f'
-for_window [app_id="org.mozilla.firefox" title="Meet - .*-.*-.*"] inhibit_idle visible
 
 seat * hide_cursor 3000
 
@@ -38,7 +37,7 @@ include ~/.config/sway/workspaces.conf
 
 # Startup items
 exec $term
-exec mako
+exec swaync
 exec slack
 exec spotify
 exec firefox

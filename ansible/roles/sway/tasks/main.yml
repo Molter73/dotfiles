@@ -4,11 +4,11 @@
     name:
       - blueman
       - grim
-      - mako
       - pavucontrol
       - ranger
       - rofi-wayland
       - slurp
       - sway
+      - SwayNotificationCenter
       - waybar
     state: latest

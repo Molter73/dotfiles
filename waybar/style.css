@@ -43,6 +43,7 @@
 #bluetooth,
 #network,
 #tray,
+#custom-notification,
 #custom-updates,
 #custom-lock,
 #custom-power {
@@ -67,6 +68,7 @@
     margin-right: 0.5rem;
 }
 
+#custom-notification,
 #custom-updates,
 #tray {
     margin-right: 0.5rem;
