@@ -69,7 +69,8 @@ COLLECTOR_TAG="$(make tag)"
 COLLECTOR_IMAGE="quay.io/stackrox-io/collector:${COLLECTOR_TAG}"
 
 make image-dev
-kind load docker-image "${COLLECTOR_IMAGE}"
+podman save "${COLLECTOR_IMAGE}" > /tmp/collector.tar
+CONTAINER_CONNECTION=root kind load image-archive /tmp/collector.tar
 kubectl -n stackrox patch ds collector -p "$(patch_image)"
 if [[ "${HOTRELOAD}" == "true" ]]; then
     kubectl -n stackrox patch ds collector -p "$(patch_hotreload)"
