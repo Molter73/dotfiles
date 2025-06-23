@@ -54,7 +54,7 @@ return {
         config = function()
             local cat = require('catppuccin.palettes').get_palette('mocha')
             opts.custom_highlights = {
-                LspInlayHint = { bg = 'bg' }, -- Regular background color for inlay hints
+                -- LspInlayHint = { bg = 'bg' }, -- Regular background color for inlay hints
                 ['@character.printf'] = { fg = cat.peach },
             }
             require('catppuccin').setup(opts)

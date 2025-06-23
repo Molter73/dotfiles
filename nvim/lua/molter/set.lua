@@ -1,6 +1,6 @@
 -- Options
 -- Enables the clipboard between Vim/Neovim and other applications.
--- vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamedplus'
 -- Modifies the auto-complete menu to behave more like an IDE.
 vim.opt.completeopt = 'noinsert,menuone,noselect'
 vim.opt.shortmess:append('c')

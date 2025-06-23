@@ -122,14 +122,6 @@ return {
                 'yamlls',
             })
 
-            vim.api.nvim_create_user_command('LspStop', function(arguments)
-                local filter = { bufnr = vim.api.nvim_get_current_buf() }
-                if arguments.fargs[1] then
-                    filter.name = arguments.fargs[1]
-                end
-                vim.lsp.stop_client(vim.lsp.get_clients(filter))
-            end, { desc = 'My LspStop', nargs = '?' })
-
             -- LSP specific autocommands
             local lspau = vim.api.nvim_create_augroup("LSP", { clear = true })
             formatter(lspau)
