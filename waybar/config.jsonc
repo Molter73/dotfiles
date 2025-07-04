@@ -26,7 +26,8 @@
          "sort-by-name": true,
          "format": " {icon} ",
          "format-icons": {
-             "default": "",
+             "default": "",
+            "focused": "",
          },
      },
     "tray": {

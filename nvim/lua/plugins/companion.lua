@@ -1,30 +1,32 @@
+local adapter = nil
+if os.getenv('GEMINI_API_KEY') ~= nil then
+    adapter = 'gemini'
+elseif os.getenv('CODECOMPANION_URL') ~= nil then
+    adapter = 'granite'
+end
+
 return {
     {
-        "ravitemer/mcphub.nvim",
-        enabled = false,
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        build = "npm install -g mcp-hub@latest",
-        lazy = true,
-        config = function()
-            require("mcphub").setup()
-        end
-    },
-    {
-        "olimorris/codecompanion.nvim",
-        enabled = false,
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
-            "ravitemer/mcphub.nvim",
-        },
-        cond = function(_)
-            return os.getenv('CODECOMPANION_URL') ~= nil
+        'olimorris/codecompanion.nvim',
+        enabled = function()
+            return adapter ~= nil
         end,
+        lazy = true,
+        dependencies = {
+            { 'nvim-lua/plenary.nvim', version = false },
+            'nvim-treesitter/nvim-treesitter',
+            'saghen/blink.cmp',
+        },
         opts = {
+            opts = {
+                log_level = 'DEBUG',
+            },
             adapters = {
                 granite = function()
+                    if os.getenv('CODECOMPANION_URL') == nil then
+                        return nil
+                    end
+
                     return require('codecompanion.adapters').extend('openai_compatible', {
                         env = {
                             url = os.getenv('CODECOMPANION_URL'),
@@ -34,20 +36,13 @@ return {
             },
             strategies = {
                 inline = {
-                    adapter = 'granite',
+                    adapter = adapter,
                 },
                 chat = {
-                    adapter = 'granite',
+                    adapter = adapter,
                 },
-            },
-            extensions = {
-                mcphub = {
-                    callback = "mcphub.extensions.codecompanion",
-                    opts = {
-                        show_result_in_chat = true, -- Show mcp tool results in chat
-                        make_vars = true,           -- Convert resources to #variables
-                        make_slash_commands = true, -- Add prompts as /slash commands
-                    },
+                cmd = {
+                    adapter = adapter,
                 },
             },
         },

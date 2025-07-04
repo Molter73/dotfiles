@@ -75,3 +75,8 @@ export FZF_DEFAULT_OPTS=" \
 --color=border:#313244,label:#cdd6f4"
 
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+
+# Gemini
+if [[ -f ~/.gemini ]]; then
+    source ~/.gemini
+fi
