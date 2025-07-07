@@ -8,7 +8,7 @@ end
 return {
     {
         'olimorris/codecompanion.nvim',
-        enabled = function()
+        cond = function()
             return adapter ~= nil
         end,
         lazy = true,
