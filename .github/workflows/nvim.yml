@@ -20,7 +20,7 @@ jobs:
           # Install NeoVim
           curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && \
           tar -C /opt -xzf nvim-linux-x86_64.tar.gz && \
-          PATH="$/opt/nvim-linux-x86_64:$PATH" nvim --headless "+Lazy! sync" +qa
+          PATH="/opt/nvim-linux-x86_64:$PATH" nvim --headless "+Lazy! sync" +qa
 
       - name: Create PR
         uses: peter-evans/create-pull-request@v5
