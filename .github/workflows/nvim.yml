@@ -16,10 +16,12 @@ jobs:
 
       - name: Update neovim plugins
         run: |
-          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-          brew update
-          brew install neovim
-          nvim --headless "+Lazy! sync" +qa
+          # Install NeoVim
+          mkdir -p /tmp/nvim
+          cd /tmp/nvim
+          curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && \
+          tar -C . -xzf nvim-linux-x86_64.tar.gz && \
+          /tmp/nvim/nvim-linux-x86_64/bin/nvim --headless "+Lazy! sync" +qa
 
       - name: Create PR
         uses: peter-evans/create-pull-request@v5
