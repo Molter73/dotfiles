@@ -18,9 +18,11 @@ jobs:
       - name: Update neovim plugins
         run: |
           # Install NeoVim
+          mkdir -p /tmp/nvim
+          cd /tmp/nvim
           curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && \
-          tar -C /opt -xzf nvim-linux-x86_64.tar.gz && \
-          PATH="/opt/nvim-linux-x86_64:$PATH" nvim --headless "+Lazy! sync" +qa
+          tar -C . -xzf nvim-linux-x86_64.tar.gz && \
+          PATH="/tmp/nvim/nvim-linux-x86_64:$PATH" nvim --headless "+Lazy! sync" +qa
 
       - name: Create PR
         uses: peter-evans/create-pull-request@v5
