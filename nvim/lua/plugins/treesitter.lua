@@ -12,6 +12,8 @@ return {
         build = ':TSUpdate',
         event = 'BufReadPost',
         version = false,
+        lazy = false,
+        branch = 'main',
         opts = {
             ensure_installed = {
                 'bash',
@@ -62,10 +64,8 @@ return {
                 enable = true,
             },
         },
-        config = function(_, opts)
-            require('nvim-treesitter.configs').setup(opts)
-            local parsers_config = require('nvim-treesitter.parsers').get_parser_configs()
-            parsers_config.c3 = {
+        config = function(_, _)
+            require('nvim-treesitter.parsers').c3 = {
                 install_info = {
                     url = 'https://github.com/c3lang/tree-sitter-c3',
                     files = { 'src/parser.c', 'src/scanner.c' },
