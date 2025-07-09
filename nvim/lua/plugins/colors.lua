@@ -43,6 +43,7 @@ local opts = {
         },
         telescope = true,
         treesitter = true,
+        treesitter_context = true,
         which_key = true,
     }
 }

@@ -16,6 +16,7 @@ return {
             { 'nvim-lua/plenary.nvim', version = false },
             'nvim-treesitter/nvim-treesitter',
             'saghen/blink.cmp',
+            'franco-ruggeri/codecompanion-spinner.nvim',
         },
         opts = {
             opts = {
@@ -55,5 +56,13 @@ return {
             { '<Leader>aa', '<cmd>CodeCompanionActions<cr>' },
             { '<Leader>ac', '<cmd>CodeCompanionChat<cr>' },
         },
+    },
+    {
+        'franco-ruggeri/codecompanion-spinner.nvim',
+        dependencies = {
+            'olimorris/codecompanion.nvim',
+            'nvim-lua/plenary.nvim',
+        },
+        opts = {},
     },
 }
