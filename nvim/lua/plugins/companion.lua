@@ -46,6 +46,9 @@ return {
                     adapter = adapter,
                 },
             },
+            extensions = {
+                spinner = {},
+            },
         },
         cmd = {
             'CodeCompanion',
@@ -56,13 +59,5 @@ return {
             { '<Leader>aa', '<cmd>CodeCompanionActions<cr>' },
             { '<Leader>ac', '<cmd>CodeCompanionChat<cr>' },
         },
-    },
-    {
-        'franco-ruggeri/codecompanion-spinner.nvim',
-        dependencies = {
-            'olimorris/codecompanion.nvim',
-            'nvim-lua/plenary.nvim',
-        },
-        opts = {},
     },
 }
