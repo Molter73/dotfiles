@@ -1,29 +1,30 @@
-vim.filetype.add({
-    extension = {
-        c3 = 'c3',
-        c3i = 'c3',
-        c3t = 'c3',
-    },
-})
-
 local parsers = {
     'bash',
     'c',
+    'c3',
     'cmake',
     'comment',
     'cpp',
     'css',
+    'diff',
     'dockerfile',
     'doxygen',
     'editorconfig',
     'git_rebase',
+    'gitattributes',
+    'gitcommit',
     'gitignore',
     'go',
+    'gomod',
+    'gosum',
     'graphql',
     'helm',
     'html',
     'java',
     'javascript',
+    'jinja',
+    'jinja_inline',
+    'jq',
     'json',
     'jsonc',
     'just',
@@ -37,7 +38,9 @@ local parsers = {
     'printf',
     'proto',
     'python',
+    'rasi',
     'regex',
+    'requirements',
     'ruby', -- For Vagrantfile
     'rust',
     'sql',
@@ -70,13 +73,6 @@ return {
         branch = 'main',
         config = function(_, _)
             require('nvim-treesitter').install(parsers)
-            require('nvim-treesitter.parsers').c3 = {
-                install_info = {
-                    url = 'https://github.com/c3lang/tree-sitter-c3',
-                    files = { 'src/parser.c', 'src/scanner.c' },
-                    branch = 'main',
-                }
-            }
         end,
     },
     {
