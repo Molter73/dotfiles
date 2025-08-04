@@ -52,6 +52,7 @@ return {
     {
         'catppuccin/nvim',
         name = 'catppuccin',
+        pin = true,
         config = function()
             local cat = require('catppuccin.palettes').get_palette('mocha')
             opts.custom_highlights = {
