@@ -15,6 +15,8 @@ jobs:
           ln -s "${{ github.workspace }}/nvim" "${HOME}/.config/nvim"
 
       - name: Update neovim plugins
+        env:
+          CODECOMPANION_URL: mock_url
         run: |
           # Install NeoVim
           mkdir -p /tmp/nvim
