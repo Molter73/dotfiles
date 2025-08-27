@@ -37,3 +37,10 @@ vim.api.nvim_create_autocmd('VimLeave', {
         vim.cmd([[ call system('printf "\e[5 q" > $TTY') ]])
     end
 })
+
+-- Mark .Containerfile as dockerfile filetype
+vim.filetype.add({
+    pattern = {
+        ['.*/.*%.Containerfile'] = 'dockerfile',
+    }
+})
