@@ -23,17 +23,19 @@ return {
                 log_level = 'DEBUG',
             },
             adapters = {
-                granite = function()
-                    if os.getenv('CODECOMPANION_URL') == nil then
-                        return nil
-                    end
+                http = {
+                    granite = function()
+                        if os.getenv('CODECOMPANION_URL') == nil then
+                            return nil
+                        end
 
-                    return require('codecompanion.adapters').extend('openai_compatible', {
-                        env = {
-                            url = os.getenv('CODECOMPANION_URL'),
-                        },
-                    })
-                end
+                        return require('codecompanion.adapters').extend('openai_compatible', {
+                            env = {
+                                url = os.getenv('CODECOMPANION_URL'),
+                            },
+                        })
+                    end
+                },
             },
             strategies = {
                 inline = {
