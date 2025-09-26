@@ -16,6 +16,11 @@ export DOCKER_BUILDKIT=1
 
 # go variables
 export GOPATH="${HOME}/go"
+#   Restore default on Fedora 42 and older
+#   https://developer.fedoraproject.org/tech/languages/go/go-installation.html
+export GOPROXY="https://proxy.golang.org,direct"
+export GOSUMDB="sum.golang.org"
+export GOTOOLCHAIN="auto"
 
 # k3s cluster
 export KUBECONFIG="${XDG_CONFIG_HOME}/kube.yml"
