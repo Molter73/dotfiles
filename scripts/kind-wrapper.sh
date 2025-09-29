@@ -152,6 +152,8 @@ nodes:
   extraMounts:
   - hostPath: "${HOME}/go/src"
     containerPath: "${HOME}/go/src"
+  - hostPath: "/sys/kernel/security"
+    containerPath: "/sys/kernel/security"
 EOF
 
     add_local_registry
