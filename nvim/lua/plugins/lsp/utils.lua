@@ -125,7 +125,7 @@ M.on_attach = function(_, bufnr)
     set_keymap('i', '<C-s>', vim.lsp.buf.signature_help, 'Signature help', opts)
     set_keymap('n', '<Leader>D', vim.lsp.buf.type_definition, 'Go to type definition', opts)
     set_keymap('n', '<Leader>rn', vim.lsp.buf.rename, 'Rename symbol under cursor', opts)
-    set_keymap('n', '<Leader>ca', vim.lsp.buf.code_action, 'Code Action', opts)
+    set_keymap({ 'n', 'v' }, '<Leader>ca', vim.lsp.buf.code_action, 'Code Action', opts)
     set_keymap({ 'n', 'v' }, '<Leader>fr', function() M.format(true) end, 'Format buffer', opts)
 end
 

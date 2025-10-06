@@ -1,6 +1,6 @@
 local adapter = nil
 if os.getenv('GEMINI_API_KEY') ~= nil then
-    adapter = 'gemini'
+    adapter = 'gemini_cli'
 elseif os.getenv('CODECOMPANION_URL') ~= nil then
     adapter = 'granite'
 end
@@ -36,6 +36,15 @@ return {
                         })
                     end
                 },
+                acp = {
+                    gemini_cli = function()
+                        return require('codecompanion.adapters').extend('gemini_cli', {
+                            defaults = {
+                                auth_method = 'gemini-api-key',
+                            },
+                        })
+                    end
+                }
             },
             strategies = {
                 inline = {
