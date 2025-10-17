@@ -1,0 +1,29 @@
+#!/usr/bin/sh
+
+set -e
+
+changed_files="$(git diff --cached --name-only)"
+
+# Rust checks
+if echo "$changed_files" | grep -q -e "^fact" -e "^third_party"; then
+	make format-check
+
+	cargo build
+	cargo clippy -- -D warnings
+fi
+
+# eBPF checks
+if echo "$changed_files" | grep -q -e "^fact-ebpf"; then
+	cargo stest --features=bpf-test
+fi
+
+# Image build
+if echo "$changed_files" | grep -q -e "^Containerfile$"; then
+	# Test the image build
+	make image
+fi
+
+# GHA checks
+if git diff --cached --name-only | grep -q "^\.github/workflows"; then
+	actionlint
+fi

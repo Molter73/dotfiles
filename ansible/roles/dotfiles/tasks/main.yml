@@ -82,5 +82,11 @@
     dest: "{{ dotfiles_xdg_config + '/waybar' }}"
     state: link
 
+- name: Link cargo configuration
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo + '/cargo/config.toml' }}"
+    dest: "{{ home_dir + '/.cargo/config.toml' }}"
+    state: link
+
 - name: Install script-kiddie stuff
   ansible.builtin.command: "{{ dotfiles_repo + '/scripts/install.sh' }}"

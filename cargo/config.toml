@@ -1,0 +1,3 @@
+[alias]
+srun = ["run", "--config", 'target."cfg(all())".runner="sudo -E"']
+stest = ["test", "--config", 'target."cfg(all())".runner="sudo -E"']
