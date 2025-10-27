@@ -13,7 +13,7 @@ if echo "$changed_files" | grep -q -e "^fact" -e "^third_party"; then
 fi
 
 # eBPF checks
-if echo "$changed_files" | grep -q -e "^fact-ebpf"; then
+if echo "$changed_files" | grep -q -e "^fact-ebpf" -e "^fact/src/bpf"; then
 	cargo stest --features=bpf-test
 fi
 
@@ -25,5 +25,6 @@ fi
 
 # GHA checks
 if git diff --cached --name-only | grep -q "^\.github/workflows"; then
+	echo "Running actionlint..."
 	actionlint
 fi
