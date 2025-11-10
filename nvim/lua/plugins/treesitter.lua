@@ -50,6 +50,7 @@ local parsers = {
     'vimdoc',
     'yaml',
     'zig',
+    'zsh',
 }
 
 local langs = parsers
