@@ -27,7 +27,12 @@ local opts = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
         lualine_c = {
-            { 'filename' }
+            { 'filename' },
+            {
+                'lsp_progress',
+                display_components = { 'lsp_client_name', { 'percentage', 'message' } },
+                separators = { lsp_client_name = { pre = '', post = '' } },
+            },
         },
         lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
@@ -50,5 +55,8 @@ return {
         'nvim-lualine/lualine.nvim',
         event = 'VeryLazy',
         opts = opts,
+        dependencies = {
+            'arkav/lualine-lsp-progress',
+        },
     },
 }
