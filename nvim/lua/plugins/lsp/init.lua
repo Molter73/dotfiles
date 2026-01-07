@@ -95,6 +95,13 @@ return {
                 },
             })
 
+            vim.lsp.config('gh_actions_ls', {
+                cmd = {
+                    'actions-languageserver',
+                    '--stdio',
+                },
+            })
+
             vim.lsp.enable({
                 'basedpyright',
                 'bashls',

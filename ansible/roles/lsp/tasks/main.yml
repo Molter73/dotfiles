@@ -48,7 +48,7 @@
 
 - name: Install GH actions language server
   community.general.npm:
-    name: gh-actions-language-server
+    name: '@actions/languageserver'
     global: true
     state: latest
   tags:
