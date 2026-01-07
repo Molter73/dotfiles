@@ -58,16 +58,6 @@ local go_formatter = function(group)
     })
 end
 
-local lsp_config = function(name, caps)
-    local capabilities = caps or vim.lsp.protocol.make_client_capabilities()
-
-    vim.lsp.config(name, {
-        on_attach = utils.on_attach,
-        capabilities = capabilities,
-    })
-    vim.lsp.enable(name)
-end
-
 return {
     -- nvim LSP
     {
@@ -81,15 +71,9 @@ return {
             require('plugins.lsp.rust')
 
             -- LSPs with simple configurations
-            lsp_config('bashls')
-            lsp_config('cssls', utils.capabilities.snippetSupport)
-            lsp_config('gopls')
-            lsp_config('html', utils.capabilities.snippetSupport)
-            lsp_config('ocamllsp')
-
-            vim.lsp.config('neocmake', {
-                capabilities = utils.capabilities.snippetSupport,
-            })
+            vim.lsp.config('cssls', { capabilities = utils.capabilities.snippetSupport })
+            vim.lsp.config('html', { capabilities = utils.capabilities.snippetSupport })
+            vim.lsp.config('neocmake', { capabilities = utils.capabilities.snippetSupport })
 
             vim.lsp.config('yamlls', {
                 settings = {
@@ -99,11 +83,6 @@ return {
                         }
                     }
                 },
-                init_options = { sessionToken = "" },
-            })
-
-            vim.lsp.config('gh_actions_ls', {
-                filetypes = { 'yaml', 'yaml.github' },
                 init_options = { sessionToken = "" },
             })
 
@@ -118,7 +97,10 @@ return {
 
             vim.lsp.enable({
                 'basedpyright',
+                'bashls',
                 'gh_actions_ls',
+                'gopls',
+                'ocamllsp',
                 'yamlls',
             })
 

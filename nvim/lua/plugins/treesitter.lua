@@ -26,7 +26,6 @@ local parsers = {
     'jinja_inline',
     'jq',
     'json',
-    'jsonc',
     'just',
     'latex',
     'lua',
@@ -44,6 +43,7 @@ local parsers = {
     'ruby', -- For Vagrantfile
     'rust',
     'sql',
+    'sway',
     'tmux',
     'toml',
     'vim',
@@ -53,12 +53,8 @@ local parsers = {
     'zsh',
 }
 
-local langs = parsers
-table.insert(langs, 'yaml.github')
-table.insert(langs, 'codecompanion')
-
 vim.api.nvim_create_autocmd('FileType', {
-    pattern = langs,
+    pattern = parsers,
     callback = function()
         vim.treesitter.start()
         vim.bo.indentexpr = 'v:lua.require("nvim-treesitter").indentexpr()'
