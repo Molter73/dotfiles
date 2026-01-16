@@ -60,8 +60,10 @@ alias gwa="git worktree add"
 alias gwr="git worktree remove"
 
 # bat aliases
-alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
-alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+if command -v bat &> /dev/null; then
+    alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+    alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+fi
 
 # stackrox stuff
 if [[ -f "${HOME}/.infra" ]]; then
