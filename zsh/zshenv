@@ -26,14 +26,6 @@ export GOTOOLCHAIN="auto"
 export KUBECONFIG="${XDG_CONFIG_HOME}/kube.yml"
 export KUBE_EDITOR="nvim"
 
-# OCI stuff
-export CONTAINER_ENGINE=podman
-export CONTAINER_CONNECTION=root
-export DOCKER_HOST=unix:///var/run/docker.sock
-
-# ansible config
-export ANSIBLE_COW_SELECTION=dragon-and-cow
-
 # rustup shell setup
 # affix colons on either side of $PATH to simplify matching
 case ":${PATH}:" in
@@ -43,9 +35,6 @@ case ":${PATH}:" in
         export PATH="$HOME/.cargo/bin:$PATH"
         ;;
 esac
-
-# collector builder
-export COLLECTOR_BUILDER_NAME=devcontainers-collector-builder
 
 # Path adjustments
 #   Stackrox workflow scripts
@@ -66,11 +55,6 @@ if [[ -d /opt/nvim-linux-x86_64/bin ]]; then
     export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 fi
 
-if command -v bat > /dev/null; then
-    # Use bat for colorizing man pages
-    export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
-fi
-
 # Set catppuccin for fzf colors
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,spinner:#f5e0dc,hl:#f38ba8 \
@@ -84,4 +68,9 @@ export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 # Gemini
 if [[ -f ~/.gemini-key ]]; then
     source ~/.gemini-key
+fi
+
+# Variables for dedicated hosts
+if [[ -f "$ZSH/localenv" ]]; then
+    source "$ZSH/localenv"
 fi

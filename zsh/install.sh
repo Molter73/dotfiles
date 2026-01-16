@@ -60,6 +60,11 @@ if [[ ! -d "${PLUGINS_DIR}/bat" ]]; then
     ln -s "${SCRIPTPATH}/plugins/bat.zsh" "${PLUGINS_DIR}/bat/bat.zsh"
 fi
 
+# Workstation env variables
+if [[ ! -e "${ZSH}/.localenv" ]]; then
+    ln -s "${SCRIPTPATH}/localenv" "${ZSH}/localenv"
+fi
+
 # Install the .zshrc file
 if [[ ! -e "${HOME}/.zshrc" ]]; then
     ln -s "${SCRIPTPATH}/zshrc" "${HOME}/.zshrc"

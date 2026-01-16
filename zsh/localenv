@@ -1,0 +1,18 @@
+# vi: ft=zsh
+# Environment variables for workstation use only
+
+# OCI stuff
+export CONTAINER_ENGINE=podman
+export CONTAINER_CONNECTION=root
+export DOCKER_HOST=unix:///var/run/docker.sock
+
+# ansible config
+export ANSIBLE_COW_SELECTION=dragon-and-cow
+
+# collector builder
+export COLLECTOR_BUILDER_NAME=devcontainers-collector-builder
+
+if command -v bat > /dev/null; then
+    # Use bat for colorizing man pages
+    export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
+fi
