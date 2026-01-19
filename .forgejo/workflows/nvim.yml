@@ -1,0 +1,42 @@
+name: Update neovim dependencies
+on:
+  schedule:
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+jobs:
+  update-nvim:
+    runs-on: fedora-x86
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup nvim configuration directory
+        run: |
+          mkdir -p "${HOME}/.config"
+          ln -s "${{ github.workspace }}/nvim" "${HOME}/.config/nvim"
+
+      - name: Update neovim plugins
+        env:
+          CODECOMPANION_URL: mock_url
+        run: |
+          # Install NeoVim
+          mkdir -p /tmp/nvim
+          cd /tmp/nvim
+          curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && \
+          tar -C . -xzf nvim-linux-x86_64.tar.gz && \
+          /tmp/nvim/nvim-linux-x86_64/bin/nvim --headless "+Lazy! sync" +qa
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v5
+        id: cpr
+        with:
+          token: '${{ secrets.REPO_EDIT_TOKEN }}'
+          commit-message: Update NeoVim plugins
+          branch: update-plugins
+          base: main
+          signoff: false
+          delete-branch: true
+          title: Update NeoVim plugins
+          body: |
+            Weekly update of NeoVim plugins.
+          draft: false
