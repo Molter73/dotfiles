@@ -1,8 +1,9 @@
 local opts = {
     settings = {
         ['rust-analyzer'] = {
-            checkOnSave = {
+            check = {
                 command = 'clippy',
+                features = 'all',
             },
         },
     },
