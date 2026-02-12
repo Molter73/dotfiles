@@ -1,6 +1,6 @@
 local adapter = nil
 if os.getenv('GEMINI_API_KEY') ~= nil then
-    adapter = 'gemini_cli'
+    adapter = 'gemini'
 elseif os.getenv('CODECOMPANION_URL') ~= nil then
     adapter = 'granite'
 end
