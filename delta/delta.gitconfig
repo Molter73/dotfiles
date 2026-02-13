@@ -1,13 +1,12 @@
 [include]
     path = catppuccin.gitconfig
 [core]
-    pager = delta
+    pager = DELTA_FEATURES=$([[ ${COLUMNS:-$(tput cols)} -gt 160 ]] && echo "+side-by-side" || echo "+") delta
 [interactive]
     diffFilter = delta --color-only
 [delta]
     navigate = true    # use n and N to move between diff sections
     features = catppuccin-mocha
     line-numbers = true
-    side-by-side = true
 [merge]
     conflictStyle = zdiff3
