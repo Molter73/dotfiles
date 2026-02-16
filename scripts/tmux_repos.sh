@@ -6,6 +6,7 @@ pick_dir() {
     {
         echo "#scratch"
         fd . "${GOPATH}/src/" --type d --max-depth 3 --min-depth 3
+        fd . "${HOME}/worktrees/" --type d --max-depth 2 --min-depth 2
     } | fzf \
             --tmux "75%" \
             --reverse \
@@ -45,6 +46,14 @@ if [[ -z $DIR ]]; then
 fi
 
 selected_name=$(basename "$DIR" | tr . _)
+if [[ "$DIR" == "${HOME}/worktrees"* ]]; then
+    # worktrees will have a session name holding the project name and
+    # its subdirectory to prevent collisions
+    project="$(basename "$(dirname "$DIR")")"
+    branch="$(basename "$DIR")"
+    selected_name="${project}-${branch}"
+fi
+
 tmux_running=$(pgrep tmux)
 
 if [[ "$selected_name" == "#scratch" ]]; then
