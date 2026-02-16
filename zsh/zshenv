@@ -36,6 +36,12 @@ case ":${PATH}:" in
         ;;
 esac
 
+# If inside a worktree, share the Cargo target directory to save space
+# and build time.
+if [[ "$PWD" == "${HOME}/worktrees"* ]]; then
+    export CARGO_TARGET_DIR="$PWD/../target"
+fi
+
 # Path adjustments
 #   Stackrox workflow scripts
 export PATH="$PATH:${HOME}/go/src/github.com/stackrox/workflow/bin"
