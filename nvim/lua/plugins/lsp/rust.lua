@@ -17,7 +17,7 @@ local opts = {
 }
 
 local cwd = vim.fn.getcwd()
-if string.match(cwd, 'github%.com/molter73/fact$', 1) then
+if string.match(cwd, 'github%.com/molter73/fact$', 1) or string.match(cwd, 'worktrees/fact/', 1) then
     opts.settings['rust-analyzer'].cargo = {
         features = {
             'bpf-test',
