@@ -53,6 +53,7 @@ if [[ "$DIR" == "${HOME}/worktrees"* ]]; then
     branch="$(basename "$DIR")"
     selected_name="${project}-${branch}"
 fi
+selected_name="${selected_name/./-}"
 
 tmux_running=$(pgrep tmux)
 
