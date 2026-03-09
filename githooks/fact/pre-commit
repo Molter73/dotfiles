@@ -8,13 +8,13 @@ changed_files="$(git diff --cached --name-only)"
 if echo "$changed_files" | grep -q -e "^fact" -e "^third_party"; then
 	make format-check
 
-	cargo build
+	cargo build --bins
 	cargo clippy -- -D warnings
 fi
 
 # eBPF checks
 if echo "$changed_files" | grep -q -e "^fact-ebpf" -e "^fact/src/bpf"; then
-	cargo stest --features=bpf-test
+	cargo stest --features=bpf-test --all
 fi
 
 # Image build
