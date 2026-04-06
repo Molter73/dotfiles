@@ -7,6 +7,7 @@ config.enable_tab_bar = false
 config.audible_bell = 'Disabled'
 config.check_for_updates = false
 config.window_background_opacity = 0.97
+config.adjust_window_size_when_changing_font_size = false
 
 -- Font configuration
 local font = require('fonts').firacode
