@@ -23,7 +23,7 @@ return {
         },
     },
     monaspace = {
-        family = 'Monaspace Neon',
+        family = 'Monaspace Neon NF',
         weight = 'Medium',
         size = 12,
         harfbuzz = {

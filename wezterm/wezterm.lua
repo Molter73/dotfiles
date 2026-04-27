@@ -10,7 +10,7 @@ config.window_background_opacity = 0.97
 config.adjust_window_size_when_changing_font_size = false
 
 -- Font configuration
-local font = require('fonts').firacode
+local font = require('fonts').monaspace
 
 config.font = wezterm.font({
     family = font.family,

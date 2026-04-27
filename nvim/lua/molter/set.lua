@@ -24,7 +24,7 @@ vim.opt.relativenumber = true
 vim.opt.ttyfast = true -- Speed up scrolling in Vim
 vim.opt.list = true
 vim.opt.listchars = {
-    tab = '==>',
+    tab = '<->',
     trail = '·',
     precedes = '<',
     extends = '>',
