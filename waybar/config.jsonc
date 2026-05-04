@@ -14,6 +14,7 @@
         "battery",
         "cpu",
         "bluetooth",
+        "custom/netbird",
         "network",
         //"tray",
         "custom/notification",
@@ -91,6 +92,13 @@
     "bluetooth": {
         "format": "",
         "on-click": "blueman-manager",
+    },
+    "custom/netbird": {
+        "format": "󱗆",
+        "exec": "~/.local/bin/netbird-check",
+        "on-click": "~/.local/bin/netbird-toggle",
+        "return-type": "json",
+        "interval": 1,
     },
     "network": {
         "format-wifi": "",

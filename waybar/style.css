@@ -46,6 +46,7 @@
 #custom-notification,
 #custom-updates,
 #custom-lock,
+#custom-netbird,
 #custom-power {
     background-color: @surface0;
     padding: 0.5rem 1rem;
@@ -144,4 +145,16 @@
 #custom-updates.critical {
     background-color: @red;
     color: @base;
+}
+
+#custom-netbird.up {
+    color: @green;
+}
+
+#custom-netbird.down {
+    color: @overlay1;
+}
+
+#custom-netbird.error {
+    color: @red;
 }
