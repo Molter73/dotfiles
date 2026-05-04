@@ -3,6 +3,7 @@
 set -euo pipefail
 
 title="$(playerctl metadata --format '{{ title }}')"
+artist="$(playerctl metadata --format '{{ artist }}')"
 status="$(playerctl status --format '{{ lc(status) }}')"
 
 st=100
@@ -12,5 +13,5 @@ fi
 
 jq -cMn \
     --arg status $st \
-    --arg text "$title" \
+    --arg text "$artist - $title" \
     '{"text": $text, "percentage": $status | tonumber }'
