@@ -59,6 +59,11 @@ alias ctest='ctest --no-tests=error --output-on-failure'
 alias gwa="git worktree add"
 alias gwr="git worktree remove"
 
+# coderabbit
+if command -v coderabbit &> /dev/null; then
+    alias review="coderabbit review --interactive"
+fi
+
 # bat aliases
 if command -v bat &> /dev/null; then
     alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'

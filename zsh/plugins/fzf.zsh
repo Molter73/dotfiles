@@ -7,7 +7,7 @@ cs() {
 }
 #
 # Remove docker containers
-cr() {
+crm() {
     local cid
     cid=$(docker ps -a | sed 1d | fzf -q "$1" | awk '{print $1}')
 
