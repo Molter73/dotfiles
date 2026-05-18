@@ -1,7 +1,6 @@
 local parsers = {
     'bash',
     'c',
-    'c3',
     'cmake',
     'comment',
     'cpp',
