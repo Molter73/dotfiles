@@ -20,29 +20,26 @@ local opts = {
         comments = {},
         conditionals = {},
     },
+    lsp_styles = {
+        virtual_text = {
+            errors = { 'italic' },
+            hints = { 'italic' },
+            warnings = { 'italic' },
+            information = { 'italic' },
+        },
+        underlines = {
+            errors = { 'underline' },
+            hints = { 'underline' },
+            warnings = { 'underline' },
+            information = { 'underline' },
+        },
+    },
     integrations = {
         blink_cmp = true,
         cmp = true,
-        fidget = true,
         fzf = true,
         gitsigns = true,
-        native_lsp = {
-            enabled = true,
-            virtual_text = {
-                errors = { 'italic' },
-                hints = { 'italic' },
-                warnings = { 'italic' },
-                information = { 'italic' },
-            },
-            underlines = {
-                errors = { 'underline' },
-                hints = { 'underline' },
-                warnings = { 'underline' },
-                information = { 'underline' },
-            },
-        },
         telescope = true,
-        treesitter = true,
         treesitter_context = true,
         which_key = true,
     }
@@ -52,7 +49,6 @@ return {
     {
         'catppuccin/nvim',
         name = 'catppuccin',
-        pin = true,
         config = function()
             local cat = require('catppuccin.palettes').get_palette('mocha')
             opts.custom_highlights = {
