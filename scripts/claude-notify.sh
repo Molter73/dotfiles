@@ -27,10 +27,14 @@ esac
 
 args=()
 
-if [[ -f "${HOME}/Pictures/claude.svg" ]]; then
-    args+=("-i" "${HOME}/Pictures/claude.svg")
+# Get session info - try tmux first, fallback to PWD
+if command -v tmux &> /dev/null && tmux display-message -p '#S' &> /dev/null; then
+    BODY="Session: $(tmux display-message -p '#S')"
+else
+    BODY="Directory: $(basename "${PWD}")"
 fi
 
 notify-send "${args[@]}" \
     "CLAUDIO $SUMMARY" \
-    "Session: $(tmux display-message -p '#S')"
+    -i "${HOME}/Pictures/claude.svg" \
+    "$BODY"

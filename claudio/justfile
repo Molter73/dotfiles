@@ -1,0 +1,10 @@
+image := "quay.io/mmoltras/devcontainers:claudio"
+
+build:
+    podman build \
+        --tag {{image}} \
+        -f Containerfile \
+        `pwd`
+
+push:
+    podman push {{image}}
