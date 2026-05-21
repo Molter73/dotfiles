@@ -4,6 +4,7 @@
     name:
       - ansible-collection-community-general
       - bat
+      - bubblewrap
       - clang
       - cmake
       - container-selinux
@@ -26,6 +27,7 @@
       - protobuf-devel
       - ripgrep
       - rustup
+      - socat
       - tmux
       - uv
       - wget

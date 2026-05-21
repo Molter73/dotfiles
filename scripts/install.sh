@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euox pipefail
+set -euxo pipefail
 
 SCRIPTPATH="$(
     cd -- "$(dirname "$0")" > /dev/null 2>&1
@@ -8,8 +8,6 @@ SCRIPTPATH="$(
 )"
 
 BIN_DIR="${XDG_BIN_HOME:-${HOME}/.local/bin}"
-DATA_DIR="${XDG_DATA_HOME:-${HOME}/.local/share}"
-NVIM_QUERIES="${DATA_DIR}/nvim/site/queries/"
 
 function create_symlink() {
     # Extract link_name and target from arguments

@@ -90,3 +90,6 @@
 
 - name: Install script-kiddie stuff
   ansible.builtin.command: "{{ dotfiles_repo + '/scripts/install.sh' }}"
+
+- name: Install claude code configuration
+  ansible.builtin.command: "{{ dotfiles_repo + '/claudio/install.sh' }}"
