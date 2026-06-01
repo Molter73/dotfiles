@@ -39,7 +39,15 @@
   },
   "sandbox": {
     "enabled": true,
+    "autoAllowBashIfSandboxed": true,
     "filesystem": {
+      "allowWrite": [
+        ".",
+        "~/.claude",
+        "~/.claude.json",
+        "~/go/src",
+        "~/worktrees"
+      ],
       "denyWrite": [
         "~/"
       ],
@@ -47,9 +55,23 @@
         "~/"
       ],
       "allowRead": [
-        "."
+        ".",
+        "~/.claude",
+        "~/.claude.json",
+        "~/go/src",
+        "~/worktrees"
       ]
     }
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git log *)",
+      "Bash(git commit *)",
+      "Bash(cargo *)"
+    ],
+    "deny": [
+      "Bash(git push *)"
+    ]
   },
   "editorMode": "vim"
 }
