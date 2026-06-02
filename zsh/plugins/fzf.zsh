@@ -55,3 +55,41 @@ repos() {
         _fd_repos "$1"
     fi
 }
+
+gwr() {
+    worktree="$(git worktree list | fzf \
+            --reverse \
+            --border=double \
+            --border-label=" worktrees " \
+            --border-label-pos=10 \
+            -q "$1")"
+
+    if [[ -z "$worktree" ]]; then
+        return 0
+    fi
+
+    # Expand the worktree into an array
+    # https://stackoverflow.com/a/78020723
+    worktree=(${(z)worktree})
+
+    p="${worktree[1]}"
+    branch="${worktree[3]:1:-1}"
+
+    tmux_running=$(pgrep tmux)
+    if [[ -n $tmux_running ]]; then
+        session_name=$(basename "${p}" | tr . _)
+        if [[ "$p" == "${HOME}/worktrees"* ]]; then
+            # worktrees will have a session name holding the project name and
+            # its subdirectory to prevent collisions
+            project="$(basename "$(dirname "$p")")"
+            base="$(basename "${p}")"
+            session_name="${project}-${base}"
+        fi
+        session_name="${session_name/./-}"
+
+        tmux kill-session -t "${session_name}" || true
+    fi
+
+    git worktree remove -f ${p}
+    git branch -D ${branch}
+}
