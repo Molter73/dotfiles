@@ -5,7 +5,7 @@ return {
     ---@type conform.setupOpts
     opts = {
         formatters_by_ft = {
-            python = { 'autopep8' },
+            --python = { 'autopep8' },
             bash = { 'shfmt' },
             sh = { 'shfmt' },
             zsh = { 'shfmt' },

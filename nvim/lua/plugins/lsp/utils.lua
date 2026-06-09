@@ -6,16 +6,13 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = {}
 M.capabilities.snippetSupport = capabilities
 
-M.format = function(async, range)
-    vim.lsp.buf.format({
-        formatting_options = {
-            trimTrailingWhitespace = true,
-            insertFinalNewline = true,
-            trimFinalNewlines = true,
-        },
-        async = async,
-        range = range,
-    })
+M.format = function(opts)
+    opts.formatting_options = {
+        trimTrailingWhitespace = true,
+        insertFinalNewline = true,
+        trimFinalNewlines = true,
+    }
+    vim.lsp.buf.format(opts)
 end
 
 local buffer_to_string = function()
@@ -74,9 +71,12 @@ M.format_modified = function(async)
         local end_line = tonumber(subs:sub(sep_marker + 1, end_marker - 1)) or 0
 
         -- format current range
-        M.format(async, {
-            ['start'] = { start_line, 0 },
-            ['end'] = { start_line + end_line, 0 },
+        M.format({
+            async = async,
+            range = {
+                ['start'] = { start_line, 0 },
+                ['end'] = { start_line + end_line, 0 },
+            },
         })
         ::continue::
     end
@@ -126,7 +126,7 @@ M.on_attach = function(_, bufnr)
     set_keymap('n', '<Leader>D', vim.lsp.buf.type_definition, 'Go to type definition', opts)
     set_keymap('n', '<Leader>rn', vim.lsp.buf.rename, 'Rename symbol under cursor', opts)
     set_keymap({ 'n', 'v' }, '<Leader>ca', vim.lsp.buf.code_action, 'Code Action', opts)
-    set_keymap({ 'n', 'v' }, '<Leader>fr', function() M.format(true) end, 'Format buffer', opts)
+    set_keymap({ 'n', 'v' }, '<Leader>fr', function() M.format({ async = true }) end, 'Format buffer', opts)
 end
 
 
@@ -137,7 +137,7 @@ M.project_to_container = function()
     local cwd = root_pattern(vim.fn.getcwd())
 
     -- If cwd is a repo, it takes precedence as the container name.
-    if cwd ~= '' then
+    if cwd and cwd ~= '' then
         return vim.fn.fnamemodify(cwd, ':t')
     end
 
@@ -150,7 +150,7 @@ M.project_to_container = function()
 
     -- Turned into a filename
     local filename = nvim_lsp.util.path.is_absolute(bufname) and bufname or
-        nvim_lsp.util.path.join(vim.loop.cwd(), bufname)
+        nvim_lsp.util.path.join(vim.uv.cwd(), bufname)
 
     -- Then the directory of the project
     local project_dirname = root_pattern(filename) or nvim_lsp.util.path.dirname(filename)

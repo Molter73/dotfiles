@@ -3,7 +3,7 @@ return {
     event = { 'BufReadPre', 'BufNewFile', 'InsertLeave' },
     config = function()
         require('lint').linters_by_ft = {
-            python = { 'flake8' },
+            --python = { 'flake8' },
             dockerfile = { 'hadolint' },
         }
 

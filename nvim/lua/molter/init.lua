@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd('FileType', {
     end
 })
 
-local yank_highlight = vim.api.nvim_create_augroup('YankHighlist', { clear = true })
+local yank_highlight = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
     group = yank_highlight,
     callback = function()

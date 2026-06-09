@@ -96,7 +96,7 @@ return {
             '<Leader>ft',
             function() require('fzf-lua').resume() end,
             noremap = true,
-            desc = 'Resume Telescope search',
+            desc = 'Resume fzf-lua search',
         },
         {
             '<Leader>fm',
@@ -108,7 +108,7 @@ return {
             '<Leader>fp',
             function() require('fzf-lua').spell_suggest() end,
             noremap = true,
-            desc = 'Spelling sugestions',
+            desc = 'Spelling suggestions',
         },
     },
 }

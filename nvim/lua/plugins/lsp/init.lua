@@ -15,7 +15,7 @@ local formatter = function(group)
                 group = group,
                 buffer = 0,
                 callback = function()
-                    utils.format(false)
+                    utils.format({ async = false })
                 end
             })
         end,
@@ -37,12 +37,12 @@ local go_formatter = function(group)
         for cid, res in pairs(result or {}) do
             for _, r in pairs(res.result or {}) do
                 if r.edit then
-                    local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
+                    local enc = (vim.lsp.get_clients({ id = cid }) or {}).offset_encoding or "utf-16"
                     vim.lsp.util.apply_workspace_edit(r.edit, enc)
                 end
             end
         end
-        utils.format(false)
+        utils.format({ async = false })
     end
 
     vim.api.nvim_create_autocmd('FileType', {
@@ -55,6 +55,26 @@ local go_formatter = function(group)
                 callback = callback,
             })
         end,
+    })
+end
+
+local python_formatter = function(group)
+    local callback = function()
+        utils.format({
+            async = false,
+            filter = function(client) return client.name ~= 'basedpyright' end,
+        })
+    end
+
+    vim.api.nvim_create_autocmd('FileType', {
+        pattern = { 'python' },
+        callback = function()
+            vim.api.nvim_create_autocmd('BufWritePre', {
+                group = group,
+                buffer = 0,
+                callback = callback,
+            })
+        end
     })
 end
 
@@ -94,6 +114,18 @@ return {
                     'basedpyright-langserver', '--stdio'
                 },
             })
+            -- ruff doesn't have full LSP functionality yet, so we only
+            -- bind a few supported functions
+            vim.lsp.config('ruff', {
+                on_attach = function(_, bufnr)
+                    local opts = { noremap = true, silent = true, buffer = bufnr }
+
+                    opts['desc'] = 'Code Action'
+                    vim.keymap.set({ 'n', 'v' }, '<Leader>ca', vim.lsp.buf.code_action, opts)
+                    opts['desc'] = 'Format buffer'
+                    vim.keymap.set({ 'n', 'v' }, '<Leader>fr', function() utils.format({ async = false }) end, opts)
+                end,
+            })
 
             vim.lsp.config('gh_actions_ls', {
                 cmd = {
@@ -108,6 +140,7 @@ return {
                 'gh_actions_ls',
                 'gopls',
                 'ocamllsp',
+                'ruff',
                 'yamlls',
             })
 
@@ -115,6 +148,7 @@ return {
             local lspau = vim.api.nvim_create_augroup("LSP", { clear = true })
             formatter(lspau)
             go_formatter(lspau)
+            python_formatter(lspau)
         end,
     },
     {

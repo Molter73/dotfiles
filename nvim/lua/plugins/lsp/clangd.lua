@@ -10,7 +10,7 @@ vim.lsp.config('clangd', {
                 uri = vim.uri_from_bufnr(bufnr),
             }, function(_, uri)
                 if not uri or uri == '' then
-                    vim.api.nvim_echo({ 'Correspoding file cannot be determinde' }, false, {})
+                    vim.api.nvim_echo({ 'Correspoding file cannot be determined' }, false, {})
                     return
                 end
 
