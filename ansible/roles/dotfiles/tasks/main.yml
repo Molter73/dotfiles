@@ -93,3 +93,9 @@
 
 - name: Install claude code configuration
   ansible.builtin.command: "{{ dotfiles_repo + '/claudio/install.sh' }}"
+
+- name: Link opencode configuration
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo + '/opencode' }}"
+    dest: "{{ dotfiles_xdg_config + '/opencode' }}"
+    state: link

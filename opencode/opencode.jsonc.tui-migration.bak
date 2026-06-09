@@ -1,0 +1,22 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "lsp": true,
+  "permission": {
+      "*": "ask",
+      "bash": {
+          "git log *": "allow",
+          "git commit *": "allow",
+          "git push *": "deny",
+          "cargo *": "allow",
+          "cargo install *": "ask",
+          "tail *": "allow"
+      },
+      "grep": "allow",
+      "glob": "allow",
+      "read": "allow",
+      "lsp": "allow"
+  },
+  "keybinds": {
+      "leader": "ctrl+g"
+  }
+}
