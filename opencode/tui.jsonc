@@ -1,4 +1,12 @@
 {
   "$schema": "https://opencode.ai/tui.json",
-  "theme": "catppuccin"
+  "theme": "catppuccin",
+  "keybinds": {
+    "leader": "ctrl+g"
+  },
+  "attention": {
+      "enabled": false,
+      "notifications": false,
+      "sound": false
+  }
 }

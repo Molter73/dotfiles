@@ -13,11 +13,13 @@
           "tail *": "allow",
           "head *": "allow",
           "python3 *": "allow",
-          "make *": "allow"
+          "make *": "allow",
+          "ls *": "allow"
       },
       "grep": "allow",
       "glob": "allow",
       "read": "allow",
-      "lsp": "allow"
+      "lsp": "allow",
+      "edit": "allow"
   }
 }
