@@ -4,22 +4,26 @@
   "permission": {
       "*": "ask",
       "bash": {
-          "git log *": "allow",
-          "git commit *": "allow",
-          "git diff *": "allow",
-          "git push *": "deny",
           "cargo *": "allow",
           "cargo install *": "ask",
-          "tail *": "allow",
+          "echo *": "allow",
+          "git add *": "allow",
+          "git commit *": "allow",
+          "git diff *": "allow",
+          "git log *": "allow",
+          "git push *": "deny",
+          "git submodule update *": "allow",
           "head *": "allow",
-          "python3 *": "allow",
+          "ls *": "allow",
           "make *": "allow",
-          "ls *": "allow"
+          "python3 *": "allow",
+          "tail *": "allow"
       },
       "grep": "allow",
       "glob": "allow",
       "read": "allow",
       "lsp": "allow",
-      "edit": "allow"
+      "edit": "allow",
+      "todowrite": "allow"
   }
 }

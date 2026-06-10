@@ -21,6 +21,14 @@ abstractions.
 Always attempt to run formatters and linters on the code you edit if
 they are available to you.
 
+#### Commit attribution
+
+When asked to create a commit, you should always add a line at the end
+stating what agent version you used for the changes, the line should be
+in the form:
+
+Assisted-by: `agent-mode` <noreply@opencode.ai>
+
 ### Code Intelligence
 
 Prefer LSP over Grep/Glob/Read for code navigation:
