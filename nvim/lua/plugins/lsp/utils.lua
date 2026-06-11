@@ -149,7 +149,7 @@ M.project_to_container = function()
     local bufname = vim.api.nvim_buf_get_name(0)
 
     -- Turned into a filename
-    local filename = nvim_lsp.util.path.is_absolute(bufname) and bufname or
+    local filename = vim.fn.isabsolutepath(bufname) and bufname or
         nvim_lsp.util.path.join(vim.uv.cwd(), bufname)
 
     -- Then the directory of the project
