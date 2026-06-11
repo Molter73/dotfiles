@@ -6,18 +6,25 @@
       "bash": {
           "cargo *": "allow",
           "cargo install *": "ask",
+          "coderabbit review *": "allow",
+          "cr review *": "allow",
           "echo *": "allow",
           "git add *": "allow",
           "git commit *": "allow",
           "git diff *": "allow",
           "git log *": "allow",
           "git push *": "deny",
+          "git status *": "allow",
           "git submodule update *": "allow",
+          "grep *": "allow",
           "head *": "allow",
           "ls *": "allow",
           "make *": "allow",
-          "python3 *": "allow",
+          "rg *": "allow",
           "tail *": "allow"
+      },
+      "skills": {
+          "code-review": "allow"
       },
       "grep": "allow",
       "glob": "allow",

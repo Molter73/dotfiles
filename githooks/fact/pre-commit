@@ -6,10 +6,7 @@ changed_files="$(git diff --cached --name-only)"
 
 # Rust checks
 if echo "$changed_files" | grep -q -e "^fact" -e "^third_party"; then
-	make format-check
-
-	cargo build --bins
-	cargo clippy -- -D warnings
+	make format-check lint
 fi
 
 # eBPF checks
