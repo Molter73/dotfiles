@@ -71,9 +71,9 @@ export FZF_DEFAULT_OPTS=" \
 
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
-# Gemini
-if [[ -f ~/.gemini-key ]]; then
-    source ~/.gemini-key
+# .env
+if [[ -f ~/.env ]]; then
+    source ~/.env
 fi
 
 # Variables for dedicated hosts

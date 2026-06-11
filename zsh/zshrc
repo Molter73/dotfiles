@@ -9,7 +9,6 @@ autoload bashcompinit
 bashcompinit
 
 # options
-setopt share_history        # Share history between shells
 setopt interactivecomments  # Comments on interactive shell
 #   Changing directories
 setopt auto_cd              # Execute cd if command doesn't exist but is a dir
@@ -100,17 +99,14 @@ fi
 PLUGINS_DIR="${ZSH}/plugins"
 THEMES_DIR="${ZSH}/themes"
 
-eval "$(starship init zsh)"
+if command -v starship &> /dev/null; then
+    eval "$(starship init zsh)"
+fi
 
 # Plugins
 for plugin in "${PLUGINS_DIR}"/*/*.zsh; do
     source "${plugin}"
 done
-
-# >>>> Vagrant command completion (start)
-fpath=(/opt/vagrant/embedded/gems/gems/vagrant-2.3.7/contrib/zsh $fpath)
-compinit
-# <<<<  Vagrant command completion (end)
 
 [ -e /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 

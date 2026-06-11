@@ -11,17 +11,9 @@ CONFIG_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/zsh"
 PLUGINS_DIR="${CONFIG_DIR}/plugins"
 THEMES_DIR="${CONFIG_DIR}/themes"
 
-if [[ ! -d "${CONFIG_DIR}" ]]; then
-    mkdir -p "${CONFIG_DIR}"
-fi
-
-if [[ ! -d "${PLUGINS_DIR}" ]]; then
-    mkdir -p "${PLUGINS_DIR}"
-fi
-
-if [[ ! -d "${THEMES_DIR}" ]]; then
-    mkdir -p "${THEMES_DIR}"
-fi
+mkdir -p "${CONFIG_DIR}"
+mkdir -p "${PLUGINS_DIR}"
+mkdir -p "${THEMES_DIR}"
 
 # command-not-found
 if [[ ! -d "${PLUGINS_DIR}/command-not-found" ]]; then
@@ -55,14 +47,9 @@ if [[ ! -e "${PLUGINS_DIR}/podman" ]]; then
     ln -s "${SCRIPTPATH}/plugins/podman.zsh" "${PLUGINS_DIR}/podman/podman.zsh"
 fi
 
-if [[ ! -d "${PLUGINS_DIR}/bat" ]]; then
-    mkdir "${PLUGINS_DIR}/bat"
-    ln -s "${SCRIPTPATH}/plugins/bat.zsh" "${PLUGINS_DIR}/bat/bat.zsh"
-fi
-
 # Workstation env variables
-if [[ ! -e "${ZSH}/.localenv" ]]; then
-    ln -s "${SCRIPTPATH}/localenv" "${ZSH}/localenv"
+if [[ ! -e "${CONFIG_DIR}/localenv" ]]; then
+    ln -s "${SCRIPTPATH}/localenv" "${CONFIG_DIR}/localenv"
 fi
 
 # Install the .zshrc file

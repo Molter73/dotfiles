@@ -90,6 +90,6 @@ gwr() {
         tmux kill-session -t "${session_name}" || true
     fi
 
-    git worktree remove -f ${p}
-    git branch -D ${branch}
+    git worktree remove -f "${p}"
+    git branch -D "${branch}"
 }
