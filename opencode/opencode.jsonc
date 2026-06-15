@@ -2,13 +2,21 @@
   "$schema": "https://opencode.ai/config.json",
   "lsp": true,
   "permission": {
-      "*": "ask",
-      "bash": {
+    "*": "ask"
+  },
+  "agent": {
+    "build": {
+      "permission": {
+        "*": "ask",
+        "bash": {
           "cargo *": "allow",
           "cargo install *": "ask",
           "coderabbit review *": "allow",
+          "cp *": "allow",
           "cr review *": "allow",
           "echo *": "allow",
+          "find *": "allow",
+          "fd *": "allow",
           "git add *": "allow",
           "git commit *": "allow",
           "git diff *": "allow",
@@ -20,17 +28,22 @@
           "head *": "allow",
           "ls *": "allow",
           "make *": "allow",
+          "mkdir *": "allow",
           "rg *": "allow",
+          "sort *": "allow",
+          "tree *": "allow",
           "tail *": "allow"
-      },
-      "skills": {
+        },
+        "skills": {
           "code-review": "allow"
-      },
-      "grep": "allow",
-      "glob": "allow",
-      "read": "allow",
-      "lsp": "allow",
-      "edit": "allow",
-      "todowrite": "allow"
+        },
+        "grep": "allow",
+        "glob": "allow",
+        "read": "allow",
+        "lsp": "allow",
+        "edit": "allow",
+        "todowrite": "allow"
+      }
+    }
   }
 }

@@ -4,7 +4,8 @@
   "keybinds": {
     "leader": "ctrl+g",
     "messages_half_page_up": "ctrl+u",
-    "messages_half_page_down": "ctrl+d"
+    "messages_half_page_down": "ctrl+d",
+    "input_delete": "delete,shift+delete"
   },
   "attention": {
       "enabled": false,
