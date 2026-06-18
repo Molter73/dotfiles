@@ -61,3 +61,9 @@
 
 - name: Change npm install prefix
   ansible.builtin.command: npm config set prefix {{ ansible_env.HOME }}/.local
+
+- name: Install opencode
+  community.general.npm:
+    name: opencode-ai
+    global: true
+    state: latest
