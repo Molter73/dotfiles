@@ -39,4 +39,3 @@ create_symlink dnf-check-update.sh
 create_symlink player-status.sh
 create_symlink netbird-check.sh
 create_symlink netbird-toggle.sh
-create_symlink claude-notify.sh

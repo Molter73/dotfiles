@@ -1,8 +1,0 @@
-- name: Download installation script
-  ansible.builtin.get_url:
-    url: https://claude.ai/install.sh
-    dest: /tmp/claude-install
-    mode: '0755'
-
-- name: Install claude code
-  ansible.builtin.command: /tmp/claude-install

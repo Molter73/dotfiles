@@ -4,5 +4,6 @@
   vars:
     dotfiles_repo: "{{ ansible_env.HOME + '/go/src/github.com/molter73/dotfiles' }}"
     dotfiles_xdg_config: "{{ ansible_env.HOME + '/.config' }}"
+    dotfiles_xdg_data: "{{ ansible_env.HOME + '/.local/share' }}"
   roles:
     - dotfiles
