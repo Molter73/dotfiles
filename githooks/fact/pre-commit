@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/bin/bash
 
 set -e
 
@@ -6,7 +6,15 @@ changed_files="$(git diff --cached --name-only)"
 
 # Rust checks
 if echo "$changed_files" | grep -q -e "^fact" -e "^third_party"; then
+	if [[ ! -e .venv ]]; then
+		uv venv .venv
+		uv pip install -r tests/requirements.txt
+	fi
+
+	# shellcheck disable=SC1091
+	source .venv/bin/activate
 	make format-check lint
+	deactivate
 fi
 
 # eBPF checks
