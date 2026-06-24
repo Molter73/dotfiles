@@ -50,6 +50,8 @@
         "bash": {
           "cargo check *": "allow",
           "cargo clippy *": "allow",
+          "coderabbit review *": "allow",
+          "cr review *": "allow",
           "find *": "allow",
           "fd *": "allow",
           "git diff *": "allow",
@@ -62,6 +64,9 @@
           "sort *": "allow",
           "tree *": "allow",
           "tail *": "allow"
+        },
+        "skills": {
+          "code-review": "allow"
         },
         "grep": "allow",
         "glob": "allow",
