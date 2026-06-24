@@ -7,13 +7,13 @@ pick_session() {
         -F "#{session_name}" \
         -f "#{?#{m/r:-popup$,#{session_name}},0,1}" \
         | fzf \
+            --tmux "75%" \
             --reverse \
             --border=double \
             --border-label=" sessions " \
             --border-label-pos=10 \
             --bind 'ctrl-s:execute(tmux kill-session -t {})+reload(tmux list-sessions -F "#{session_name}" -f "#{?#{m/r:-popup$,#{session_name}},0,1}")' \
             -q "${1}"
-            #--tmux "75%"
 }
 
 if [[ -z $TMUX ]]; then

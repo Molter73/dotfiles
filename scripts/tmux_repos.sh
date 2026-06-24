@@ -8,6 +8,7 @@ pick_dir() {
         fd . "${GOPATH}/src/" --type d --max-depth 3 --min-depth 3
         fd . "${HOME}/worktrees/" --type d --max-depth 2 --min-depth 2
     } | fzf \
+            --tmux "75%" \
             --reverse \
             --border=double \
             --border-label=" repos " \
@@ -20,7 +21,6 @@ pick_dir() {
                 --style=numbers \
                 {}README.md || echo 'No README'" \
             -q "$1"
-            #--tmux "75%" \
 }
 
 new_session() {
