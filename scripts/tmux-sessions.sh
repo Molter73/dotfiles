@@ -12,7 +12,7 @@ pick_session() {
             --border=double \
             --border-label=" sessions " \
             --border-label-pos=10 \
-            --bind 'ctrl-s:execute(tmux kill-session -t {})+reload(tmux list-sessions -F "#{session_name}" -f "#{?#{m/r:-popup$,#{session_name}},0,1}")' \
+            --bind 'ctrl-s:execute(tmux kill-session -t {})+execute(tmux has-session -t {}-popup && tmux kill-session -t {}-popup)+reload(tmux list-sessions -F "#{session_name}" -f "#{?#{m/r:-popup$,#{session_name}},0,1}")' \
             -q "${1}"
 }
 
