@@ -33,7 +33,8 @@
           "rg *": "allow",
           "sort *": "allow",
           "tree *": "allow",
-          "tail *": "allow"
+          "tail *": "allow",
+          "wc *": "allow"
         },
         "skills": {
           "code-review": "allow"
@@ -63,14 +64,16 @@
           "rg *": "allow",
           "sort *": "allow",
           "tree *": "allow",
-          "tail *": "allow"
+          "tail *": "allow",
+          "wc *": "allow"
         },
         "skills": {
           "code-review": "allow"
         },
         "grep": "allow",
         "glob": "allow",
-        "read": "allow"
+        "read": "allow",
+        "todowrite": "allow"
     }
   }
 }
