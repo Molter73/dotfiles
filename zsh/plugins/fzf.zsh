@@ -56,24 +56,15 @@ repos() {
     fi
 }
 
-gwr() {
-    worktree="$(git worktree list | fzf \
-            --reverse \
-            --border=double \
-            --border-label=" worktrees " \
-            --border-label-pos=10 \
-            -q "$1")"
-
-    if [[ -z "$worktree" ]]; then
-        return 0
-    fi
-
+_gwr() {
     # Expand the worktree into an array
     # https://stackoverflow.com/a/78020723
+    worktree="${1}"
     worktree=(${(z)worktree})
 
     p="${worktree[1]}"
     branch="${worktree[3]:1:-1}"
+
 
     tmux_running=$(pgrep tmux)
     if [[ -n $tmux_running ]]; then
@@ -87,9 +78,27 @@ gwr() {
         fi
         session_name="${session_name/./-}"
 
-        tmux kill-session -t "${session_name}" || true
+        tmux has-session -t "${session_name}" && tmux kill-session -t "${session_name}"
     fi
 
     git worktree remove -f "${p}"
     git branch -D "${branch}"
+}
+
+gwr() {
+    IFS=$'\n' worktrees=($(git worktree list | fzf \
+            --multi \
+            --reverse \
+            --border=double \
+            --border-label=" worktrees " \
+            --border-label-pos=10 \
+            -q "$1"))
+
+    if [[ -z "$worktrees" ]]; then
+        return 0
+    fi
+
+    for line in "${worktrees[@]}"; do
+        _gwr "$line"
+    done
 }
