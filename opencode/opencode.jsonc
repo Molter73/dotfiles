@@ -4,7 +4,7 @@
   "permission": {
     "*": "ask",
     "bash": {
-        "git push *": "deny"
+      "git push *": "deny"
     }
   },
   "agent": {
@@ -30,6 +30,7 @@
           "ls *": "allow",
           "make *": "allow",
           "mkdir *": "allow",
+          "mv *": "allow",
           "rg *": "allow",
           "sort *": "allow",
           "tree *": "allow",
@@ -48,6 +49,7 @@
       }
     },
     "plan": {
+      "permission": {
         "bash": {
           "cargo check *": "allow",
           "cargo clippy *": "allow",
@@ -74,6 +76,7 @@
         "glob": "allow",
         "read": "allow",
         "todowrite": "allow"
+      }
     }
   }
 }
