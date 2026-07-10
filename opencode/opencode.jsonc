@@ -4,8 +4,27 @@
   "permission": {
     "*": "ask",
     "bash": {
-      "git push *": "deny"
-    }
+      "echo *": "allow",
+      "fd *": "allow",
+      "find *": "allow",
+      "git diff *": "allow",
+      "git log *": "allow",
+      "git status *": "allow",
+      "git push *": "deny",
+      "grep *": "allow",
+      "head *": "allow",
+      "ls *": "allow",
+      "rg *": "allow",
+      "sort *": "allow",
+      "tail *": "allow",
+      "tree *": "allow",
+      "wc *": "allow"
+    },
+    "glob": "allow",
+    "grep": "allow",
+    "lsp": "allow",
+    "read": "allow",
+    "todowrite": "allow"
   },
   "agent": {
     "build": {
@@ -13,39 +32,19 @@
         "bash": {
           "cargo *": "allow",
           "cargo install *": "ask",
-          "coderabbit review *": "allow",
           "cp *": "allow",
-          "cr review *": "allow",
-          "echo *": "allow",
-          "find *": "allow",
-          "fd *": "allow",
           "git add *": "allow",
           "git commit *": "allow",
-          "git diff *": "allow",
-          "git log *": "allow",
-          "git status *": "allow",
           "git submodule update *": "allow",
-          "grep *": "allow",
-          "head *": "allow",
-          "ls *": "allow",
           "make *": "allow",
           "mkdir *": "allow",
-          "mv *": "allow",
-          "rg *": "allow",
-          "sort *": "allow",
-          "tree *": "allow",
-          "tail *": "allow",
-          "wc *": "allow"
+          "mv *": "allow"
         },
         "skills": {
           "code-review": "allow"
         },
-        "grep": "allow",
-        "glob": "allow",
-        "read": "allow",
-        "lsp": "allow",
-        "edit": "allow",
-        "todowrite": "allow"
+        "task": "allow",
+        "edit": "allow"
       }
     },
     "plan": {
@@ -53,29 +52,33 @@
         "bash": {
           "cargo check *": "allow",
           "cargo clippy *": "allow",
-          "coderabbit review *": "allow",
-          "cr review *": "allow",
-          "find *": "allow",
-          "fd *": "allow",
-          "git diff *": "allow",
-          "git log *": "allow",
-          "git status *": "allow",
-          "grep *": "allow",
-          "head *": "allow",
-          "ls *": "allow",
-          "rg *": "allow",
-          "sort *": "allow",
-          "tree *": "allow",
-          "tail *": "allow",
-          "wc *": "allow"
+          "coderabbit *": "allow",
+          "cr *": "allow"
         },
         "skills": {
           "code-review": "allow"
         },
-        "grep": "allow",
-        "glob": "allow",
-        "read": "allow",
-        "todowrite": "allow"
+        "task": "allow"
+      }
+    },
+    "general": {
+      "permission": {
+        "bash": {
+          "cargo *": "allow",
+          "cargo install *": "ask",
+          "cp *": "allow",
+          "git add *": "allow",
+          "git commit *": "allow",
+          "git submodule update *": "allow",
+          "make *": "allow",
+          "mkdir *": "allow",
+          "mv *": "allow"
+        },
+        "skills": {
+          "code-review": "allow"
+        },
+        "task": "allow",
+        "edit": "allow"
       }
     }
   }
