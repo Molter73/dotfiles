@@ -4,6 +4,7 @@
   "permission": {
     "*": "ask",
     "bash": {
+      "cat *": "allow",
       "echo *": "allow",
       "fd *": "allow",
       "find *": "allow",
