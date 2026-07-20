@@ -43,7 +43,6 @@ local parsers = {
     'rust',
     'sql',
     'sway',
-    'tmux',
     'toml',
     'vim',
     'vimdoc',
@@ -64,7 +63,6 @@ return {
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
-        commit = '90cd658',
         lazy = false,
         branch = 'main',
         config = function(_, _)
