@@ -103,6 +103,8 @@ if command -v starship &> /dev/null; then
     eval "$(starship init zsh)"
 fi
 
+[ -f "${HOME}/.cargo/bin/zsh-patina" ] && eval "$(~/.cargo/bin/zsh-patina activate)"
+
 # Plugins
 for plugin in "${PLUGINS_DIR}"/*/*.zsh; do
     source "${plugin}"

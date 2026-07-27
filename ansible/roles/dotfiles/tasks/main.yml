@@ -15,6 +15,15 @@
     dest: "{{ dotfiles_xdg_config + '/starship.toml' }}"
     state: link
 
+- name: Install zsh-patina
+  ansible.builtin.command: cargo install --locked zsh-patina
+
+- name: Link zsh-patina configuration
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo + '/zsh-patina' }}"
+    dest: "{{ dotfiles_xdg_config + '/zsh-patina' }}"
+    state: link
+
 - name: Link neovim configuration
   ansible.builtin.file:
     src: "{{ dotfiles_repo + '/nvim' }}"
