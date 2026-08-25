@@ -54,6 +54,7 @@ return {
             opts.custom_highlights = {
                 -- LspInlayHint = { bg = 'bg' }, -- Regular background color for inlay hints
                 ['@character.printf'] = { fg = cat.peach },
+                ['@keyword.import.c'] = { fg = cat.mauve },
             }
             require('catppuccin').setup(opts)
         end,
