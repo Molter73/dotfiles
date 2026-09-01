@@ -8,7 +8,11 @@ end
 
 Vagrant.configure('2') do |c|
   c.vm.define 'fedora', primary: true do |fedora|
-    fedora.vm.box = 'fedora/41-cloud-base'
+    fedora.vm.box = 'fedora/44'
+    fedora.vm.box_url = 'https://download.fedoraproject.org/pub/fedora/linux/releases/44/Cloud/x86_64/images/Fedora-Cloud-Base-Vagrant-libvirt-44-1.7.x86_64.vagrant.libvirt.box'
+    fedora.vm.box_download_checksum = '4695d5ef2bfcc882649b98de0c545d04671d2064f6609e7e68e606718c8333dc'
+    fedora.vm.box_download_checksum_type = 'sha256'
+
     fedora.vm.hostname = 'fedora'
 
     synced_folder(fedora, "#{go_path}/src/", "#{go_path}/src/")
@@ -19,6 +23,8 @@ Vagrant.configure('2') do |c|
       libvirt.memory = 32768
       libvirt.memorybacking :access, :mode => 'shared'
       libvirt.machine_virtual_size = 50
+
+      libvirt.serial :type => 'file', :source => {:path => './serial.log'}
     end
 
     fedora.vm.provision 'ansible' do |ansible|
