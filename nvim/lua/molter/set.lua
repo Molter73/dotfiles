@@ -72,5 +72,3 @@ vim.diagnostic.config({
         source = true,
     },
 })
-
-vim.cmd.colorscheme('catppuccin-nvim')

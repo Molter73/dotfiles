@@ -45,7 +45,7 @@ vim.lsp.config('lua_ls', {
     settings = {
         Lua = {}
     },
-    on_attach = require('plugins.lsp.utils').on_attach,
+    on_attach = require('lsp.utils').on_attach,
 })
 
 vim.lsp.enable('lua_ls')

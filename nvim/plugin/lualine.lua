@@ -13,7 +13,13 @@ local relative_path = function()
     end
 end
 
-local opts = {
+
+vim.pack.add({
+    'https://github.com/arkav/lualine-lsp-progress',
+    'https://github.com/nvim-lualine/lualine.nvim',
+})
+
+require('lualine').setup({
     options = {
         icons_enabled = true,
         theme = 'catppuccin-nvim',
@@ -48,15 +54,4 @@ local opts = {
     },
     tabline = {},
     extensions = {}
-}
-
-return {
-    {
-        'nvim-lualine/lualine.nvim',
-        event = 'VeryLazy',
-        opts = opts,
-        dependencies = {
-            'arkav/lualine-lsp-progress',
-        },
-    },
-}
+})

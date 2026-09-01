@@ -59,21 +59,15 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
-return {
-    {
-        'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate',
-        lazy = false,
-        branch = 'main',
-        config = function(_, _)
-            require('nvim-treesitter').install(parsers)
-        end,
-    },
-    {
-        'nvim-treesitter/nvim-treesitter-context',
-        event = { 'BufReadPre', 'BufNewFile' },
-        opts = {
-            max_lines = 10,
-        },
-    }
-}
+vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
+    callback = function()
+        require('treesitter-context').setup({ max_lines = 10 })
+    end
+})
+
+vim.pack.add({
+    'https://github.com/nvim-treesitter/nvim-treesitter',
+    'https://github.com/nvim-treesitter/nvim-treesitter-context',
+})
+
+require('nvim-treesitter').install(parsers)

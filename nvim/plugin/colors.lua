@@ -1,4 +1,11 @@
-local opts = {
+vim.pack.add({ {
+    src = 'https://github.com/catppuccin/nvim',
+    name = 'catppuccin',
+    version = vim.version.range('*'),
+} })
+
+local cat = require('catppuccin.palettes').get_palette('mocha')
+require('catppuccin').setup({
     flavour = 'mocha',
     show_end_of_buffer = true,
     transparent_background = true,
@@ -19,6 +26,10 @@ local opts = {
     styles = { -- Handles the styles of general hi groups
         comments = {},
         conditionals = {},
+    },
+    custom_highlights = {
+        ['@character.printf'] = { fg = cat.peach },
+        ['@keyword.import.c'] = { fg = cat.mauve },
     },
     lsp_styles = {
         virtual_text = {
@@ -43,21 +54,6 @@ local opts = {
         treesitter_context = true,
         which_key = true,
     }
-}
+})
 
-return {
-    {
-        'catppuccin/nvim',
-        name = 'catppuccin',
-        config = function()
-            local cat = require('catppuccin.palettes').get_palette('mocha')
-            opts.custom_highlights = {
-                -- LspInlayHint = { bg = 'bg' }, -- Regular background color for inlay hints
-                ['@character.printf'] = { fg = cat.peach },
-                ['@keyword.import.c'] = { fg = cat.mauve },
-            }
-            require('catppuccin').setup(opts)
-        end,
-        lazy = true,
-    },
-}
+vim.cmd.colorscheme('catppuccin')

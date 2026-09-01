@@ -1,3 +1,5 @@
+local utils = require('lsp.utils')
+
 local opts = {
     settings = {
         ['rust-analyzer'] = {
@@ -9,7 +11,7 @@ local opts = {
     },
 
     on_attach = function(client, bufnr)
-        require('plugins.lsp.utils').on_attach(_, bufnr);
+        utils.on_attach(_, bufnr);
         if client.server_capabilities.inlayHintProvider then
             vim.lsp.inlay_hint.enable(true)
         end

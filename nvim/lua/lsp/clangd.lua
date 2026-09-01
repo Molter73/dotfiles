@@ -1,4 +1,4 @@
-local utils = require('plugins.lsp.utils')
+local utils = require('lsp.utils')
 
 vim.lsp.config('clangd', {
     on_attach = function(client, bufnr)
