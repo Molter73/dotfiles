@@ -1,22 +1,34 @@
-- name: Ensure .config directory exists
+- name: Ensure XDG_CONFIG_HOME directory exists
   ansible.builtin.file:
     path: "{{ dotfiles_xdg_config }}"
     state: directory
 
+- name: Ensure XDG_DATA_HOME directory exists
+  ansible.builtin.file:
+    path: "{{ dotfiles_xdg_data }}"
+    recurse: true
+    state: directory
+
+- name: Create dotfiles repo directory
+  ansible.builtin.file:
+    path: "{{ dotfiles_repo | dirname }}"
+    state: directory
+    recurse: true
+
+- name: Clone dotfiles repo
+  ansible.builtin.git:
+    repo: 'https://github.com/molter73/dotfiles'
+    dest: "{{ dotfiles_repo }}"
+    force: true
+
 - name: Install zsh configuration files
   ansible.builtin.command: "{{ dotfiles_repo + '/zsh/install.sh' }}"
-
-- name: Install starship.rs
-  ansible.builtin.command: cargo install starship
 
 - name: Link starship configuration
   ansible.builtin.file:
     src: "{{ dotfiles_repo + '/starship.toml' }}"
     dest: "{{ dotfiles_xdg_config + '/starship.toml' }}"
     state: link
-
-- name: Install zsh-patina
-  ansible.builtin.command: cargo install --locked zsh-patina
 
 - name: Link zsh-patina configuration
   ansible.builtin.file:
@@ -29,9 +41,6 @@
     src: "{{ dotfiles_repo + '/nvim' }}"
     dest: "{{ dotfiles_xdg_config + '/nvim' }}"
     state: link
-
-- name: Install neovim plugins
-  ansible.builtin.command: nvim --headless "+Lazy! restore" +qa
 
 - name: Ensure tmux configuration directory exists
   ansible.builtin.file:

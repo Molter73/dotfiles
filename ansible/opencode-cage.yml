@@ -1,0 +1,40 @@
+- name: Provision additional software for opencode-cage
+  hosts: all
+  vars:
+    home_dir: "{{ ansible_env.HOME }}"
+  tasks:
+    - name: Install system packages
+      become: true
+      ansible.builtin.dnf:
+        name:
+          - clang
+          - cmake
+          - golang
+          - htop
+          - kernel-devel
+          - libbpf-devel
+          - nodejs
+          - protobuf-devel
+          - rustup
+          - zsh
+        state: latest
+
+    - name: install rust
+      ansible.builtin.command: rustup-init -y
+
+    - name: Use zsh as default shell
+      become: true
+      ansible.builtin.user:
+        name: "{{ ansible_env.USER }}"
+        shell: /bin/zsh
+
+    - name: Run dotfiles role
+      ansible.builtin.include_role:
+        name: dotfiles
+
+    - name: Change npm install prefix
+      ansible.builtin.command: npm config set prefix {{ ansible_env.HOME }}/.local
+
+    - name: Run lsp role
+      ansible.builtin.include_role:
+        name: lsp

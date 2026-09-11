@@ -1,3 +1,4 @@
 home_dir: "{{ lookup('env', 'HOME') }}"
 dotfiles_repo: "{{ home_dir + '/go/src/github.com/molter73/dotfiles' }}"
 dotfiles_xdg_config: "{{ home_dir + '/.config' }}"
+dotfiles_xdg_data: "{{ home_dir + '/.local/share' }}"

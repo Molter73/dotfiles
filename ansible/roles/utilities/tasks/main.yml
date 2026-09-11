@@ -67,3 +67,9 @@
     name: opencode-ai
     global: true
     state: latest
+
+- name: Install starship.rs
+  ansible.builtin.command: cargo install starship
+
+- name: Install zsh-patina
+  ansible.builtin.command: cargo install --locked zsh-patina
