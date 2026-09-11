@@ -31,7 +31,6 @@ vim.lsp.config('clangd', {
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
     cmd = {
         "containerized-ls",
-        utils.project_to_container(),
         "clangd",
         "--background-index",
         "--clang-tidy",

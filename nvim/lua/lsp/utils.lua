@@ -129,33 +129,4 @@ M.on_attach = function(_, bufnr)
     set_keymap({ 'n', 'v' }, '<Leader>fr', function() M.format({ async = true }) end, 'Format buffer', opts)
 end
 
-
-M.project_to_container = function()
-    local nvim_lsp = require('lspconfig')
-    local root_pattern = nvim_lsp.util.root_pattern('.git')
-
-    local cwd = root_pattern(vim.fn.getcwd())
-
-    -- If cwd is a repo, it takes precedence as the container name.
-    if cwd and cwd ~= '' then
-        return vim.fn.fnamemodify(cwd, ':t')
-    end
-
-    -- Turn the name of the current file into the name of an expected container, assuming that
-    -- the container running/building this file is named the same as the basename of the project
-    -- that the file is in
-    --
-    -- The name of the current buffer
-    local bufname = vim.api.nvim_buf_get_name(0)
-
-    -- Turned into a filename
-    local filename = vim.fn.isabsolutepath(bufname) and bufname or
-        nvim_lsp.util.path.join(vim.uv.cwd(), bufname)
-
-    -- Then the directory of the project
-    local project_dirname = root_pattern(filename) or nvim_lsp.util.path.dirname(filename)
-
-    -- And finally perform what is essentially a `basename` on this directory
-    return vim.fn.fnamemodify(nvim_lsp.util.find_git_ancestor(project_dirname), ':t')
-end
 return M

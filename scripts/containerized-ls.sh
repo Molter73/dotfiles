@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-NAME=$1
-shift
+# Derive the container name from the basename of the git repo containing the
+# current working directory, falling back to the cwd's basename otherwise.
+GIT_ROOT=$(git -C "$PWD" rev-parse --show-toplevel 2>/dev/null)
+NAME=$(basename "${GIT_ROOT:-$PWD}")
+
 # falcosecurity/libs project will be handled by the falco devcontainer
 if [[ "$NAME" == "libs" ]]; then
     NAME="falco"
