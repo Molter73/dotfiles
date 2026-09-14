@@ -44,3 +44,9 @@ vim.filetype.add({
         ['.*/.*%.Containerfile'] = 'dockerfile',
     }
 })
+
+vim.api.nvim_create_user_command('PackUpdate', function(_)
+    vim.pack.update()
+end, {
+    desc = "Update plugins"
+})
