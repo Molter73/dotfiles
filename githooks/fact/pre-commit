@@ -8,7 +8,7 @@ changed_files="$(git diff --cached --name-only)"
 if echo "$changed_files" | grep -q -e "^fact" -e "^third_party" -e "^tests"; then
 	if [[ ! -e .venv ]]; then
 		uv venv .venv
-		uv pip install -r tests/requirements.txt
+		uv pip install --python .venv/bin/python -r tests/requirements.txt
 	fi
 
 	# shellcheck disable=SC1091
