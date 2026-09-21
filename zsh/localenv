@@ -3,8 +3,8 @@
 
 # OCI stuff
 export CONTAINER_ENGINE=podman
-export CONTAINER_CONNECTION=root
-export DOCKER_HOST=unix:///var/run/docker.sock
+export CONTAINER_CONNECTION=podman-machine-default-root
+#export DOCKER_HOST=unix:///var/run/docker.sock
 
 # ansible config
 export ANSIBLE_COW_SELECTION=dragon-and-cow
