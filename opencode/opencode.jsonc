@@ -9,6 +9,7 @@
   "permission": {
     "*": "ask",
     "bash": {
+      "actionlint *": "allow",
       "cat *": "allow",
       "echo *": "allow",
       "fd *": "allow",
@@ -28,7 +29,8 @@
       "sort *": "allow",
       "tail *": "allow",
       "tree *": "allow",
-      "wc *": "allow"
+      "wc *": "allow",
+      "which *": "allow"
     },
     "glob": "allow",
     "grep": "allow",
