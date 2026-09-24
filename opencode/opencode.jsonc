@@ -11,13 +11,16 @@
     "bash": {
       "actionlint *": "allow",
       "cat *": "allow",
+      "coderabbit *": "allow",
       "echo *": "allow",
       "fd *": "allow",
       "find *": "allow",
       "git diff *": "allow",
       "git log *": "allow",
-      "git status *": "allow",
       "git push *": "deny",
+      "git rev-parse *": "allow",
+      "git show *": "allow",
+      "git status *": "allow",
       "grep *": "allow",
       "head *": "allow",
       "ls *": "allow",
@@ -67,7 +70,6 @@
           "cargo check *": "allow",
           "cargo clippy *": "allow",
           "cargo doc *": "allow",
-          "coderabbit *": "allow",
           "cr *": "allow"
         },
         "skills": {
