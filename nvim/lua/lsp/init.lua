@@ -127,6 +127,10 @@ vim.lsp.config('gh_actions_ls', {
     },
 })
 
+vim.lsp.config('gopls', {
+    on_attach = utils.on_attach,
+})
+
 vim.lsp.enable({
     'basedpyright',
     'bashls',
