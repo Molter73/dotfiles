@@ -50,3 +50,9 @@ vim.api.nvim_create_user_command('PackUpdate', function(_)
 end, {
     desc = "Update plugins"
 })
+
+vim.api.nvim_create_user_command('PackRestore', function(_)
+    vim.pack.update(nil, { version = 'lockfile' })
+end, {
+    desc = "Update plugins"
+})
