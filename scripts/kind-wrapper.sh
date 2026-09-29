@@ -204,7 +204,7 @@ eval set -- "$TEMP"
 unset TEMP
 
 # Container connection for podman to use
-export CONTAINER_CONNECTION=root
+export CONTAINER_CONNECTION="${CONTAINER_CONNECTION:-default}"
 
 while true; do
     case "${1:-}" in
