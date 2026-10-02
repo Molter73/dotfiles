@@ -4,10 +4,15 @@
 
   roles:
     - utilities
+    - starship
+    - podman
+    - opencode
+    - nono
     - kubectl
     - sway
     - catppuccin
     - firacode
+    - monaspace
     - dotfiles
     - lsp
     - rootfull-podman

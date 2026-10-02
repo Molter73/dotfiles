@@ -4,7 +4,7 @@
     name:
       - ansible-collection-community-general
       - bat
-      - bubblewrap
+      - btop
       - clang
       - cmake
       - container-selinux
@@ -13,17 +13,12 @@
       - fzf
       - glibc-devel.i686
       - golang
-      - htop
       - jq
       - kernel-devel
-      - llvm
       - make
       - neovim
       - nodejs
       - perl
-      - podman
-      - podman-compose
-      - podman-docker
       - protobuf-devel
       - ripgrep
       - rustup
@@ -46,30 +41,11 @@
 - name: install rust
   ansible.builtin.command: rustup-init -y
 
-- name: Silence podman warning on docker emulation
-  become: true
-  ansible.builtin.file:
-    path: /etc/containers/nodocker
-    state: touch
-    mode: '0644'
-
-- name: Use zsh as default shell
-  become: true
-  ansible.builtin.user:
-    name: "{{ ansible_env.USER }}"
-    shell: /bin/zsh
-
 - name: Change npm install prefix
-  ansible.builtin.command: npm config set prefix {{ ansible_env.HOME }}/.local
+  ansible.builtin.command: npm config set prefix {{ ansible_facts['env']['HOME'] }}/.local
 
-- name: Install opencode
-  community.general.npm:
-    name: opencode-ai
-    global: true
-    state: latest
-
-- name: Install starship.rs
-  ansible.builtin.command: cargo install starship
 
 - name: Install zsh-patina
-  ansible.builtin.command: cargo install --locked zsh-patina
+  ansible.builtin.shell: |
+    . $HOME/.cargo/env
+    cargo install --locked zsh-patina

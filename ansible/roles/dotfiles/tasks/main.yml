@@ -9,18 +9,6 @@
     recurse: true
     state: directory
 
-- name: Create dotfiles repo directory
-  ansible.builtin.file:
-    path: "{{ dotfiles_repo | dirname }}"
-    state: directory
-    recurse: true
-
-- name: Clone dotfiles repo
-  ansible.builtin.git:
-    repo: 'https://github.com/molter73/dotfiles'
-    dest: "{{ dotfiles_repo }}"
-    force: true
-
 - name: Install zsh configuration files
   ansible.builtin.command: "{{ dotfiles_repo + '/zsh/install.sh' }}"
 
@@ -114,8 +102,19 @@
 - name: Install script-kiddie stuff
   ansible.builtin.command: "{{ dotfiles_repo + '/scripts/install.sh' }}"
 
+- name: Remove opencode configuration
+  ansible.builtin.file:
+    path: "{{ dotfiles_xdg_config + '/opencode' }}"
+    state: absent
+
 - name: Link opencode configuration
   ansible.builtin.file:
     src: "{{ dotfiles_repo + '/opencode' }}"
     dest: "{{ dotfiles_xdg_config + '/opencode' }}"
+    state: link
+
+- name: Link nono configuration
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo + '/nono' }}"
+    dest: "{{ dotfiles_xdg_config + '/nono' }} "
     state: link

@@ -1,0 +1,5 @@
+- name: Install opencode
+  community.general.npm:
+    name: opencode-ai
+    global: true
+    state: latest

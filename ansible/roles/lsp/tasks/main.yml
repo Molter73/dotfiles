@@ -61,25 +61,13 @@
   tags:
     - go
 
-- name: Install texlab
-  ansible.builtin.command:
-    cmd: cargo install --git https://github.com/latex-lsp/texlab --locked --tag v5.21.0
-  tags:
-    - cargo
-
 - name: Install neocmake
-  ansible.builtin.command:
-    cmd: cargo install neocmakelsp
+  ansible.builtin.shell:
+    cmd: |
+      source "$HOME/.cargo/env"
+      cargo install neocmakelsp
   tags:
     - cargo
-
-- name: Install jdtls
-  ansible.builtin.include_role:
-    name: install-jdtls
-  vars:
-    jdtls_dir: "{{ lsp_dir + '/jdtls' }}"
-  tags:
-    - jdtls
 
 - name: Install LuaLS
   ansible.builtin.include_role:
@@ -88,4 +76,3 @@
     luals_dir: "{{ lsp_dir + '/luals' }}"
   tags:
     - luals
-

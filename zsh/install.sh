@@ -48,16 +48,19 @@ if [[ ! -e "${PLUGINS_DIR}/podman" ]]; then
 fi
 
 # Workstation env variables
-if [[ ! -e "${CONFIG_DIR}/localenv" ]]; then
+if [[ ! -L "${CONFIG_DIR}/localenv" ]]; then
+    rm -rf "${CONFIG_DIR}/localenv"
     ln -s "${SCRIPTPATH}/localenv" "${CONFIG_DIR}/localenv"
 fi
 
 # Install the .zshrc file
-if [[ ! -e "${HOME}/.zshrc" ]]; then
+if [[ ! -L "${HOME}/.zshrc" ]]; then
+    rm -rf "${HOME}/.zshrc"
     ln -s "${SCRIPTPATH}/zshrc" "${HOME}/.zshrc"
 fi
 
 # Install the .zshenv file
-if [[ ! -e "${HOME}/.zshenv" ]]; then
+if [[ ! -L "${HOME}/.zshenv" ]]; then
+    rm -f "${HOME}/.zshenv"
     ln -s "${SCRIPTPATH}/zshenv" "${HOME}/.zshenv"
 fi

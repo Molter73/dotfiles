@@ -1,0 +1,14 @@
+{
+  "extends": "opencode",
+  "filesystem": {
+    "read_file": [
+      "$HOME/.config/gcloud/application_default_credentials.json"
+    ]
+  },
+  "network": {
+    "network_profile": "opencode",
+    "allow_domain": [
+      "*.googleapis.com"
+    ]
+  }
+}

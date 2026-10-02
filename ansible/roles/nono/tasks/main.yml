@@ -1,0 +1,16 @@
+- name: Install python3-dnf (required by community.general.copr)
+  ansible.builtin.dnf:
+    name:
+      - python3-dnf
+    state: latest
+
+- name: Enable always-further copr
+  community.general.copr:
+    name: 'always-further/nono'
+    state: enabled
+
+- name: Install nono
+  ansible.builtin.dnf:
+    name:
+      - nono-cli
+    state: latest

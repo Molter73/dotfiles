@@ -1,0 +1,15 @@
+- name: Install podman
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - podman
+      - podman-compose
+      - podman-docker
+    state: latest
+
+- name: Silence podman warning on docker emulation
+  become: true
+  ansible.builtin.file:
+    path: /etc/containers/nodocker
+    state: touch
+    mode: '0644'

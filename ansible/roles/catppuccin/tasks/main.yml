@@ -6,17 +6,17 @@
 
 - name: Create icons directory
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.icons"
+    path: "{{ ansible_facts['env']['HOME'] }}/.icons"
     state: directory
     mode: '0755'
 
 - name: Install Catppuccin cursor
   ansible.builtin.unarchive:
     src: /tmp/catppuccin-mocha-dark-cursors.zip
-    dest: "{{ ansible_env.HOME }}/.icons"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.icons"
 
 - name: Make catppuccin the default cursor
   ansible.builtin.file:
-    src: "{{ ansible_env.HOME }}/.icons/catppuccin-mocha-dark-cursors"
-    dest: "{{ ansible_env.HOME }}/.icons/default"
+    src: "{{ ansible_facts['env']['HOME'] }}/.icons/catppuccin-mocha-dark-cursors"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.icons/default"
     state: link

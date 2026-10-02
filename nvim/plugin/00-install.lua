@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
             end
         elseif name == 'mkdp' then
             vim.notify('Installing markdown-preview...', vim.log.levels.INFO)
-            local obj = vim.system({ 'yarn', 'install' }, { cwd = ev.data.path .. '/app' }):wait()
+            local obj = vim.system({ 'npx', '--yes', 'yarn', 'install' }, { cwd = ev.data.path .. '/app' }):wait()
             if obj.code == 0 then
                 vim.notify('Building markdown-preview done', vim.log.levels.INFO)
             else

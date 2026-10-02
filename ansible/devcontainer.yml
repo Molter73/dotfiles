@@ -1,0 +1,9 @@
+---
+- name: Provision devcontainer
+  hosts: all
+
+  roles:
+    - utilities
+    - starship
+    - dotfiles
+    - lsp

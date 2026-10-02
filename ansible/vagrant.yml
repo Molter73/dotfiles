@@ -31,7 +31,7 @@
   tags:
     - dotfiles
   vars:
-    org: "{{ ansible_env.HOME + '/go/src/github.com/molter73' }}"
+    org: "{{ ansible_facts['env']['HOME'] + '/go/src/github.com/molter73' }}"
   tasks:
     - name: Create directory
       ansible.builtin.file:

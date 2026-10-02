@@ -1,7 +1,7 @@
 - name: Provision additional software for opencode-cage
   hosts: all
   vars:
-    home_dir: "{{ ansible_env.HOME }}"
+    home_dir: "{{ ansible_facts['env']['HOME'] }}"
   tasks:
     - name: Install system packages
       become: true
@@ -25,7 +25,7 @@
     - name: Use zsh as default shell
       become: true
       ansible.builtin.user:
-        name: "{{ ansible_env.USER }}"
+        name: "{{ ansible_facts['env']['USER'] }}"
         shell: /bin/zsh
 
     - name: Run dotfiles role
@@ -33,7 +33,7 @@
         name: dotfiles
 
     - name: Change npm install prefix
-      ansible.builtin.command: npm config set prefix {{ ansible_env.HOME }}/.local
+      ansible.builtin.command: npm config set prefix {{ ansible_facts['env']['HOME'] }}/.local
 
     - name: Run lsp role
       ansible.builtin.include_role:

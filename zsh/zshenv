@@ -80,3 +80,4 @@ fi
 if [[ -f "$ZSH/localenv" ]]; then
     source "$ZSH/localenv"
 fi
+. "$HOME/.cargo/env"

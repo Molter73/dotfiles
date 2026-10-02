@@ -1,7 +1,7 @@
-- name: Download FiraCode Nerd Font
+- name: Download monaspace Nerd Font
   ansible.builtin.get_url:
     dest: /tmp
-    url: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.tar.xz
+    url: https://github.com/githubnext/monaspace/releases/download/v1.400/monaspace-webfont-nerdfonts-v1.400.zip
     mode: '0644'
 
 - name: Ensure fonts directory exists
@@ -12,6 +12,6 @@
 
 - name: Install FiraCode Nerd Font
   ansible.builtin.unarchive:
-    src: /tmp/FiraCode.tar.xz
+    src: /tmp/monaspace-webfont-nerdfonts-v1.400.zip
     dest: "{{ ansible_facts['env']['HOME'] }}/.local/share/fonts"
     remote_src: true
