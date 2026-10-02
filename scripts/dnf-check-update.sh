@@ -2,7 +2,7 @@
 
 set -uo pipefail
 
-UPDATES="$(dnf check-update --advisory-severities=critical | grep -cv "^No security updates")"
+UPDATES="$(dnf check-update --refresh --advisory-severities=critical | grep -cv "^No security updates")"
 CLASS='""'
 if ((UPDATES != 0)); then
     CLASS='"critical"'
