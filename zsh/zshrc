@@ -45,14 +45,15 @@ setopt hist_verify            # show command with history expansion to user befo
 setopt share_history          # share command history data
 
 # alias
-alias beggar="VAGRANT_CWD=${HOME}/vagrant/ vagrant"
+alias beggar='VAGRANT_CWD=${HOME}/vagrant/ vagrant'
 alias k=kubectl
-alias krox="kubectl -n stackrox"
+alias krox='kubectl -n stackrox'
 alias dcu='docker context use'
 alias ls='ls --color=auto'
 alias egrep='grep -E'   # Silence egrep deprecation message
 alias cdtemp='cd $(mktemp -d)'
 alias ctest='ctest --no-tests=error --output-on-failure'
+alias v='vagrant'
 
 # git worktree
 alias gwa="git worktree add"

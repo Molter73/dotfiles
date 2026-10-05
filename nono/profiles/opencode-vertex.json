@@ -8,7 +8,8 @@
   "network": {
     "network_profile": "opencode",
     "allow_domain": [
-      "*.googleapis.com"
+      "*.googleapis.com",
+      "opencode.ai"
     ]
   }
 }
