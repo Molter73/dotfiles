@@ -11,6 +11,7 @@
       - cowsay
       - fd-find
       - fzf
+      - git-delta
       - glibc-devel.i686
       - golang
       - jq

@@ -1,3 +1,5 @@
+# For installation instructions see:
+#   https://dandavison.github.io/delta/configuration.html
 [include]
     path = catppuccin.gitconfig
 [core]
