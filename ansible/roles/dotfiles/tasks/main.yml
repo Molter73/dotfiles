@@ -63,12 +63,6 @@
     dest: "{{ dotfiles_xdg_config + '/gdb' }}"
     state: link
 
-- name: Link zellij configuration
-  ansible.builtin.file:
-    src: "{{ dotfiles_repo + '/zellij' }}"
-    dest: "{{ dotfiles_xdg_config + '/zellij' }}"
-    state: link
-
 - name: Link sway configuration
   ansible.builtin.file:
     src: "{{ dotfiles_repo + '/sway' }}"
@@ -117,4 +111,10 @@
   ansible.builtin.file:
     src: "{{ dotfiles_repo + '/nono' }}"
     dest: "{{ dotfiles_xdg_config + '/nono' }} "
+    state: link
+
+- name: Link bat configuration
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo }}/bat"
+    dest: "{{ dotfiles_xdg_config }}/bat"
     state: link
