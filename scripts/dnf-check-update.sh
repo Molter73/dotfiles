@@ -2,15 +2,14 @@
 
 set -uo pipefail
 
-UPDATES="$(dnf check-update --refresh --advisory-severities=critical | grep -cv "^No security updates")"
+CRITICAL_UPDATES="$(dnf check-update --refresh --advisory-severities=critical --json | jq '.upgrades | length')"
+UPDATES="$(dnf check-update --json | jq '.upgrades | length')"
 CLASS='""'
-if ((UPDATES != 0)); then
-    CLASS='"critical"'
-else
-    UPDATES="$(dnf check-update | wc -l)"
-fi
 
-if ((UPDATES != 0)); then
+if ((CRITICAL_UPDATES != 0)); then
+    CLASS='"critical"'
+    UPDATES="\"${CRITICAL_UPDATES} | ${UPDATES} \""
+elif ((UPDATES != 0)); then
     UPDATES="\"${UPDATES} \""
 else
     UPDATES=""
