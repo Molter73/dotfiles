@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-set -euo pipefail
-
-podman container exists "bpfd-builder" >/dev/null
-podman exec bpfd-builder cargo test

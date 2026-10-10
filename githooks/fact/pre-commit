@@ -13,7 +13,12 @@ if echo "$changed_files" | grep -q -e "^fact" -e "^third_party" -e "^tests"; the
 	source .venv/bin/activate
 
 	uv pip install -r tests/requirements.txt
-	make format-check lint
+	if make -q lint; then
+		make lint
+	else
+		cargo clippy --all-targets --all-features -- -D warnings
+	fi
+	make format-check
 	deactivate
 fi
 
