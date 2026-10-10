@@ -22,9 +22,10 @@ export GOPROXY="https://proxy.golang.org,direct"
 export GOSUMDB="sum.golang.org"
 export GOTOOLCHAIN="auto"
 
-# k3s cluster
+# k8s
 export KUBECONFIG="${XDG_CONFIG_HOME}/kube.yml"
 export KUBE_EDITOR="nvim"
+export KIND_EXPERIMENTAL_PROVIDER="podman"
 
 # rustup shell setup
 # affix colons on either side of $PATH to simplify matching

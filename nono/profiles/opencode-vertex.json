@@ -3,6 +3,10 @@
   "filesystem": {
     "read_file": [
       "$HOME/.config/gcloud/application_default_credentials.json"
+    ],
+    "read": [
+      "$HOME/go/bin",
+      "$HOME/go/src/github.com/stackrox",
     ]
-  },
+  }
 }
