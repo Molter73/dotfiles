@@ -2,6 +2,10 @@ import { $ } from "bun"
 
 const SOUNDS = "/usr/share/sounds/freedesktop/stereo"
 
+function insideNono() {
+  return Boolean(process.env.NONO_CAP_FILE)
+}
+
 async function getSessionInfo() {
   try {
     const result = await $`tmux display-message -p '#S'`.text()
@@ -42,6 +46,7 @@ export default {
           await notify("OpenCode: Session error", { urgency: "critical", sound: "dialog-error" })
         }
         if (event.type === "permission.asked") {
+          if (insideNono()) continue
           await notify("OpenCode: Permission requested", { sound: "dialog-warning" })
         }
       }
