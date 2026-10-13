@@ -1,0 +1,3 @@
+[submodule "private"]
+	path = private
+	url = ssh://git@codeberg.org/molter73/dotfiles-private.git

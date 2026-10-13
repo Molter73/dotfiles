@@ -118,3 +118,10 @@
     src: "{{ dotfiles_repo }}/bat"
     dest: "{{ dotfiles_xdg_config }}/bat"
     state: link
+
+- name: Install private configuration
+  ansible.builtin.shell:
+    cmd: |
+      if [[ -e "{{ dotfiles_private_repo }}/install.sh" ]]; then
+        "{{ dotfiles_private_repo }}/install.sh"
+      fi

@@ -1,4 +1,5 @@
 home_dir: "{{ lookup('env', 'HOME') }}"
 dotfiles_repo: "{{ playbook_dir | dirname }}"
+dotfiles_private_repo: "{{ playbook_dir | dirname }}/../private"
 dotfiles_xdg_config: "{{ home_dir + '/.config' }}"
 dotfiles_xdg_data: "{{ home_dir + '/.local/share' }}"

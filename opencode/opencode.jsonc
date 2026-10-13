@@ -1,5 +1,13 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "atlassian": {
+        "type": "remote",
+        "url": "https://mcp.atlassian.com/v1/mcp/authv2"
+      }
+    }
+  },
   "lsp": {
     "clangd": {
       "command": ["containerized-ls", "clangd", "--background-index", "--clang-tidy"]
@@ -17,6 +25,7 @@
     { "action": "shell", "resource": "echo *", "effect": "allow" },
     { "action": "shell", "resource": "fd *", "effect": "allow" },
     { "action": "shell", "resource": "find *", "effect": "allow" },
+    { "action": "shell", "resource": "gh *", "effect": "ask" },
     { "action": "shell", "resource": "git diff *", "effect": "allow" },
     { "action": "shell", "resource": "git log *", "effect": "allow" },
     { "action": "shell", "resource": "git push *", "effect": "deny" },
@@ -42,8 +51,9 @@
     { "action": "glob", "resource": "*", "effect": "allow" },
     { "action": "grep", "resource": "*", "effect": "allow" },
     { "action": "lsp", "resource": "*", "effect": "allow" },
+    { "action": "question", "resource": "*", "effect": "allow" },
     { "action": "read", "resource": "*", "effect": "allow" },
-    { "action": "todowrite", "resource": "*", "effect": "allow" }
+    { "action": "todowrite", "resource": "*", "effect": "allow" },
     { "action": "skill", "resource": "code-review", "effect": "allow" },
     { "action": "subagent", "resource": "*", "effect": "allow" }
   ],
@@ -62,7 +72,7 @@
       ]
     },
     "plan": {
-      "color": "#89dceb",
+      "color": "#89dceb"
     },
     "general": {
       "permissions": [

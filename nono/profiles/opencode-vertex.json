@@ -1,5 +1,8 @@
 {
   "extends": "opencode",
+  "network": {
+    "open_port_range": [[32768, 60999]]
+  },
   "filesystem": {
     "read_file": [
       "$HOME/.config/gcloud/application_default_credentials.json"
@@ -7,6 +10,40 @@
     "read": [
       "$HOME/go/bin",
       "$HOME/go/src/github.com/stackrox",
+      "$HOME/go/src/github.com/molter73/dotfiles/scripts",
+      "$HOME/go/src/github.com/molter73/dotfiles-private"
     ]
+  },
+  "command_policies": {
+    "credentials": {
+      "github-api": {
+        "type": "proxy",
+        "upstream": "https://api.github.com",
+        "credential_key": "env://GH_READONLY_TOKEN",
+        "env_var": "GH_API_TOKEN",
+        "inject_header": "Authorization",
+        "credential_format": "token {}"
+      }
+    },
+    "commands": {
+      "gh": {
+        "from": {
+          "session": {
+            "sandbox": {
+              "fs_read": ["$HOME/.config/gh"],
+              "environment": {
+                "allow_vars": ["PATH", "HOME", "LANG", "LC_*"]
+              },
+              "credentials": [
+                {
+                  "name": "github-api",
+                  "endpoint_policy": { "default": "allow" }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
   }
 }
