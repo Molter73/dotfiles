@@ -1,7 +1,12 @@
 {
   "extends": "opencode",
   "network": {
-    "open_port_range": [[32768, 60999]]
+    "open_port_range": [
+      [
+        32768,
+        60999
+      ]
+    ]
   },
   "filesystem": {
     "read_file": [
@@ -30,14 +35,23 @@
         "from": {
           "session": {
             "sandbox": {
-              "fs_read": ["$HOME/.config/gh"],
+              "fs_read": [
+                "$HOME/.config/gh"
+              ],
               "environment": {
-                "allow_vars": ["PATH", "HOME", "LANG", "LC_*"]
+                "allow_vars": [
+                  "PATH",
+                  "HOME",
+                  "LANG",
+                  "LC_*"
+                ]
               },
               "credentials": [
                 {
                   "name": "github-api",
-                  "endpoint_policy": { "default": "allow" }
+                  "endpoint_policy": {
+                    "default": "allow"
+                  }
                 }
               ]
             }
