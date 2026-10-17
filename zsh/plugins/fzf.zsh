@@ -102,3 +102,22 @@ gwr() {
         _gwr "$line"
     done
 }
+
+gbrm() {
+    IFS=$'\n' branches=($(git branch | grep -v '^+ ' | fzf \
+            --multi \
+            --reverse \
+            --border=double \
+            --border-label=" branches " \
+            --border-label-pos=10 \
+            -q "$1"))
+
+    if [[ -z "$branches" ]]; then
+        return 0
+    fi
+
+    for line in "${branches[@]}"; do
+        line="${line#"  "}"
+        git branch -D "$line"
+    done
+}
