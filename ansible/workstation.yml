@@ -7,7 +7,9 @@
     - starship
     - podman
     - opencode
-    - nono
+    - role:
+        name: nono
+      become: true
     - kubectl
     - sway
     - catppuccin
