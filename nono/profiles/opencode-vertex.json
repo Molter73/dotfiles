@@ -5,8 +5,18 @@
       [
         32768,
         60999
+      ],
+      [
+        8000,
+        8100
       ]
     ]
+  },
+  "environment": {
+    "set_vars": {
+      "TMPDIR": "/tmp",
+      "SQLITE_TMPDIR": "/tmp"
+    }
   },
   "filesystem": {
     "read_file": [
