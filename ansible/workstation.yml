@@ -6,9 +6,10 @@
     - utilities
     - starship
     - podman
+    - name: wezterm
+      become: true
     - opencode
-    - role:
-        name: nono
+    - name: nono
       become: true
     - kubectl
     - sway

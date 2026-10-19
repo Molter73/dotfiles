@@ -110,7 +110,7 @@
 - name: Link nono configuration
   ansible.builtin.file:
     src: "{{ dotfiles_repo + '/nono' }}"
-    dest: "{{ dotfiles_xdg_config + '/nono' }} "
+    dest: "{{ dotfiles_xdg_config + '/nono' }}"
     state: link
 
 - name: Link bat configuration

@@ -21,6 +21,7 @@
       - nodejs
       - perl
       - protobuf-devel
+      - python3-dnf
       - ripgrep
       - rustup
       - socat
