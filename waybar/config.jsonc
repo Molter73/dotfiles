@@ -5,18 +5,18 @@
     "modules-left": [
         "sway/workspaces",
         "clock#madrid",
-        "clock#utc",
+        "clock#utc"
     ],
     "modules-center": ["custom/music"],
     "modules-right": [
-        "pulseaudio",
+        "wireplumber",
         "backlight",
         "battery",
+        "power-profiles-daemon",
         "cpu",
         "bluetooth",
         "custom/netbird",
         "network",
-        //"tray",
         "custom/notification",
         "custom/updates",
         "custom/lock",
@@ -28,8 +28,8 @@
          "format": " {icon} ",
          "format-icons": {
              "default": "",
-            "focused": "",
-         },
+            "focused": ""
+         }
      },
     "tray": {
         "icon-size": 21,
@@ -58,6 +58,17 @@
         "format-alt": " {:%d/%m/%Y}",
         "format": "󰥔 {:%H:%M}"
     },
+    "power-profiles-daemon" : {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "󰓅",
+            "performance": "󰓅",
+            "balanced": "󰾅",
+            "power-saver": "󰾆"
+        }
+    },
     "cpu": {
         "interval": 1,
         "format": "{icon0}{icon1}{icon2}{icon3} {usage:>2}% ",
@@ -80,7 +91,7 @@
         "format-alt": "{icon}",
         "format-icons": ["󰂎", "󰁺", "󰁻", "󰁻", "󰁼", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
-    "pulseaudio": {
+    "wireplumber": {
         // "scroll-step": 1, // %, can be a float
         "format": "{icon} {volume}%",
         "format-muted": "",
@@ -91,14 +102,14 @@
     },
     "bluetooth": {
         "format": "",
-        "on-click": "blueman-manager",
+        "on-click": "blueman-manager"
     },
     "custom/netbird": {
         "format": "󱗆",
         "exec": "~/.local/bin/netbird-check",
         "on-click": "~/.local/bin/netbird-toggle",
         "return-type": "json",
-        "interval": 1,
+        "interval": 1
     },
     "network": {
         "format-wifi": "",
@@ -106,12 +117,12 @@
         "format-disconnected": "󰈂",
         "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
         "tooltip-format-ethernet": "{ifname} ",
-        "on-click": "wezterm -e nmtui",
+        "on-click": "wezterm -e nmtui"
     },
     "custom/lock": {
         "tooltip": false,
         "on-click": "swaylock --daemonize",
-        "format": "",
+        "format": ""
     },
     "custom/power": {
         "tooltip": false,
@@ -143,6 +154,6 @@
         "exec": "~/.local/bin/dnf-check-update",
         "on-click": "~/.local/bin/dnf-check-update",
         "return-type": "json",
-        "interval": 3600,
-    },
+        "interval": 3600
+    }
 }

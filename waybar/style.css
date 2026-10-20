@@ -36,10 +36,11 @@
 
 #clock,
 #custom-music,
-#pulseaudio,
+#wireplumber,
 #backlight,
 #battery,
 #cpu,
+#power-profiles-daemon,
 #bluetooth,
 #network,
 #tray,
@@ -55,7 +56,7 @@
 
 #clock.madrid,
 #bluetooth,
-#pulseaudio,
+#wireplumber,
 #custom-lock {
     border-radius: 1rem 0px 0px 1rem;
     margin-left: 0.5rem;
@@ -93,6 +94,18 @@
     color: @yellow;
 }
 
+#power-profiles-daemon.power-saver {
+    color: @green;
+}
+
+#power-profiles-daemon.balanced {
+    color: @blue;
+}
+
+#power-profiles-daemon.performance {
+    color: @red;
+}
+
 #network {
     color: @overlay1;
 }
@@ -125,7 +138,7 @@
     border-radius: 0;
 }
 
-#pulseaudio {
+#wireplumber {
     color: @maroon;
 }
 
