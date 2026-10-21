@@ -45,4 +45,11 @@ PORT="$(pick_port)"
 export OPENCODE_SERVER_PASSWORD
 OPENCODE_SERVER_PASSWORD="$(head -c32 /dev/urandom | base64)"
 
+BW_STATUS="$(bw status | jq .status)"
+if [[ "${BW_STATUS}" != "unlocked" ]]; then
+    echo "Unlocking Bitwarden"
+    export BW_SESSION
+    BW_SESSION="$(bw unlock --raw)"
+fi
+
 exec nono run --profile "$PROFILE" --allow-cwd -- opencode-sandboxed --attach "$PORT"

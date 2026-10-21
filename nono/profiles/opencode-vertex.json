@@ -34,7 +34,7 @@
       "github-api": {
         "type": "proxy",
         "upstream": "https://api.github.com",
-        "credential_key": "env://GH_READONLY_TOKEN",
+        "credential_key": "bw://c4a53c38-a54b-4aa2-833b-b4e901036181/GH readonly PAT",
         "env_var": "GH_API_TOKEN",
         "inject_header": "Authorization",
         "credential_format": "token {}"
