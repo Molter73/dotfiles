@@ -52,4 +52,8 @@ if [[ "${BW_STATUS}" != "unlocked" ]]; then
     BW_SESSION="$(bw unlock --raw)"
 fi
 
-exec nono run --profile "$PROFILE" --allow-cwd -- opencode-sandboxed --attach "$PORT"
+exec nono run \
+    --profile "$PROFILE" \
+    --log-file "${XDG_STATE_HOME:-${HOME}/.local/state}/nono/opencode-sandboxed.log" \
+    --allow-cwd -- \
+        opencode-sandboxed --attach "$PORT"

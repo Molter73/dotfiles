@@ -41,3 +41,4 @@ create_symlink netbird-check.sh
 create_symlink netbird-toggle.sh
 create_symlink devcontainer.sh devc
 create_symlink opencode-sandboxed.sh
+create_symlink skills-installer.sh
