@@ -18,6 +18,9 @@ vim.api.nvim_create_autocmd('PackChanged', {
             else
                 vim.notify('Building markdown-preview failed', vim.log.levels.ERROR)
             end
+        elseif name == 'nvim-treesitter' then
+            vim.notify('Updating treesitter parsers...', vim.log.levels.INFO)
+            require('nvim-treesitter').update()
         end
     end
 })
