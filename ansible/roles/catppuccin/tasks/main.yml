@@ -20,3 +20,21 @@
     src: "{{ ansible_facts['env']['HOME'] }}/.icons/catppuccin-mocha-dark-cursors"
     dest: "{{ ansible_facts['env']['HOME'] }}/.icons/default"
     state: link
+
+- name: Download Catppuccin btop configuration
+  ansible.builtin.get_url:
+    dest: /tmp
+    url: https://github.com/catppuccin/btop/releases/latest/download/themes.tar.gz
+    mode: '0644'
+
+- name: Create btop config directory
+  ansible.builtin.file:
+    path: "{{ btop_config_dir }}/themes"
+    state: directory
+    recurse: true
+    mode: '0755'
+
+- name: Install btop themes
+  ansible.builtin.unarchive:
+    src: /tmp/themes.tar.gz
+    dest: "{{ btop_config_dir }}/themes"

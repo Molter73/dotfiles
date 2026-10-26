@@ -6,10 +6,10 @@
     - utilities
     - starship
     - podman
-    - name: wezterm
+    - role: wezterm
       become: true
     - opencode
-    - name: nono
+    - role: nono
       become: true
     - kubectl
     - sway
@@ -19,3 +19,10 @@
     - dotfiles
     - lsp
     - rootfull-podman
+
+  tasks:
+    - name: Install bw
+      community.general.npm:
+        name: '@bitwarden/cli'
+        global: true
+        state: latest
