@@ -1,12 +1,10 @@
-import { $ } from "bun"
-
 const SOUNDS = "/usr/share/sounds/freedesktop/stereo"
 
 function insideNono() {
   return Boolean(process.env.NONO_CAP_FILE)
 }
 
-async function getSessionInfo() {
+async function getSessionInfo($) {
   try {
     const result = await $`tmux display-message -p '#S'`.text()
     return `Session: ${result.trim()}`
@@ -15,43 +13,35 @@ async function getSessionInfo() {
   }
 }
 
-async function notify(summary, { urgency = "normal", sound = "complete" } = {}) {
-  const body = await getSessionInfo()
+async function notify($, summary, { urgency = "normal", sound = "complete" } = {}) {
+  const body = await getSessionInfo($)
   await Promise.all([
     $`notify-send -a opencode -u ${urgency} ${summary} ${body}`,
     $`pw-play ${SOUNDS}/${sound}.oga`,
   ])
 }
 
-async function isSubagentSession(ctx, sessionID) {
+async function isSubagentSession(client, sessionID) {
   if (!sessionID) return false
-  const session = await ctx.session.get({ sessionID })
-  return Boolean(session?.parentID)
+  const { data } = await client.session.get({ path: { id: sessionID } })
+  return Boolean(data?.parentID)
 }
 
-export default {
-  id: "notification",
-
-  setup(ctx) {
-    const controller = new AbortController()
-
-    void (async () => {
-      for await (const event of ctx.event.subscribe({ signal: controller.signal })) {
-        if (event.type === "session.idle") {
-          if (await isSubagentSession(ctx, event.properties.sessionID)) continue
-          await notify("OpenCode: Session completed", { sound: "complete" })
-        }
-        if (event.type === "session.error") {
-          if (await isSubagentSession(ctx, event.properties.sessionID)) continue
-          await notify("OpenCode: Session error", { urgency: "critical", sound: "dialog-error" })
-        }
-        if (event.type === "permission.asked") {
-          if (insideNono()) continue
-          await notify("OpenCode: Permission requested", { sound: "dialog-warning" })
-        }
+export const NotificationPlugin = async ({ $, client }) => {
+  return {
+    event: async ({ event }) => {
+      if (event.type === "session.idle") {
+        if (await isSubagentSession(client, event.properties.sessionID)) return
+        await notify($, "OpenCode: Session completed", { sound: "complete" })
       }
-    })()
-
-    return () => controller.abort()
-  },
+      if (event.type === "session.error") {
+        if (await isSubagentSession(client, event.properties.sessionID)) return
+        await notify($, "OpenCode: Session error", { urgency: "critical", sound: "dialog-error" })
+      }
+      if (event.type === "permission.asked") {
+        if (insideNono()) return
+        await notify($, "OpenCode: Permission requested", { sound: "dialog-warning" })
+      }
+    },
+  }
 }

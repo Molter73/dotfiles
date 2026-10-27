@@ -1,4 +1,7 @@
 private
 agents/quarterly-connecter.md
 service.json
-skills/nono-sandbox
+skills/
+node_modules/
+package-lock.json
+package.json

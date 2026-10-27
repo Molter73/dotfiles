@@ -6,77 +6,85 @@
     }
   },
   "default_agent": "plan",
-  "permissions": [
-    { "action": "*", "resource": "*", "effect": "ask" },
-    { "action": "shell", "resource": "actionlint *", "effect": "allow" },
-    { "action": "shell", "resource": "cat *", "effect": "allow" },
-    { "action": "shell", "resource": "cargo *", "effect": "allow" },
-    { "action": "shell", "resource": "cargo install *", "effect": "ask" },
-    { "action": "shell", "resource": "coderabbit *", "effect": "allow" },
-    { "action": "shell", "resource": "cr *", "effect": "allow" },
-    { "action": "shell", "resource": "echo *", "effect": "allow" },
-    { "action": "shell", "resource": "fd *", "effect": "allow" },
-    { "action": "shell", "resource": "find *", "effect": "allow" },
-    { "action": "shell", "resource": "gh *", "effect": "ask" },
-    { "action": "shell", "resource": "git diff *", "effect": "allow" },
-    { "action": "shell", "resource": "git log *", "effect": "allow" },
-    { "action": "shell", "resource": "git push *", "effect": "deny" },
-    { "action": "shell", "resource": "git rev-parse *", "effect": "allow" },
-    { "action": "shell", "resource": "git show *", "effect": "allow" },
-    { "action": "shell", "resource": "git status *", "effect": "allow" },
-    { "action": "shell", "resource": "grep *", "effect": "allow" },
-    { "action": "shell", "resource": "head *", "effect": "allow" },
-    { "action": "shell", "resource": "ls *", "effect": "allow" },
-    { "action": "shell", "resource": "podman inspect *", "effect": "allow" },
-    { "action": "shell", "resource": "podman logs *", "effect": "allow" },
-    { "action": "shell", "resource": "podman ps *", "effect": "allow" },
-    { "action": "shell", "resource": "pyright *", "effect": "allow" },
-    { "action": "shell", "resource": "rg *", "effect": "allow" },
-    { "action": "shell", "resource": "ruff *", "effect": "allow" },
-    { "action": "shell", "resource": "sed *", "effect": "allow" },
-    { "action": "shell", "resource": "shellcheck *", "effect": "allow" },
-    { "action": "shell", "resource": "sort *", "effect": "allow" },
-    { "action": "shell", "resource": "tail *", "effect": "allow" },
-    { "action": "shell", "resource": "tree *", "effect": "allow" },
-    { "action": "shell", "resource": "wc *", "effect": "allow" },
-    { "action": "shell", "resource": "which *", "effect": "allow" },
-    { "action": "glob", "resource": "*", "effect": "allow" },
-    { "action": "grep", "resource": "*", "effect": "allow" },
-    { "action": "lsp", "resource": "*", "effect": "allow" },
-    { "action": "question", "resource": "*", "effect": "allow" },
-    { "action": "read", "resource": "*", "effect": "allow" },
-    { "action": "todowrite", "resource": "*", "effect": "allow" },
-    { "action": "skill", "resource": "code-review", "effect": "allow" },
-    { "action": "subagent", "resource": "*", "effect": "allow" }
-  ],
-  "agents": {
+  "permission": {
+    "*": "ask",
+    "bash": {
+      "actionlint *": "allow",
+      "cat *": "allow",
+      "cargo *": "allow",
+      "cargo install *": "ask",
+      "coderabbit *": "allow",
+      "cr *": "allow",
+      "echo *": "allow",
+      "fd *": "allow",
+      "find *": "allow",
+      "gh *": "ask",
+      "git diff *": "allow",
+      "git log *": "allow",
+      "git push *": "deny",
+      "git rev-parse *": "allow",
+      "git show *": "allow",
+      "git status *": "allow",
+      "grep *": "allow",
+      "head *": "allow",
+      "ls *": "allow",
+      "podman inspect *": "allow",
+      "podman logs *": "allow",
+      "podman ps *": "allow",
+      "pyright *": "allow",
+      "rg *": "allow",
+      "ruff *": "allow",
+      "sed *": "allow",
+      "shellcheck *": "allow",
+      "sort *": "allow",
+      "tail *": "allow",
+      "tree *": "allow",
+      "wc *": "allow",
+      "which *": "allow"
+    },
+    "glob": "allow",
+    "grep": "allow",
+    "lsp": "allow",
+    "question": "allow",
+    "read": "allow",
+    "skill": {
+      "code-review": "allow"
+    },
+    "task": "allow",
+    "todowrite": "allow"
+  },
+  "agent": {
     "build": {
       "color": "#f38ba8",
-      "permissions": [
-        { "action": "shell", "resource": "cp *", "effect": "allow" },
-        { "action": "shell", "resource": "git add *", "effect": "allow" },
-        { "action": "shell", "resource": "git commit *", "effect": "allow" },
-        { "action": "shell", "resource": "git submodule update *", "effect": "allow" },
-        { "action": "shell", "resource": "make *", "effect": "allow" },
-        { "action": "shell", "resource": "mkdir *", "effect": "allow" },
-        { "action": "shell", "resource": "mv *", "effect": "allow" },
-        { "action": "edit", "resource": "*", "effect": "allow" }
-      ]
+      "permission": {
+        "bash": {
+          "cp *": "allow",
+          "git add *": "allow",
+          "git commit *": "allow",
+          "git submodule update *": "allow",
+          "make *": "allow",
+          "mkdir *": "allow",
+          "mv *": "allow"
+        },
+        "edit": "allow"
+      }
     },
     "plan": {
       "color": "#89dceb"
     },
     "general": {
-      "permissions": [
-        { "action": "shell", "resource": "cp *", "effect": "allow" },
-        { "action": "shell", "resource": "git add *", "effect": "allow" },
-        { "action": "shell", "resource": "git commit *", "effect": "allow" },
-        { "action": "shell", "resource": "git submodule update *", "effect": "allow" },
-        { "action": "shell", "resource": "make *", "effect": "allow" },
-        { "action": "shell", "resource": "mkdir *", "effect": "allow" },
-        { "action": "shell", "resource": "mv *", "effect": "allow" },
-        { "action": "edit", "resource": "*", "effect": "allow" }
-      ]
+      "permission": {
+        "bash": {
+          "cp *": "allow",
+          "git add *": "allow",
+          "git commit *": "allow",
+          "git submodule update *": "allow",
+          "make *": "allow",
+          "mkdir *": "allow",
+          "mv *": "allow"
+        },
+        "edit": "allow"
+      }
     }
   }
 }
