@@ -4,7 +4,7 @@ set -euo pipefail
 
 PROFILE="${OPENCODE_SANDBOX_PROFILE:-opencode-personal}"
 
-BW_STATUS="$(bw status | jq .status)"
+BW_STATUS="$(bw status | jq -r .status)"
 if [[ "${BW_STATUS}" != "unlocked" ]]; then
     echo "Unlocking Bitwarden"
     export BW_SESSION
