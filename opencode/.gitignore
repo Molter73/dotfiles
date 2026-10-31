@@ -5,3 +5,4 @@ skills/
 node_modules/
 package-lock.json
 package.json
+plugins/nono-sandbox.ts
