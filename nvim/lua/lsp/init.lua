@@ -128,7 +128,26 @@ vim.lsp.config('gh_actions_ls', {
 })
 
 vim.lsp.config('gopls', {
-    on_attach = utils.on_attach,
+    on_attach = function(client, bufnr)
+        if client.server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+        end
+        utils.on_attach(client, bufnr)
+    end,
+    settings = {
+        gopls = {
+            ['ui.inlayhint.hints'] = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                ignoredError = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+            }
+        }
+    }
 })
 
 vim.lsp.enable({
