@@ -20,7 +20,8 @@ vim.api.nvim_create_autocmd('PackChanged', {
             end
         elseif name == 'nvim-treesitter' then
             vim.notify('Updating treesitter parsers...', vim.log.levels.INFO)
-            require('nvim-treesitter').update()
+            require('nvim-treesitter').update():wait(300000)
+            vim.notify('Finished treesitter parser update', vim.log.levels.INFO)
         end
     end
 })
